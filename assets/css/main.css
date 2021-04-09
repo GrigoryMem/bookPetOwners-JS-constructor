@@ -22,10 +22,12 @@
     z-index:100;
     padding : 10px;
     overflow-y:auto;
-    box-shadow:inset -5px -5px 0 rgba(0, 0, 0, .1)
+    box-shadow:inset -5px -5px 0 rgba(0, 0, 0, .9)
 
 
 }
 
 
-
+.col-sm{
+    border:1px solid black;
+}
