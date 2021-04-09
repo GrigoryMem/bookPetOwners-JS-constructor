@@ -1,5 +1,15 @@
 const model = [
+    {type:"title", value:"hello world"},
+    {type:"intro", value:"some text"},
+    {type:"columns", value:[
+        "Владелец животного",
+            "Кличка животного",
+        "Возраст животного",
+        "Адрес владельца"
 
-    {type:"title", value:"Hello world from JS"},
-    {type:text}
+        ]}
 ]
+
+
+const $site  = document.querySelector("#site");
+console.log($site)
