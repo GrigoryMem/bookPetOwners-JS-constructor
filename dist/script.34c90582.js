@@ -117,7 +117,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"assets/script/index.js":[function(require,module,exports) {
+})({"assets/script/model.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.model = void 0;
 var model = [{
   type: "title",
   value: "Данные о владельцах животных"
@@ -134,30 +140,24 @@ var model = [{
   type: "image",
   value: "./assets/images/logo.png"
 }];
-var $site = document.querySelector("#site");
-console.log($site);
-model.forEach(function (point) {
-  var content = "";
+exports.model = model;
+},{}],"assets/script/templates.js":[function(require,module,exports) {
+"use strict";
 
-  if (point.type === "title") {
-    content = title(point);
-  } else if (point.type === "intro") {
-    content = intro(point);
-  } else if (point.type === "header" || point.type === "person") {
-    content = header(point);
-  } else if (point.type === "image") {
-    content = image(point);
-  }
-
-  $site.insertAdjacentHTML("beforeend", content);
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
+exports.title = title;
+exports.intro = intro;
+exports.header = header;
+exports.image = image;
 
 function title(point) {
-  return " <div class=\"row\">\n                <div class=\"col-sm\">\n                    <h1>".concat(point.value, "</h1>\n                </div>\n       </div>");
+  return " <div class=\"row\">\n                 <div class=\"col-sm\">\n                     <h1>".concat(point.value, "</h1>\n                 </div>\n        </div>");
 }
 
 function intro(point) {
-  return "\n        <div class=\"row\">\n                <div class=\"col-sm\">\n                    <p>".concat(point.value, "</p>\n                </div>\n            </div>\n        ");
+  return "\n         <div class=\"row\">\n                 <div class=\"col-sm\">\n                     <p>".concat(point.value, "</p>\n                 </div>\n             </div>\n         ");
 } // persons
 
 
@@ -169,9 +169,34 @@ function header(point) {
 }
 
 function image(point) {
-  return " <div class=\"row\">\n                <div class=\"logo wrapper\">\n                    <image  class=\"logo\" src=".concat(point.value, ">\n                </div>\n            </div>\n   \n   ");
+  return " <div class=\"row\">\n                 <div class=\"logo wrapper\">\n                     <image  class=\"logo\" src=".concat(point.value, ">\n                 </div>\n             </div>\n    \n    ");
 }
-},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"assets/script/index.js":[function(require,module,exports) {
+"use strict";
+
+var _model = require("./model");
+
+var _templates = require("./templates");
+
+var $site = document.querySelector("#site");
+console.log($site);
+
+_model.model.forEach(function (point) {
+  var content = "";
+
+  if (point.type === "title") {
+    content = (0, _templates.title)(point);
+  } else if (point.type === "intro") {
+    content = (0, _templates.intro)(point);
+  } else if (point.type === "header" || point.type === "person") {
+    content = (0, _templates.header)(point);
+  } else if (point.type === "image") {
+    content = (0, _templates.image)(point);
+  }
+
+  $site.insertAdjacentHTML("beforeend", content);
+});
+},{"./model":"assets/script/model.js","./templates":"assets/script/templates.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -199,7 +224,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59936" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59851" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
