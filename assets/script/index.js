@@ -1,27 +1,30 @@
 const model = [
-    {type:"title", value:"Данные о владельцах"},
+    {type:"title", value:"Данные о владельцах животных"},
     {type:"intro", value:"Ввведние в таблицу. Инструкция JS"},
     {type:"header", value:[
         "Владелец животного",
             "Кличка животного",
-        "Возраст животного",
+        "Возраст животного,лет",
         "Адрес владельца",
-            "Адрес владельца",
-            "Адрес владельца",
-            "Владелец животного",
-            "Кличка животного",
-            "Возраст животного",
-            "Адрес владельца",
-            "Адрес владельца",
-            "Адрес владельца"
+            "Порода/Окрас",
+            "Фотография"
+
+
+
+        ]},
+    {type:"person", value:[
+            "Иванов И.И.",
+            "Лайка",
+            "6",
+            "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17",
+            "Метис/Черный",
+            "-"
 
 
 
 
-
-
-
-        ]}
+        ]},
+    {type:"image",value:"./assets/images/logo.png"}
 
 ]
 
@@ -38,9 +41,14 @@ model.forEach(point =>{
     } else if(point.type==="intro"){
         content = intro(point);
 
-    } else if(point.type === "header") {
+    } else if(point.type === "header" || point.type ==="person") {
 
         content = header(point)
+
+
+    }else if(point.type === "image") {
+
+        content = image(point)
 
 
     }
@@ -72,11 +80,23 @@ function intro(point) {
 
 }
 
-
+// persons
 function header(point) {
-    const content = point.value.map(item=>`<div class="col-sm">${item}</div>`)
+    const content = point.value.map(item=>`<td class="col-sm">${item}</td>`)
 
 
-    return  `<div class="row header">${content.join("")}</div>`
+    return  `<table class="table"><tr class="row header">${content.join("")}</tr></table>`
+
+}
+
+function image(point) {
+   return ` <div class="row">
+                <div class="logo wrapper">
+                    <image  class="logo" src=${point.value}>
+                </div>
+            </div>
+   
+   `
+
 
 }

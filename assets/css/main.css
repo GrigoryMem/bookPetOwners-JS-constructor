@@ -1,3 +1,9 @@
+
+body{
+    background:linear-gradient(to bottom, #3B1D60,#040D3E) fixed;
+    color:#fff;
+}
+
 #app{
     position: relative;
 
@@ -8,9 +14,11 @@
     position: absolute;
     top:0;
     right: 0;
-    left:300px;
+    left:200px;
+
 
 }
+
 
 
 .sidebar{
@@ -18,25 +26,45 @@
     top:0;
     bottom:0;
     left:0;
-    width: 300px;
+    width: 200px;
     z-index:100;
     padding : 10px;
     overflow-y:auto;
-    box-shadow:inset -5px -5px 0 rgba(0, 0, 0, .9)
+    box-shadow:inset -5px -5px 0 rgba(0, 0, 0, .9);
+    color:#000000;
 
 
 }
 
+.table{
+    text-align:center;
+
+    margin:0 auto;
+    color:#fff;
+
+
+
+}
 
 .col-sm{
     border:1px solid black;
+}
+
+.row:first-child{
+    text-align: center;
 }
 
 
 .header,column{
     display:flex;
     flex-wrap: nowrap;
-    max-width: 600px;
-    width: 100%;
 
+
+
+}
+
+
+.logo{
+    margin:0 auto;
+    width:300px;
 }
