@@ -25,6 +25,14 @@ export function title(point) {
      return  `<table class="table"><tr class="row header">${content.join("")}</tr></table>`
  
  }
+
+ export function person(point) {
+    const content = point.value.map(item=>`<td class="col-sm">${item}</td>`)
+
+
+    return  `<table class="table"><tr class="row person">${content.join("")}</tr></table>`
+
+}
  
  export function image(point) {
     return ` <div class="row">

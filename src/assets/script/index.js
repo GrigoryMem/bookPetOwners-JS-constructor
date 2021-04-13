@@ -1,5 +1,5 @@
 import {model} from './model'
-import {title,intro,header,image} from './templates'
+import {title,intro,header,image,person} from './templates'
 import '../css/main.css'
 
 
@@ -20,7 +20,12 @@ model.forEach(point =>{
         content = header(point)
 
 
-    }else if(point.type === "image") {
+    } else if(point.type ==="person") {
+
+        content = person(point)
+
+
+    } else if(point.type === "image") {
 
         content = image(point)
 
