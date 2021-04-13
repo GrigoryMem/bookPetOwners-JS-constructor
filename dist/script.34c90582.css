@@ -32,7 +32,7 @@ body{
     overflow-y:auto;
     box-shadow:inset -5px -5px 0 rgba(0, 0, 0, .9);
     color:#000000;
-
+    background:linear-gradient(to bottom, yellow,orange);
 
 }
 

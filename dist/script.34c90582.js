@@ -137,6 +137,9 @@ var model = [{
   type: "person",
   value: ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", "-"]
 }, {
+  type: "person",
+  value: ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", "-"]
+}, {
   type: "image",
   value: "./assets/images/logo.png"
 }];
@@ -147,19 +150,16 @@ exports.model = model;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.title = title;
-exports.intro = intro;
-exports.header = header;
-exports.person = person;
-exports.image = image;
+exports.templates = void 0;
 
+// functions
 function title(point) {
   return " <div class=\"row\">\n                 <div class=\"col-sm\">\n                     <h1>".concat(point.value, "</h1>\n                 </div>\n        </div>");
 }
 
 function intro(point) {
   return "\n         <div class=\"row\">\n                 <div class=\"col-sm\">\n                     <p>".concat(point.value, "</p>\n                 </div>\n             </div>\n         ");
-} // persons
+} // header
 
 
 function header(point) {
@@ -167,7 +167,8 @@ function header(point) {
     return "<td class=\"col-sm\">".concat(item, "</td>");
   });
   return "<table class=\"table\"><tr class=\"row header\">".concat(content.join(""), "</tr></table>");
-}
+} // persons
+
 
 function person(point) {
   var content = point.value.map(function (item) {
@@ -179,6 +180,15 @@ function person(point) {
 function image(point) {
   return " <div class=\"row\">\n                 <div class=\"logo wrapper\">\n                     <image  class=\"logo\" src=".concat(point.value, ">\n                 </div>\n             </div>\n    \n    ");
 }
+
+var templates = {
+  title: title,
+  intro: intro,
+  header: header,
+  person: person,
+  image: image
+};
+exports.templates = templates;
 },{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
@@ -261,24 +271,22 @@ var _templates = require("./templates");
 require("../css/main.css");
 
 var $site = document.querySelector("#site");
-console.log($site);
+console.log(_templates.templates);
 
 _model.model.forEach(function (point) {
-  var content = "";
+  var addContent = _templates.templates[point.type]; // if(point.type === "title"){
+  //     content = title(point);
+  // } else if(point.type==="intro"){
+  //     content = intro(point);
+  // } else if(point.type === "header" || point.type ==="person") {
+  //     content = header(point)
+  // } else if(point.type ==="person") {
+  //     content = person(point)
+  // } else if(point.type === "image") {
+  //     content = image(point)
+  // }
 
-  if (point.type === "title") {
-    content = (0, _templates.title)(point);
-  } else if (point.type === "intro") {
-    content = (0, _templates.intro)(point);
-  } else if (point.type === "header" || point.type === "person") {
-    content = (0, _templates.header)(point);
-  } else if (point.type === "person") {
-    content = (0, _templates.person)(point);
-  } else if (point.type === "image") {
-    content = (0, _templates.image)(point);
-  }
-
-  $site.insertAdjacentHTML("beforeend", content);
+  $site.insertAdjacentHTML("beforeend", addContent(point));
 });
 },{"./model":"assets/script/model.js","./templates":"assets/script/templates.js","../css/main.css":"assets/css/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
