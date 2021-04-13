@@ -8,7 +8,11 @@ console.log(templates)
 
 model.forEach(point =>{
 
-    let addContent = templates[point.type]
+    let addContent = templates[point.type];
+
+    if(addContent){
+        $site.insertAdjacentHTML("beforeend",addContent(point));
+    }
 
     // if(point.type === "title"){
     //     content = title(point);
@@ -33,7 +37,7 @@ model.forEach(point =>{
     // }
 
 
-    $site.insertAdjacentHTML("beforeend",addContent(point));
+   
 
 
 })

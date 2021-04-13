@@ -274,7 +274,11 @@ var $site = document.querySelector("#site");
 console.log(_templates.templates);
 
 _model.model.forEach(function (point) {
-  var addContent = _templates.templates[point.type]; // if(point.type === "title"){
+  var addContent = _templates.templates[point.type];
+
+  if (addContent) {
+    $site.insertAdjacentHTML("beforeend", addContent(point));
+  } // if(point.type === "title"){
   //     content = title(point);
   // } else if(point.type==="intro"){
   //     content = intro(point);
@@ -286,7 +290,6 @@ _model.model.forEach(function (point) {
   //     content = image(point)
   // }
 
-  $site.insertAdjacentHTML("beforeend", addContent(point));
 });
 },{"./model":"assets/script/model.js","./templates":"assets/script/templates.js","../css/main.css":"assets/css/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
