@@ -1,5 +1,4 @@
-import image1 from '../images/customers/dog1.jpg'
-import image2 from '../images/customers/dog2.jpg'
+
 
 // название и введение
 
@@ -22,7 +21,7 @@ export function td(content){
 }
 
 export function tr(content, className){
-    return   `<table class="table"><tr class="row ${className} ">${content.join("")}</tr></table>`
+    return   `<table class="table"><tr class="row ${className} ">${content}</tr></table>`
 }
 
 

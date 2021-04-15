@@ -117,11 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"assets/images/customers/dog1.jpg":[function(require,module,exports) {
-module.exports = "/dog1.854dad89.jpg";
-},{}],"assets/images/customers/dog2.jpg":[function(require,module,exports) {
-module.exports = "/dog2.a76efe0b.jpg";
-},{}],"assets/script/utils.js":[function(require,module,exports) {
+})({"assets/script/utils.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -133,12 +129,6 @@ exports.td = td;
 exports.tr = tr;
 exports.imgLogo = imgLogo;
 exports.imgPet = imgPet;
-
-var _dog = _interopRequireDefault(require("../images/customers/dog1.jpg"));
-
-var _dog2 = _interopRequireDefault(require("../images/customers/dog2.jpg"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // название и введение
 function row(content) {
@@ -155,7 +145,7 @@ function td(content) {
 }
 
 function tr(content, className) {
-  return "<table class=\"table\"><tr class=\"row ".concat(className, " \">").concat(content.join(""), "</tr></table>");
+  return "<table class=\"table\"><tr class=\"row ".concat(className, " \">").concat(content, "</tr></table>");
 } // утилиты для картинок
 
 
@@ -166,8 +156,12 @@ function imgLogo(content) {
 function imgPet(photo) {
   return "<img class=\"imgPet\" src=\"".concat(photo, "\">");
 }
-},{"../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg"}],"assets/images/logo.png":[function(require,module,exports) {
+},{}],"assets/images/logo.png":[function(require,module,exports) {
 module.exports = "/logo.3f4a1874.png";
+},{}],"assets/images/customers/dog1.jpg":[function(require,module,exports) {
+module.exports = "/dog1.854dad89.jpg";
+},{}],"assets/images/customers/dog2.jpg":[function(require,module,exports) {
+module.exports = "/dog2.a76efe0b.jpg";
 },{}],"assets/script/model.js":[function(require,module,exports) {
 "use strict";
 
@@ -227,9 +221,8 @@ function intro(point) {
 
 
 function header(point) {
-  var content = point.value.map(function (item) {
-    return (0, _utils.td)(item);
-  });
+  var content = point.value.map(_utils.td).join(""); // item=>td(item) можно записать как просто td референс > point.value.map(td)
+
   return (0, _utils.tr)(content, "header");
 } // persons
 
@@ -239,7 +232,7 @@ function person(point) {
     return (0, _utils.td)(item);
   }); // создание массива
 
-  return (0, _utils.tr)(content, "person"); // вставили  массив в таблицу
+  return (0, _utils.tr)(content.join(""), "person"); // вставили  массив в таблицу
 }
 
 function image(point) {

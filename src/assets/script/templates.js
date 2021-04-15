@@ -13,8 +13,10 @@ function title(point) {
  
  // header
  function header(point) {
-     const content = point.value.map(item=>td(item))
- 
+     const content = point.value.map(td).join("")
+
+
+     // item=>td(item) можно записать как просто td референс > point.value.map(td)
  
      return  tr(content,"header")
  
@@ -24,7 +26,7 @@ function title(point) {
     const content = point.value.map(item=>td(item))  // создание массива
 
 
-    return   tr(content,"person")// вставили  массив в таблицу
+    return   tr(content.join(""),"person")// вставили  массив в таблицу
 
 }
  
