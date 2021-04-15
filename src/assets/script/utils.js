@@ -40,14 +40,16 @@ export function imgPet(photo){
 
 
 export function css(styles={}){
-    const keys = Object.keys(styles)
-console.log(keys)
-   const array =  keys.map(key=>{
-       console.log(`${key}:${styles[key]}`)
-        return `${key}:${styles[key]}`
-    })
+//     const keys = Object.keys(styles)
+// console.log(keys)
+//    const array =  keys.map(key=>{
+   
+//         return `${key}:${styles[key]}`
+//     })
 
-    return array.join(";")
+//     return array.join(";")
+
+return Object.keys(styles).map(key=> `${key}:${styles[key]}`).join(";")
 
 
 }

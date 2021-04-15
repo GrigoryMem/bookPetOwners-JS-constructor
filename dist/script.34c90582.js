@@ -161,13 +161,15 @@ function imgPet(photo) {
 
 function css() {
   var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var keys = Object.keys(styles);
-  console.log(keys);
-  var array = keys.map(function (key) {
-    console.log("".concat(key, ":").concat(styles[key]));
+  //     const keys = Object.keys(styles)
+  // console.log(keys)
+  //    const array =  keys.map(key=>{
+  //         return `${key}:${styles[key]}`
+  //     })
+  //     return array.join(";")
+  return Object.keys(styles).map(function (key) {
     return "".concat(key, ":").concat(styles[key]);
-  });
-  return array.join(";");
+  }).join(";");
 }
 },{}],"assets/images/logo.png":[function(require,module,exports) {
 module.exports = "/logo.3f4a1874.png";
