@@ -176,7 +176,7 @@ function title(point) {
 }
 
 function intro(point) {
-  return "\n         <div class=\"row\">\n                 <div class=\"col-sm\">\n                     <p>".concat(point.value, "</p>\n                 </div>\n             </div>\n         ");
+  return (0, _utils.row)((0, _utils.col)("<p>".concat(point.value, "</p>")));
 } // header
 
 

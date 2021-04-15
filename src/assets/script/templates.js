@@ -7,13 +7,7 @@ function title(point) {
  }
  
  function intro(point) {
-     return `
-         <div class="row">
-                 <div class="col-sm">
-                     <p>${point.value}</p>
-                 </div>
-             </div>
-         `
+     return row(col(`<p>${point.value}</p>`))
  
  }
  
