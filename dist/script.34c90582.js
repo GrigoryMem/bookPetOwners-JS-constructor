@@ -134,11 +134,14 @@ exports.css = css;
 // название и введение
 function row(content) {
   var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  return "<div class=\"row title\" style=\"".concat(styles, "\">").concat(content, "</div>");
+  var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "title";
+  return "<div class=\"row  ".concat(className, "\" style=\"").concat(styles, "\">").concat(content, "</div>");
 }
 
 function col(content) {
-  return "<div class=\"col-sm\">".concat(content, "</div>");
+  var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+  return "<div class=\"col-sm ".concat(className, "\" style=\"").concat(styles, "\">").concat(content, "</div>");
 } // утилиты для табличных функций 
 
 
@@ -147,7 +150,8 @@ function td(content) {
 }
 
 function tr(content, className) {
-  return "<table class=\"table\"><tr class=\"row ".concat(className, " \">").concat(content, "</tr></table>");
+  var styles = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+  return "<table class=\"table\"><tr class=\"row ".concat(className, "\" style=\"").concat(styles, "\">").concat(content, "</tr></table>");
 } // утилиты для картинок
 
 
@@ -174,7 +178,7 @@ function css() {
   /*   
   Object.keys(styles) - берем ключи у объекта
   toString - приводим к строке каждый элемент
-  join(";") - соединяем через ;
+  join(";") - соединяем через ; 
   */
 
 
@@ -221,10 +225,30 @@ var model = [{
   }
 }, {
   type: "intro",
-  value: "Ввведние в таблицу. Инструкция JS"
+  value: "Ввведние в таблицу. Инструкция JS",
+  value1: "Изменение таблицы",
+  options: {
+    styles: {
+      display: "flex",
+      "justify-content": "space-around",
+      "font-style": "italic",
+      padding: "1.5rem",
+      color: "linear-gradient(85deg, #fb63f9, #c2e534)"
+    },
+    styles1: {
+      background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
+      "margin-top": "15px"
+    }
+  }
 }, {
   type: "header",
-  value: ["Владелец животного", "Кличка животного", "Возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"]
+  value: ["Владелец животного", "Кличка животного", "Возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"],
+  options: {
+    styles: {
+      background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
+      "font-style": "italic"
+    }
+  }
 }, {
   type: "person",
   value: ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)]
@@ -259,14 +283,20 @@ function title(point) {
 }
 
 function intro(point) {
-  return (0, _utils.row)((0, _utils.col)("<p>".concat(point.value, "</p>")));
+  var _point$options2 = point.options,
+      styles = _point$options2.styles,
+      styles1 = _point$options2.styles1; // деструктуризация
+
+  return (0, _utils.row)((0, _utils.col)("\n     <p>".concat(point.value, "</p>\n     <p>").concat(point.value1, "</p>"), (0, _utils.css)(styles)), (0, _utils.css)(styles1), "intro");
 } // header
 
 
 function header(point) {
+  var styles = point.options.styles;
+  console.log(styles);
   var content = point.value.map(_utils.td).join(""); // item=>td(item) можно записать как просто td референс > point.value.map(td)
 
-  return (0, _utils.tr)(content, "header");
+  return (0, _utils.tr)(content, "header", (0, _utils.css)(styles));
 } // persons
 
 

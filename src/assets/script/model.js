@@ -24,7 +24,27 @@ export const model = [
         
         
     }},
-    {type:"intro", value:"Ввведние в таблицу. Инструкция JS"},
+    {type:"intro", value:"Ввведние в таблицу. Инструкция JS",
+    value1:"Изменение таблицы",
+    options:{
+        styles:{
+            display:"flex",
+            "justify-content":"space-around",
+            "font-style":"italic",
+            padding:"1.5rem",
+            
+            color:"linear-gradient(85deg, #fb63f9, #c2e534)"
+        },
+        styles1:{
+            background:"linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
+            "margin-top":"15px",
+        }
+    }
+
+
+    },
+
+
     {type:"header", value:[
         "Владелец животного",
             "Кличка животного",
@@ -35,7 +55,20 @@ export const model = [
 
 
 
-        ]},
+        ],
+
+    options:{
+        styles:{
+            background:"linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
+            "font-style":"italic"
+        }
+    }
+   
+    
+    
+    
+    
+    },
     {type:"person", value:[
             "Иванов И.И.",
             "Лайка",

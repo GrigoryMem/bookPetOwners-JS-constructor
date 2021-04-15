@@ -2,14 +2,14 @@
 
 // название и введение
 
-export function row(content,styles = ''){
-    return `<div class="row title" style="${styles}">${content}</div>`
+export function row(content,styles = '',className = "title"){
+    return `<div class="row  ${className}" style="${styles}">${content}</div>`
 
 }
 
 
-export function col(content){
-    return `<div class="col-sm">${content}</div>`
+export function col(content,styles = '', className =""){
+    return `<div class="col-sm ${className}" style="${styles}">${content}</div>`
 
 }
 
@@ -20,8 +20,8 @@ export function td(content){
     return  `<td class="col-sm">${content}</td>`
 }
 
-export function tr(content, className){
-    return   `<table class="table"><tr class="row ${className} ">${content}</tr></table>`
+export function tr(content, className,styles=""){
+    return   `<table class="table"><tr class="row ${className}" style="${styles}">${content}</tr></table>`
 }
 
 
@@ -53,7 +53,7 @@ const toString = key=> `${key}:${styles[key]}`
 /*   
 Object.keys(styles) - берем ключи у объекта
 toString - приводим к строке каждый элемент
-join(";") - соединяем через ;
+join(";") - соединяем через ; 
 */
 return Object.keys(styles).map(toString).join(";")
 

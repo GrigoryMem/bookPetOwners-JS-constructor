@@ -36,15 +36,7 @@ body{
 
 }
 
-.table{
-    text-align:center;
 
-    margin:5px auto;
-    color:#fff;
-
-
-
-}
 
 .col-sm{
     border:1px solid black;
@@ -54,10 +46,27 @@ body{
     text-align: center;
 }
 
-.title{
+.row.title{
     margin-top:10px;
 }
 
+
+
+
+
+
+/*  table */
+
+
+.table{
+    text-align:center;
+
+    margin:5px auto;
+    color:#fff;
+
+
+
+}
 
 .header,column{
     display:flex;
@@ -76,11 +85,18 @@ body{
 }
 
 
-.logo{
-    margin:10px auto;
-    width:300px;
 
+
+tr.person td:nth-child(odd){
+    background: linear-gradient(90deg, #aea4e3, #d3ffe8);
 }
+
+tr.person td:nth-child(even){
+    background: linear-gradient(85deg, #fb63f9, #c2e534);
+}
+
+
+
 
 
 
@@ -88,4 +104,11 @@ body{
 .imgPet{
     width:100%;
     max-width: 100px;
+}
+
+
+.logo{
+    margin:10px auto;
+    width:300px;
+
 }
