@@ -217,10 +217,13 @@ var _utils = require("./utils");
 
 // functions titles
 function title(point) {
-  var _point$options$tag;
+  var _point$options = point.options,
+      _point$options$tag = _point$options.tag,
+      tag = _point$options$tag === void 0 ? "h1" : _point$options$tag,
+      styles = _point$options.styles; // деструктуризация
+  // const tag = point.options.tag ?? 'h1'; значение по умолчанию
+  // const styles = point.options.styles;
 
-  var tag = (_point$options$tag = point.options.tag) !== null && _point$options$tag !== void 0 ? _point$options$tag : 'h1';
-  var styles = point.options.styles;
   return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(point.value, "</").concat(tag, ">")), styles);
 }
 

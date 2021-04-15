@@ -3,8 +3,10 @@ import {row,col,tr,td,imgLogo} from './utils'
 // functions titles
 
 function title(point) {
-    const tag = point.options.tag ?? 'h1';
-    const styles = point.options.styles;
+
+    const {tag = "h1",styles} = point.options// деструктуризация
+    // const tag = point.options.tag ?? 'h1'; значение по умолчанию
+    // const styles = point.options.styles;
    
     return  row(col(`<${tag}>${point.value}</${tag}>`),styles)
  }
