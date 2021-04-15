@@ -1,3 +1,5 @@
+// название и введение
+
 export function row(content){
     return `<div class="row">${content}</div>`
 
@@ -25,4 +27,9 @@ export function tr(content, className){
 
 export function imgLogo(content){
     return ` <div class="logo wrapper"><image  class="logo" src=${content}></div>`
+}
+
+
+export function imgPet(photo){
+    return `<img class="imgPet" src="./assets/images/customers/${photo}">`
 }

@@ -117,34 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"assets/script/model.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.model = void 0;
-var model = [{
-  type: "title",
-  value: "Данные о владельцах животных"
-}, {
-  type: "intro",
-  value: "Ввведние в таблицу. Инструкция JS"
-}, {
-  type: "header",
-  value: ["Владелец животного", "Кличка животного", "Возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"]
-}, {
-  type: "person",
-  value: ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", "-"]
-}, {
-  type: "person",
-  value: ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", "-"]
-}, {
-  type: "image",
-  value: "./assets/images/logo.png"
-}];
-exports.model = model;
-},{}],"assets/script/utils.js":[function(require,module,exports) {
+})({"assets/script/utils.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -155,7 +128,9 @@ exports.col = col;
 exports.td = td;
 exports.tr = tr;
 exports.imgLogo = imgLogo;
+exports.imgPet = imgPet;
 
+// название и введение
 function row(content) {
   return "<div class=\"row\">".concat(content, "</div>");
 }
@@ -177,7 +152,41 @@ function tr(content, className) {
 function imgLogo(content) {
   return " <div class=\"logo wrapper\"><image  class=\"logo\" src=".concat(content, "></div>");
 }
-},{}],"assets/script/templates.js":[function(require,module,exports) {
+
+function imgPet(photo) {
+  return "<img class=\"imgPet\" src=\"./assets/images/customers/".concat(photo, "\">");
+}
+},{}],"assets/script/model.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.model = void 0;
+
+var _utils = require("./utils");
+
+var model = [{
+  type: "title",
+  value: "Данные о владельцах животных"
+}, {
+  type: "intro",
+  value: "Ввведние в таблицу. Инструкция JS"
+}, {
+  type: "header",
+  value: ["Владелец животного", "Кличка животного", "Возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"]
+}, {
+  type: "person",
+  value: ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)("dog1.jpg")]
+}, {
+  type: "person",
+  value: ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)("dog2.jpg")]
+}, {
+  type: "image",
+  value: "./assets/images/logo.png"
+}];
+exports.model = model;
+},{"./utils":"assets/script/utils.js"}],"assets/script/templates.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
