@@ -132,7 +132,8 @@ exports.imgPet = imgPet;
 
 // название и введение
 function row(content) {
-  return "<div class=\"row\">".concat(content, "</div>");
+  var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return "<div class=\"row title\" style=\"".concat(styles, "\">").concat(content, "</div>");
 }
 
 function col(content) {
@@ -182,7 +183,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var model = [{
   type: "title",
-  value: "Данные о владельцах животных"
+  value: "Данные о владельцах животных",
+  options: {
+    tag: "h1",
+    styles: "background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);\n        text-transform:uppercase; text-decoration:underline; padding:1.5rem"
+  }
 }, {
   type: "intro",
   value: "Ввведние в таблицу. Инструкция JS"
@@ -212,7 +217,11 @@ var _utils = require("./utils");
 
 // functions titles
 function title(point) {
-  return (0, _utils.row)((0, _utils.col)("<h1>".concat(point.value, "</h1>")));
+  var _point$options$tag;
+
+  var tag = (_point$options$tag = point.options.tag) !== null && _point$options$tag !== void 0 ? _point$options$tag : 'h1';
+  var styles = point.options.styles;
+  return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(point.value, "</").concat(tag, ">")), styles);
 }
 
 function intro(point) {

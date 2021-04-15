@@ -2,8 +2,8 @@
 
 // название и введение
 
-export function row(content){
-    return `<div class="row">${content}</div>`
+export function row(content,styles = ''){
+    return `<div class="row title" style="${styles}">${content}</div>`
 
 }
 

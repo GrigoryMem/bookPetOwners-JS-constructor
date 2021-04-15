@@ -3,7 +3,10 @@ import {row,col,tr,td,imgLogo} from './utils'
 // functions titles
 
 function title(point) {
-    return  row(col(`<h1>${point.value}</h1>`))
+    const tag = point.options.tag ?? 'h1';
+    const styles = point.options.styles;
+   
+    return  row(col(`<${tag}>${point.value}</${tag}>`),styles)
  }
  
  function intro(point) {
