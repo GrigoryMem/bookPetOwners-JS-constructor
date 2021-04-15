@@ -66,10 +66,15 @@ body{
     font-weight: 700;
 }
 
+.row.person{
+    text-align:left;
+}
+
 
 .logo{
-    margin:0 auto;
+    margin:10px auto;
     width:300px;
+
 }
 
 
