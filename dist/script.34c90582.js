@@ -144,6 +144,22 @@ var model = [{
   value: "./assets/images/logo.png"
 }];
 exports.model = model;
+},{}],"assets/script/utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.row = row;
+exports.col = col;
+
+function row(content) {
+  return "<div class=\"row\">".concat(content, "</div>");
+}
+
+function col(content) {
+  return "<div class=\"col-sm\">".concat(content, "</div>");
+}
 },{}],"assets/script/templates.js":[function(require,module,exports) {
 "use strict";
 
@@ -152,9 +168,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.templates = void 0;
 
-// functions
+var _utils = require("./utils");
+
+// functions titles
 function title(point) {
-  return " <div class=\"row\">\n                 <div class=\"col-sm\">\n                     <h1>".concat(point.value, "</h1>\n                 </div>\n        </div>");
+  return (0, _utils.row)((0, _utils.col)("<h1>".concat(point.value, "</h1>")));
 }
 
 function intro(point) {
@@ -189,7 +207,7 @@ var templates = {
   image: image
 };
 exports.templates = templates;
-},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./utils":"assets/script/utils.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -319,7 +337,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61138" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59317" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

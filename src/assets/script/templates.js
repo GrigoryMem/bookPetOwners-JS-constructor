@@ -1,13 +1,9 @@
+import {row,col} from './utils'
 
-
-// functions
+// functions titles
 
 function title(point) {
-    return ` <div class="row">
-                 <div class="col-sm">
-                     <h1>${point.value}</h1>
-                 </div>
-        </div>`
+    return  row(col(`<h1>${point.value}</h1>`))
  }
  
  function intro(point) {
