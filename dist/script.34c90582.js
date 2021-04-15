@@ -129,6 +129,7 @@ exports.td = td;
 exports.tr = tr;
 exports.imgLogo = imgLogo;
 exports.imgPet = imgPet;
+exports.css = css;
 
 // название и введение
 function row(content) {
@@ -156,6 +157,17 @@ function imgLogo(content) {
 
 function imgPet(photo) {
   return "<img class=\"imgPet\" src=\"".concat(photo, "\">");
+}
+
+function css() {
+  var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var keys = Object.keys(styles);
+  console.log(keys);
+  var array = keys.map(function (key) {
+    console.log("".concat(key, ":").concat(styles[key]));
+    return "".concat(key, ":").concat(styles[key]);
+  });
+  return array.join(";");
 }
 },{}],"assets/images/logo.png":[function(require,module,exports) {
 module.exports = "/logo.3f4a1874.png";
@@ -186,7 +198,15 @@ var model = [{
   value: "Данные о владельцах животных",
   options: {
     tag: "h1",
-    styles: "background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);\n        text-transform:uppercase; text-decoration:underline; padding:1.5rem"
+    // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
+    // text-transform:uppercase; text-decoration:underline; padding:1.5rem` 
+    styles: {
+      background: "linear-gradient(90deg, #f598a8, #f6edb2)",
+      color: "linear-gradient(85deg, #fb63f9, #c2e534)",
+      "text-transform": "uppercase",
+      "text-decoration": "underline",
+      padding: "1.5rem"
+    }
   }
 }, {
   type: "intro",
@@ -224,7 +244,7 @@ function title(point) {
   // const tag = point.options.tag ?? 'h1'; значение по умолчанию
   // const styles = point.options.styles;
 
-  return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(point.value, "</").concat(tag, ">")), styles);
+  return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(point.value, "</").concat(tag, ">")), (0, _utils.css)(styles));
 }
 
 function intro(point) {

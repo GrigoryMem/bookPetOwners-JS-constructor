@@ -35,3 +35,19 @@ export function imgLogo(content){
 export function imgPet(photo){
     return `<img class="imgPet" src="${photo}">`
 }
+
+
+
+
+export function css(styles={}){
+    const keys = Object.keys(styles)
+console.log(keys)
+   const array =  keys.map(key=>{
+       console.log(`${key}:${styles[key]}`)
+        return `${key}:${styles[key]}`
+    })
+
+    return array.join(";")
+
+
+}

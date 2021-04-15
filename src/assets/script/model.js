@@ -12,8 +12,15 @@ import image2 from '../images/customers/dog2.jpg'
 export const model = [
     {type:"title", value:"Данные о владельцах животных", options:{
         tag:"h1", 
-        styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
-        text-transform:uppercase; text-decoration:underline; padding:1.5rem` 
+        // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
+        // text-transform:uppercase; text-decoration:underline; padding:1.5rem` 
+        styles:{
+            background:"linear-gradient(90deg, #f598a8, #f6edb2)",
+            color:"linear-gradient(85deg, #fb63f9, #c2e534)",
+            "text-transform":"uppercase",
+            "text-decoration":"underline",
+            padding:"1.5rem",
+        }
         
         
     }},

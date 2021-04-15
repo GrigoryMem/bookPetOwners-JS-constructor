@@ -1,4 +1,4 @@
-import {row,col,tr,td,imgLogo} from './utils'
+import {row,col,tr,td,imgLogo,css} from './utils'
 
 // functions titles
 
@@ -8,7 +8,7 @@ function title(point) {
     // const tag = point.options.tag ?? 'h1'; значение по умолчанию
     // const styles = point.options.styles;
    
-    return  row(col(`<${tag}>${point.value}</${tag}>`),styles)
+    return  row(col(`<${tag}>${point.value}</${tag}>`),css(styles))
  }
  
  function intro(point) {
