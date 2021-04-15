@@ -49,7 +49,13 @@ export function css(styles={}){
 
 //     return array.join(";")
 
-return Object.keys(styles).map(key=> `${key}:${styles[key]}`).join(";")
+const toString = key=> `${key}:${styles[key]}`  
+/*   
+Object.keys(styles) - берем ключи у объекта
+toString - приводим к строке каждый элемент
+join(";") - соединяем через ;
+*/
+return Object.keys(styles).map(toString).join(";")
 
 
 }

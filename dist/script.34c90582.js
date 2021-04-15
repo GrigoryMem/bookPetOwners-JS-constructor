@@ -161,15 +161,24 @@ function imgPet(photo) {
 
 function css() {
   var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
   //     const keys = Object.keys(styles)
   // console.log(keys)
   //    const array =  keys.map(key=>{
   //         return `${key}:${styles[key]}`
   //     })
   //     return array.join(";")
-  return Object.keys(styles).map(function (key) {
+  var toString = function toString(key) {
     return "".concat(key, ":").concat(styles[key]);
-  }).join(";");
+  };
+  /*   
+  Object.keys(styles) - берем ключи у объекта
+  toString - приводим к строке каждый элемент
+  join(";") - соединяем через ;
+  */
+
+
+  return Object.keys(styles).map(toString).join(";");
 }
 },{}],"assets/images/logo.png":[function(require,module,exports) {
 module.exports = "/logo.3f4a1874.png";
