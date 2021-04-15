@@ -1,4 +1,4 @@
-import {row,col} from './utils'
+import {row,col,tr,td,imgLogo} from './utils'
 
 // functions titles
 
@@ -13,29 +13,23 @@ function title(point) {
  
  // header
  function header(point) {
-     const content = point.value.map(item=>`<td class="col-sm">${item}</td>`)
+     const content = point.value.map(item=>td(item))
  
  
-     return  `<table class="table"><tr class="row header">${content.join("")}</tr></table>`
+     return  tr(content,"header")
  
  }
 // persons
  function person(point) {
-    const content = point.value.map(item=>`<td class="col-sm">${item}</td>`)
+    const content = point.value.map(item=>td(item))  // создание массива
 
 
-    return  `<table class="table"><tr class="row person">${content.join("")}</tr></table>`
+    return   tr(content,"person")// вставили  массив в таблицу
 
 }
  
   function image(point) {
-    return ` <div class="row">
-                 <div class="logo wrapper">
-                     <image  class="logo" src=${point.value}>
-                 </div>
-             </div>
-    
-    `
+    return imgLogo(point.value)
  
  
  }

@@ -152,6 +152,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.row = row;
 exports.col = col;
+exports.td = td;
+exports.tr = tr;
+exports.imgLogo = imgLogo;
 
 function row(content) {
   return "<div class=\"row\">".concat(content, "</div>");
@@ -159,6 +162,20 @@ function row(content) {
 
 function col(content) {
   return "<div class=\"col-sm\">".concat(content, "</div>");
+} // утилиты для табличных функций 
+
+
+function td(content) {
+  return "<td class=\"col-sm\">".concat(content, "</td>");
+}
+
+function tr(content, className) {
+  return "<table class=\"table\"><tr class=\"row ".concat(className, " \">").concat(content.join(""), "</tr></table>");
+} // утилиты для картинок
+
+
+function imgLogo(content) {
+  return " <div class=\"logo wrapper\"><image  class=\"logo\" src=".concat(content, "></div>");
 }
 },{}],"assets/script/templates.js":[function(require,module,exports) {
 "use strict";
@@ -182,21 +199,22 @@ function intro(point) {
 
 function header(point) {
   var content = point.value.map(function (item) {
-    return "<td class=\"col-sm\">".concat(item, "</td>");
+    return (0, _utils.td)(item);
   });
-  return "<table class=\"table\"><tr class=\"row header\">".concat(content.join(""), "</tr></table>");
+  return (0, _utils.tr)(content, "header");
 } // persons
 
 
 function person(point) {
   var content = point.value.map(function (item) {
-    return "<td class=\"col-sm\">".concat(item, "</td>");
-  });
-  return "<table class=\"table\"><tr class=\"row person\">".concat(content.join(""), "</tr></table>");
+    return (0, _utils.td)(item);
+  }); // создание массива
+
+  return (0, _utils.tr)(content, "person"); // вставили  массив в таблицу
 }
 
 function image(point) {
-  return " <div class=\"row\">\n                 <div class=\"logo wrapper\">\n                     <image  class=\"logo\" src=".concat(point.value, ">\n                 </div>\n             </div>\n    \n    ");
+  return (0, _utils.imgLogo)(point.value);
 }
 
 var templates = {
