@@ -117,7 +117,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"assets/script/utils.js":[function(require,module,exports) {
+})({"assets/images/customers/dog1.jpg":[function(require,module,exports) {
+module.exports = "/dog1.854dad89.jpg";
+},{}],"assets/images/customers/dog2.jpg":[function(require,module,exports) {
+module.exports = "/dog2.a76efe0b.jpg";
+},{}],"assets/script/utils.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -129,6 +133,12 @@ exports.td = td;
 exports.tr = tr;
 exports.imgLogo = imgLogo;
 exports.imgPet = imgPet;
+
+var _dog = _interopRequireDefault(require("../images/customers/dog1.jpg"));
+
+var _dog2 = _interopRequireDefault(require("../images/customers/dog2.jpg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // название и введение
 function row(content) {
@@ -154,8 +164,10 @@ function imgLogo(content) {
 }
 
 function imgPet(photo) {
-  return "<img class=\"imgPet\" src=\"./assets/images/customers/".concat(photo, "\">");
+  return "<img class=\"imgPet\" src=\"".concat(photo, "\">");
 }
+},{"../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg"}],"assets/images/logo.png":[function(require,module,exports) {
+module.exports = "/logo.3f4a1874.png";
 },{}],"assets/script/model.js":[function(require,module,exports) {
 "use strict";
 
@@ -165,6 +177,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.model = void 0;
 
 var _utils = require("./utils");
+
+var _logo = _interopRequireDefault(require("../images/logo.png"));
+
+var _dog = _interopRequireDefault(require("../images/customers/dog1.jpg"));
+
+var _dog2 = _interopRequireDefault(require("../images/customers/dog2.jpg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var model = [{
   type: "title",
@@ -177,16 +197,16 @@ var model = [{
   value: ["Владелец животного", "Кличка животного", "Возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"]
 }, {
   type: "person",
-  value: ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)("dog1.jpg")]
+  value: ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)]
 }, {
   type: "person",
-  value: ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)("dog2.jpg")]
+  value: ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)]
 }, {
   type: "image",
-  value: "./assets/images/logo.png"
+  value: _logo.default
 }];
 exports.model = model;
-},{"./utils":"assets/script/utils.js"}],"assets/script/templates.js":[function(require,module,exports) {
+},{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg"}],"assets/script/templates.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

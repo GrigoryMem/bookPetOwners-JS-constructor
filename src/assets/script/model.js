@@ -1,4 +1,7 @@
 import {imgPet} from './utils'
+import image from '../images/logo.png'
+import image1 from '../images/customers/dog1.jpg'
+import image2 from '../images/customers/dog2.jpg'
 
 export const model = [
     {type:"title", value:"Данные о владельцах животных"},
@@ -20,7 +23,7 @@ export const model = [
             "6",
             "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17",
             "Метис/Черный",
-            imgPet("dog1.jpg")
+            imgPet(image1 )
 
 
 
@@ -32,12 +35,12 @@ export const model = [
             "9",
             "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8",
             "Пекинес/Светлый",
-            imgPet("dog2.jpg")
+            imgPet(image2)
 
 
 
 
         ]},
-    {type:"image",value:"./assets/images/logo.png"}
+    {type:"image",value:image}
 
 ]

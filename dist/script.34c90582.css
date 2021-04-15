@@ -59,14 +59,25 @@ body{
     display:flex;
     flex-wrap: nowrap;
 
+}
 
 
+.row.header{
+    font-weight: 700;
 }
 
 
 .logo{
     margin:0 auto;
     width:300px;
+}
+
+
+
+/*  images */
+.imgPet{
+    width:100%;
+    max-width: 100px;
 }
 
 /*# sourceMappingURL=/script.34c90582.css.map */

@@ -1,3 +1,6 @@
+import image1 from '../images/customers/dog1.jpg'
+import image2 from '../images/customers/dog2.jpg'
+
 // название и введение
 
 export function row(content){
@@ -31,5 +34,5 @@ export function imgLogo(content){
 
 
 export function imgPet(photo){
-    return `<img class="imgPet" src="./assets/images/customers/${photo}">`
+    return `<img class="imgPet" src="${photo}">`
 }
