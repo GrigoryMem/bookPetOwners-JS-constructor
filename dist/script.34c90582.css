@@ -1,122 +1,83 @@
-
-body{
-    background:linear-gradient(to bottom, #3B1D60,blue) fixed;
-    color:#fff;
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  z-index: 100;
+  padding: 10px;
+  overflow-y: auto;
+  box-shadow: inset -5px -5px 0 rgba(0, 0, 0, 0.9);
+  color: #000000;
+  background: linear-gradient(to bottom, yellow, orange);
 }
-
-#app{
-    position: relative;
-
-}
-
-
-.content{
-    position: absolute;
-    top:0;
-    right: 0;
-    left:200px;
-
-
-}
-
-
-
-.sidebar{
-    position: fixed;
-    top:0;
-    bottom:0;
-    left:0;
-    width: 200px;
-    z-index:100;
-    padding : 10px;
-    overflow-y:auto;
-    box-shadow:inset -5px -5px 0 rgba(0, 0, 0, .9);
-    color:#000000;
-    background:linear-gradient(to bottom, yellow,orange);
-
-}
-
-
-
-.col-sm{
-    border:1px solid black;
-}
-
-.row:first-child{
-    text-align: center;
-}
-
-.row.title{
-    margin-top:10px;
-}
-
-
-
-
-
 
 /*  table */
-
-
-.table{
-    text-align:center;
-
-    margin:5px auto;
-    color:#fff;
-
-
-
+.table {
+  text-align: center;
+  margin: 5px auto;
+  color: #fff;
 }
 
-.header,column{
-    display:flex;
-    flex-wrap: nowrap;
-
+.header, column {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-
-.row.header{
-    font-weight: 700;
-    margin-top:30px;
+.row.header {
+  font-weight: 700;
+  margin-top: 30px;
 }
 
-.row.person{
-    text-align:left;
+.row.person {
+  text-align: left;
 }
 
-
-
-
-/* tr.person td:nth-child(odd){
-    background: linear-gradient(90deg, #aea4e3, #d3ffe8);
+tr.person td:nth-child(odd) {
+  background: linear-gradient(90deg, #aea4e3, #d3ffe8) !important;
 }
 
-tr.person td:nth-child(even){
-    background: linear-gradient(85deg, #fb63f9, #c2e534);
-} */
-
-
-
-
-
+tr.person td:nth-child(even) {
+  background: linear-gradient(85deg, #fb63f9, #c2e534) !important;
+}
 
 /*  images */
-.imgPet{
-    width:100%;
-    max-width: 100px;
+.imgPet {
+  width: 100%;
+  max-width: 100px;
 }
 
-
-.logo{
-    margin:10px auto;
-    width:300px;
-
+.logo {
+  margin: 10px auto;
+  width: 300px;
 }
 
+body {
+  background: linear-gradient(to bottom, #3B1D60, blue) fixed;
+  color: #fff;
+}
 
+#app {
+  position: relative;
+}
 
+.content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 200px;
+}
 
+.col-sm {
+  border: 1px solid #000000;
+}
 
+.row:first-child {
+  text-align: center;
+}
 
+.row.title {
+  margin-top: 10px;
+}
 
 /*# sourceMappingURL=/script.34c90582.css.map */

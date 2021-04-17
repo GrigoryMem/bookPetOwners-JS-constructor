@@ -1,0 +1,58 @@
+@import  "vars";
+@import  "styles/sidebar.scss";
+@import  "styles/table.scss";
+@import  "styles/logo.scss";
+
+
+body{
+    background:linear-gradient(to bottom, #3B1D60,$blue) fixed;
+    color:$white;
+}
+
+#app{
+    position: relative;
+
+}
+
+
+.content{
+    position: absolute;
+    top:0;
+    right: 0;
+    left:200px;
+
+
+}
+
+
+
+
+.col-sm{
+    border:1px solid $black;
+}
+
+.row:first-child{
+    text-align: center;
+}
+
+.row.title{
+    margin-top:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

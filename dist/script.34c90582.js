@@ -393,7 +393,7 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"assets/css/main.css":[function(require,module,exports) {
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"assets/scss/main.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -405,8 +405,9 @@ var _model = require("./model");
 
 var _templates = require("./templates");
 
-require("../css/main.css");
+require("../scss/main.scss");
 
+// import '../css/main.css'
 var $site = document.querySelector("#site");
 console.log(_templates.templates);
 
@@ -428,7 +429,7 @@ _model.model.forEach(function (point) {
   // }
 
 });
-},{"./model":"assets/script/model.js","./templates":"assets/script/templates.js","../css/main.css":"assets/css/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","./templates":"assets/script/templates.js","../scss/main.scss":"assets/scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

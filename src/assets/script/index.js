@@ -1,6 +1,7 @@
 import {model} from './model'
 import {templates} from './templates'
-import '../css/main.css'
+// import '../css/main.css'
+ import '../scss/main.scss'
 
 
 const $site  = document.querySelector("#site");
