@@ -96,3 +96,6 @@ export const model = [
     {type:"image",value:image}
 
 ]
+
+
+console.log(model);

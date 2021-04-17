@@ -146,7 +146,8 @@ function col(content) {
 
 
 function td(content) {
-  return "<td class=\"col-sm\">".concat(content, "</td>");
+  var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  return "<td class=\"col-sm\" style=".concat(styles, ">").concat(content, "</td>");
 }
 
 function tr(content, className) {
@@ -260,6 +261,7 @@ var model = [{
   value: _logo.default
 }];
 exports.model = model;
+console.log(model);
 },{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg"}],"assets/script/templates.js":[function(require,module,exports) {
 "use strict";
 
@@ -283,29 +285,33 @@ function title(point) {
 }
 
 function intro(point) {
-  var _point$options2 = point.options,
-      styles = _point$options2.styles,
-      styles1 = _point$options2.styles1; // деструктуризация
-
-  return (0, _utils.row)((0, _utils.col)("\n     <p>".concat(point.value, "</p>\n     <p>").concat(point.value1, "</p>"), (0, _utils.css)(styles)), (0, _utils.css)(styles1), "intro");
+  // const {styles, styles1} = point.options // деструктуризация
+  return (0, _utils.row)((0, _utils.col)("\n     <p>".concat(point.value, "</p>\n     <p>").concat(point.value1, "</p>"), (0, _utils.css)(point.options.styles)), (0, _utils.css)(point.options.styles1), "intro");
 } // header
 
 
 function header(point) {
-  var styles = point.options.styles;
-  console.log(styles);
   var content = point.value.map(_utils.td).join(""); // item=>td(item) можно записать как просто td референс > point.value.map(td)
 
-  return (0, _utils.tr)(content, "header", (0, _utils.css)(styles));
+  return (0, _utils.tr)(content, "header", (0, _utils.css)(point.options.styles));
 } // persons
 
 
 function person(point) {
+  point.options = {
+    styles: {
+      "background": "linear-gradient(90deg, #aea4e3, #d3ffe8)"
+    },
+    styles1: {
+      "background": "linear-gradient(85deg, #fb63f9, #c2e534)"
+    }
+  };
   var content = point.value.map(function (item) {
     return (0, _utils.td)(item);
   }); // создание массива
+  // my editions to person
 
-  return (0, _utils.tr)(content.join(""), "person"); // вставили  массив в таблицу
+  return (0, _utils.tr)(content.join(""), "person", (0, _utils.css)(point.options.styles)); // вставили  массив в таблицу
 }
 
 function image(point) {
@@ -450,7 +456,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59317" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53707" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

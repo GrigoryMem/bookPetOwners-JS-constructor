@@ -16,8 +16,8 @@ export function col(content,styles = '', className =""){
 
 // утилиты для табличных функций 
 
-export function td(content){
-    return  `<td class="col-sm">${content}</td>`
+export function td(content,styles=""){
+    return  `<td class="col-sm" style=${styles}>${content}</td>`
 }
 
 export function tr(content, className,styles=""){
