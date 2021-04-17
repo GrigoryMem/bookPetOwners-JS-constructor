@@ -27,8 +27,8 @@ export function tr(content, className,styles=""){
 
 // утилиты для картинок
 
-export function imgLogo(content){
-    return ` <div class="logo wrapper"><image  class="logo" src=${content}></div>`
+export function imgLogo(content,styles=""){
+    return ` <div class="logo wrapper" style="${styles}">${content}></div>`
 }
 
 

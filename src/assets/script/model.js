@@ -93,7 +93,28 @@ export const model = [
 
 
         ]},
-    {type:"image",value:image}
+    {type:"image",value:image,
+    options:{
+        styles:{
+            padding:'2rem 0',
+            display:"flex",
+            "justify-content":"left",
+            position:"absolute",
+            top:0,
+            left:0,
+            "z-index":1000,
+            
+            },
+            imageStyles:{
+                width:"190px",
+                height:"auto",
+                position:"static",
+                "justify-content":"center"
+            },
+            alt:"Эта картинка",
+           
+    }
+}
 
 ]
 

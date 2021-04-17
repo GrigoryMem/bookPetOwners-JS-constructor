@@ -53,7 +53,10 @@ function title(point) {
 }
  
   function image(point) {
-    return imgLogo(point.value)
+
+    const {imageStyles:is,alt="",styles} = point.options
+      console.log(point.options)
+    return imgLogo(`<image class="logo" src="${point.value}" alt="${alt}" style="${css(is)}"/>`,css(styles))
  
  
  }

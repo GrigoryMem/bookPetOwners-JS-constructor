@@ -157,7 +157,8 @@ function tr(content, className) {
 
 
 function imgLogo(content) {
-  return " <div class=\"logo wrapper\"><image  class=\"logo\" src=".concat(content, "></div>");
+  var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  return " <div class=\"logo wrapper\" style=\"".concat(styles, "\">").concat(content, "></div>");
 }
 
 function imgPet(photo) {
@@ -258,7 +259,25 @@ var model = [{
   value: ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)]
 }, {
   type: "image",
-  value: _logo.default
+  value: _logo.default,
+  options: {
+    styles: {
+      padding: '2rem 0',
+      display: "flex",
+      "justify-content": "left",
+      position: "absolute",
+      top: 0,
+      left: 0,
+      "z-index": 1000
+    },
+    imageStyles: {
+      width: "190px",
+      height: "auto",
+      position: "static",
+      "justify-content": "center"
+    },
+    alt: "Эта картинка"
+  }
 }];
 exports.model = model;
 console.log(model);
@@ -315,7 +334,13 @@ function person(point) {
 }
 
 function image(point) {
-  return (0, _utils.imgLogo)(point.value);
+  var _point$options2 = point.options,
+      is = _point$options2.imageStyles,
+      _point$options2$alt = _point$options2.alt,
+      alt = _point$options2$alt === void 0 ? "" : _point$options2$alt,
+      styles = _point$options2.styles;
+  console.log(point.options);
+  return (0, _utils.imgLogo)("<image class=\"logo\" src=\"".concat(point.value, "\" alt=\"").concat(alt, "\" style=\"").concat((0, _utils.css)(is), "\"/>"), (0, _utils.css)(styles));
 }
 
 var templates = {
@@ -457,7 +482,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53707" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65058" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -634,4 +659,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","assets/script/index.js"], null)
-//# sourceMappingURL=/script.34c90582.js.map
+//# sourceMappingURL=/script.34c90582.js.mapurceMappingURL=/script.34c90582.js.map
