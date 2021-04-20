@@ -1,10 +1,10 @@
-import {imgPet} from './utils'
+import {imgPet, inputPers} from './utils'
 import image from '../images/logo.png'
 import image1 from '../images/customers/dog1.jpg'
 import image2 from '../images/customers/dog2.jpg'
 import {PointClass} from './classes/points'
 import {PointClassNew} from './classes/points'
-import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint} from './classes/points'
+import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint,InputPers} from './classes/points'
 
 
 
@@ -107,7 +107,14 @@ export const model = [
 
 
 
-    ], "empty")
+    ], "empty"),
+
+    new InputPers( [inputPers(),
+    inputPers(),
+    inputPers(),
+    inputPers(),
+    inputPers(),
+    inputPers()])
    
     
         

@@ -36,7 +36,10 @@ export function imgPet(photo){
     return `<img class="imgPet" src="${photo}">`
 }
 
+export function inputPers(content=""){
 
+ return `<input  type ="text" value="${content}"/>`
+}
 
 
 export function css(styles={}){

@@ -105,3 +105,14 @@ export class PersPoint extends PointClass{
     }
 }
 
+
+export class InputPers extends PointClass{
+    constructor(value,options){
+        super("input",value, options)
+    }
+
+    toHTML(){
+       return tr(td(`<input class ="inp__pers" type = "text" value="${this.value}"/>`))
+    }
+}
+

@@ -129,6 +129,7 @@ exports.td = td;
 exports.tr = tr;
 exports.imgLogo = imgLogo;
 exports.imgPet = imgPet;
+exports.inputPers = inputPers;
 exports.css = css;
 
 // название и введение
@@ -165,6 +166,11 @@ function imgPet(photo) {
   return "<img class=\"imgPet\" src=\"".concat(photo, "\">");
 }
 
+function inputPers() {
+  var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  return "<input  type =\"text\" value=\"".concat(content, "\"/>");
+}
+
 function css() {
   var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
@@ -198,7 +204,7 @@ module.exports = "/dog2.a76efe0b.jpg";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PersPoint = exports.HeadPoint = exports.ImgPoint = exports.IntroPoint = exports.TitlePoint = exports.PointClassNew = exports.PointClass = void 0;
+exports.InputPers = exports.PersPoint = exports.HeadPoint = exports.ImgPoint = exports.IntroPoint = exports.TitlePoint = exports.PointClassNew = exports.PointClass = void 0;
 
 var _utils = require("../utils");
 
@@ -407,6 +413,29 @@ var PersPoint = /*#__PURE__*/function (_PointClass4) {
 }(PointClass);
 
 exports.PersPoint = PersPoint;
+
+var InputPers = /*#__PURE__*/function (_PointClass5) {
+  _inherits(InputPers, _PointClass5);
+
+  var _super6 = _createSuper(InputPers);
+
+  function InputPers(value, options) {
+    _classCallCheck(this, InputPers);
+
+    return _super6.call(this, "input", value, options);
+  }
+
+  _createClass(InputPers, [{
+    key: "toHTML",
+    value: function toHTML() {
+      return (0, _utils.tr)((0, _utils.td)("<input class =\"inp__pers\" type = \"text\" value=\"".concat(this.value, "\"/>")));
+    }
+  }]);
+
+  return InputPers;
+}(PointClass);
+
+exports.InputPers = InputPers;
 },{"../utils":"assets/script/utils.js"}],"assets/script/model.js":[function(require,module,exports) {
 "use strict";
 
@@ -472,7 +501,7 @@ var model = [new _points.TitlePoint("Данные о владельцах жив
     background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
     "font-style": "italic"
   }
-}), new _points.PersPoint(["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PersPoint(["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty")];
+}), new _points.PersPoint(["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PersPoint(["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty"), new _points.InputPers([(0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)()])];
 exports.model = model;
 },{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
