@@ -6,6 +6,10 @@ export class PointClass{
         this.value = value
         this.options = options
     }
+
+    toHTML(){
+        throw new Error('Метод toHTML должен быть реазлизован') // если в наследуемых классах его не будет, то будет выдаваться эта ошибка
+    }
 }
 
 
