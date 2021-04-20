@@ -2,10 +2,16 @@ import {model} from './model'
 import {templates} from './templates'
 // import '../css/main.css'
  import '../scss/main.scss'
+ import {PointClass} from './classes/points'
+
+
+ let item  = new PointClass("Panda", "Hello", "Money");
+
+ console.log(item);
 
 
 const $site  = document.querySelector("#site");
-console.log(templates)
+// console.log(templates)
 
 model.forEach(point =>{
 

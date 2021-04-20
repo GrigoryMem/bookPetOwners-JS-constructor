@@ -19,6 +19,10 @@
   color: #fff;
 }
 
+tr.person:hover {
+  cursor: pointer;
+}
+
 .header, column {
   display: flex;
   flex-wrap: nowrap;

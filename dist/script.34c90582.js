@@ -192,6 +192,37 @@ module.exports = "/logo.3f4a1874.png";
 module.exports = "/dog1.854dad89.jpg";
 },{}],"assets/images/customers/dog2.jpg":[function(require,module,exports) {
 module.exports = "/dog2.a76efe0b.jpg";
+},{}],"assets/script/classes/points.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.PointClassNew = exports.PointClass = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// создание класса объекта
+var PointClass = function PointClass(type, value, options) {
+  _classCallCheck(this, PointClass);
+
+  this.type = type;
+  this.value = value;
+  this.options = options;
+};
+
+exports.PointClass = PointClass;
+
+var PointClassNew = function PointClassNew(type, value, value1, options) {
+  _classCallCheck(this, PointClassNew);
+
+  this.type = type;
+  this.value = value;
+  this.value1 = value1;
+  this.options = options;
+};
+
+exports.PointClassNew = PointClassNew;
 },{}],"assets/script/model.js":[function(require,module,exports) {
 "use strict";
 
@@ -208,80 +239,59 @@ var _dog = _interopRequireDefault(require("../images/customers/dog1.jpg"));
 
 var _dog2 = _interopRequireDefault(require("../images/customers/dog2.jpg"));
 
+var _points = require("./classes/points");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var model = [{
-  type: "title",
-  value: "Данные о владельцах животных",
-  options: {
-    tag: "h1",
-    // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
-    // text-transform:uppercase; text-decoration:underline; padding:1.5rem` 
-    styles: {
-      background: "linear-gradient(90deg, #f598a8, #f6edb2)",
-      color: "linear-gradient(85deg, #fb63f9, #c2e534)",
-      "text-transform": "uppercase",
-      "text-decoration": "underline",
-      padding: "1.5rem"
-    }
+var model = [new _points.PointClass("title", "Данные о владельцах животных", {
+  tag: "h1",
+  // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
+  // text-transform:uppercase; text-decoration:underline; padding:1.5rem` 
+  styles: {
+    background: "linear-gradient(90deg, #f598a8, #f6edb2)",
+    color: "linear-gradient(85deg, #fb63f9, #c2e534)",
+    "text-transform": "uppercase",
+    "text-decoration": "underline",
+    padding: "1.5rem"
   }
-}, {
-  type: "intro",
-  value: "Ввведние в таблицу. Инструкция JS",
-  value1: "Изменение таблицы",
-  options: {
-    styles: {
-      display: "flex",
-      "justify-content": "space-around",
-      "font-style": "italic",
-      padding: "1.5rem",
-      color: "linear-gradient(85deg, #fb63f9, #c2e534)"
-    },
-    styles1: {
-      background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
-      "margin-top": "15px"
-    }
+}), new _points.PointClassNew("intro", "Ввведние в таблицу. Инструкция JS", "Изменение таблицы", {
+  styles: {
+    display: "flex",
+    "justify-content": "space-around",
+    "font-style": "italic",
+    padding: "1.5rem",
+    color: "linear-gradient(85deg, #fb63f9, #c2e534)"
+  },
+  styles1: {
+    background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
+    "margin-top": "15px"
   }
-}, {
-  type: "header",
-  value: ["Владелец животного", "Кличка животного", "Возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"],
-  options: {
-    styles: {
-      background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
-      "font-style": "italic"
-    }
+}), new _points.PointClass("image", _logo.default, {
+  styles: {
+    padding: '2rem 0',
+    display: "flex",
+    "justify-content": "left",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    "z-index": 1000
+  },
+  imageStyles: {
+    width: "190px",
+    height: "auto",
+    position: "static",
+    "justify-content": "center"
+  },
+  alt: "Эта картинка"
+}), new _points.PointClass("header", ["Владелец животного", "Кличка животного", "Возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"], {
+  styles: {
+    background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
+    "font-style": "italic"
   }
-}, {
-  type: "person",
-  value: ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)]
-}, {
-  type: "person",
-  value: ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)]
-}, {
-  type: "image",
-  value: _logo.default,
-  options: {
-    styles: {
-      padding: '2rem 0',
-      display: "flex",
-      "justify-content": "left",
-      position: "absolute",
-      top: 0,
-      left: 0,
-      "z-index": 1000
-    },
-    imageStyles: {
-      width: "190px",
-      height: "auto",
-      position: "static",
-      "justify-content": "center"
-    },
-    alt: "Эта картинка"
-  }
-}];
+}), new _points.PointClass("person", ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)]), new _points.PointClass("person", ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)])]; // console.log(model);
+
 exports.model = model;
-console.log(model);
-},{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg"}],"assets/script/templates.js":[function(require,module,exports) {
+},{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","./classes/points":"assets/script/classes/points.js"}],"assets/script/templates.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -338,8 +348,8 @@ function image(point) {
       is = _point$options2.imageStyles,
       _point$options2$alt = _point$options2.alt,
       alt = _point$options2$alt === void 0 ? "" : _point$options2$alt,
-      styles = _point$options2.styles;
-  console.log(point.options);
+      styles = _point$options2.styles; // console.log(point.options)
+
   return (0, _utils.imgLogo)("<image class=\"logo\" src=\"".concat(point.value, "\" alt=\"").concat(alt, "\" style=\"").concat((0, _utils.css)(is), "\"/>"), (0, _utils.css)(styles));
 }
 
@@ -432,9 +442,12 @@ var _templates = require("./templates");
 
 require("../scss/main.scss");
 
+var _points = require("./classes/points");
+
 // import '../css/main.css'
-var $site = document.querySelector("#site");
-console.log(_templates.templates);
+var item = new _points.PointClass("Panda", "Hello", "Money");
+console.log(item);
+var $site = document.querySelector("#site"); // console.log(templates)
 
 _model.model.forEach(function (point) {
   var addContent = _templates.templates[point.type];
@@ -454,7 +467,7 @@ _model.model.forEach(function (point) {
   // }
 
 });
-},{"./model":"assets/script/model.js","./templates":"assets/script/templates.js","../scss/main.scss":"assets/scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","./templates":"assets/script/templates.js","../scss/main.scss":"assets/scss/main.scss","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
