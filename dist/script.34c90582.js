@@ -158,7 +158,7 @@ function tr(content, className) {
 
 function imgLogo(content) {
   var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-  return " <div class=\"logo wrapper\" style=\"".concat(styles, "\">").concat(content, "></div>");
+  return " <div class=\"logo wrapper\" style=\"".concat(styles, "\">").concat(content, "</div>");
 }
 
 function imgPet(photo) {
@@ -482,7 +482,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65058" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58748" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -659,4 +659,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","assets/script/index.js"], null)
-//# sourceMappingURL=/script.34c90582.js.mapurceMappingURL=/script.34c90582.js.map
+//# sourceMappingURL=/script.34c90582.js.map
