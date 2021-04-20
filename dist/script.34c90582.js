@@ -198,7 +198,23 @@ module.exports = "/dog2.a76efe0b.jpg";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PointClassNew = exports.PointClass = void 0;
+exports.PersPoint = exports.HeadPoint = exports.ImgPoint = exports.IntroPoint = exports.TitlePoint = exports.PointClassNew = exports.PointClass = void 0;
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -223,6 +239,86 @@ var PointClassNew = function PointClassNew(type, value, value1, options) {
 };
 
 exports.PointClassNew = PointClassNew;
+
+var TitlePoint = /*#__PURE__*/function (_PointClass) {
+  _inherits(TitlePoint, _PointClass);
+
+  var _super = _createSuper(TitlePoint);
+
+  function TitlePoint(value, options) {
+    _classCallCheck(this, TitlePoint);
+
+    return _super.call(this, "title", value, options);
+  }
+
+  return TitlePoint;
+}(PointClass);
+
+exports.TitlePoint = TitlePoint;
+
+var IntroPoint = /*#__PURE__*/function (_PointClassNew) {
+  _inherits(IntroPoint, _PointClassNew);
+
+  var _super2 = _createSuper(IntroPoint);
+
+  function IntroPoint(value, options) {
+    _classCallCheck(this, IntroPoint);
+
+    return _super2.call(this, "intro", value, options);
+  }
+
+  return IntroPoint;
+}(PointClassNew);
+
+exports.IntroPoint = IntroPoint;
+
+var ImgPoint = /*#__PURE__*/function (_PointClass2) {
+  _inherits(ImgPoint, _PointClass2);
+
+  var _super3 = _createSuper(ImgPoint);
+
+  function ImgPoint(value, options) {
+    _classCallCheck(this, ImgPoint);
+
+    return _super3.call(this, "image", value, options);
+  }
+
+  return ImgPoint;
+}(PointClass);
+
+exports.ImgPoint = ImgPoint;
+
+var HeadPoint = /*#__PURE__*/function (_PointClass3) {
+  _inherits(HeadPoint, _PointClass3);
+
+  var _super4 = _createSuper(HeadPoint);
+
+  function HeadPoint(value, options) {
+    _classCallCheck(this, HeadPoint);
+
+    return _super4.call(this, "header", value, options);
+  }
+
+  return HeadPoint;
+}(PointClass);
+
+exports.HeadPoint = HeadPoint;
+
+var PersPoint = /*#__PURE__*/function (_PointClass4) {
+  _inherits(PersPoint, _PointClass4);
+
+  var _super5 = _createSuper(PersPoint);
+
+  function PersPoint(value, options) {
+    _classCallCheck(this, PersPoint);
+
+    return _super5.call(this, "person", value, options);
+  }
+
+  return PersPoint;
+}(PointClass);
+
+exports.PersPoint = PersPoint;
 },{}],"assets/script/model.js":[function(require,module,exports) {
 "use strict";
 
@@ -243,7 +339,7 @@ var _points = require("./classes/points");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var model = [new _points.PointClass("title", "Данные о владельцах животных", {
+var model = [new _points.TitlePoint("Данные о владельцах животных", {
   tag: "h1",
   // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
   // text-transform:uppercase; text-decoration:underline; padding:1.5rem` 
@@ -288,9 +384,10 @@ var model = [new _points.PointClass("title", "Данные о владельца
     background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
     "font-style": "italic"
   }
-}), new _points.PointClass("person", ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)]), new _points.PointClass("person", ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)])]; // console.log(model);
-
+}), new _points.PointClass("person", ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PointClass("person", ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty")];
 exports.model = model;
+console.log(model[4]);
+console.log(model[5]);
 },{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","./classes/points":"assets/script/classes/points.js"}],"assets/script/templates.js":[function(require,module,exports) {
 "use strict";
 
@@ -442,14 +539,11 @@ var _templates = require("./templates");
 
 require("../scss/main.scss");
 
-var _points = require("./classes/points");
-
 // import '../css/main.css'
-var item = new _points.PointClass("Panda", "Hello", "Money");
-console.log(item);
 var $site = document.querySelector("#site"); // console.log(templates)
 
 _model.model.forEach(function (point) {
+  // console.log(point)
   var addContent = _templates.templates[point.type];
 
   if (addContent) {
@@ -467,7 +561,7 @@ _model.model.forEach(function (point) {
   // }
 
 });
-},{"./model":"assets/script/model.js","./templates":"assets/script/templates.js","../scss/main.scss":"assets/scss/main.scss","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","./templates":"assets/script/templates.js","../scss/main.scss":"assets/scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

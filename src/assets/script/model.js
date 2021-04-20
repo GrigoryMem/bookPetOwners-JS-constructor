@@ -4,6 +4,7 @@ import image1 from '../images/customers/dog1.jpg'
 import image2 from '../images/customers/dog2.jpg'
 import {PointClass} from './classes/points'
 import {PointClassNew} from './classes/points'
+import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint} from './classes/points'
 
 
 
@@ -13,7 +14,7 @@ import {PointClassNew} from './classes/points'
 
 export const model = [
 
-    new PointClass("title","Данные о владельцах животных",{
+    new TitlePoint("Данные о владельцах животных",{
         tag:"h1", 
         // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
         // text-transform:uppercase; text-decoration:underline; padding:1.5rem` 
@@ -93,7 +94,7 @@ export const model = [
 
 
 
-    ]),
+    ], "empty"),
 
     new PointClass("person",[
         "Морозов Р.И.",
@@ -106,7 +107,7 @@ export const model = [
 
 
 
-    ])
+    ], "empty")
    
     
         
@@ -115,4 +116,5 @@ export const model = [
 ]
 
 
-// console.log(model);
+console.log(model[4]);
+console.log(model[5]);
