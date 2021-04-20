@@ -28,7 +28,7 @@ export const model = [
         
         
     }),
-    new PointClassNew("intro","Ввведние в таблицу. Инструкция JS","Изменение таблицы",{
+    new IntroPoint("Введние в таблицу. Инструкция JS","Изменение таблицы",{
         styles:{
             display:"flex",
             "justify-content":"space-around",
@@ -43,7 +43,7 @@ export const model = [
         }
     }),
 
-    new PointClass("image",image,{
+    new  ImgPoint(image,{
         styles:{
             padding:'2rem 0',
             display:"flex",
@@ -65,7 +65,7 @@ export const model = [
     }),
     
 
-    new PointClass("header",[
+    new HeadPoint([
         "Владелец животного",
             "Кличка животного",
         "Возраст животного,лет",
@@ -83,7 +83,7 @@ export const model = [
         }
        ),
 
-    new PointClass("person",[
+    new PersPoint([
         "Иванов И.И.",
         "Лайка",
         "6",
@@ -96,7 +96,7 @@ export const model = [
 
     ], "empty"),
 
-    new PointClass("person",[
+    new PersPoint([
         "Морозов Р.И.",
         "Панда",
         "9",

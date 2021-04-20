@@ -32,8 +32,8 @@ export class TitlePoint extends PointClass{
 }
 
 export class IntroPoint extends PointClassNew{
-    constructor(value,options){
-        super("intro",value,options)
+    constructor(value,value1,options){
+        super("intro",value,value1,options)
     }
 }
 

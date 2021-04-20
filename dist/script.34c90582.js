@@ -261,10 +261,10 @@ var IntroPoint = /*#__PURE__*/function (_PointClassNew) {
 
   var _super2 = _createSuper(IntroPoint);
 
-  function IntroPoint(value, options) {
+  function IntroPoint(value, value1, options) {
     _classCallCheck(this, IntroPoint);
 
-    return _super2.call(this, "intro", value, options);
+    return _super2.call(this, "intro", value, value1, options);
   }
 
   return IntroPoint;
@@ -350,7 +350,7 @@ var model = [new _points.TitlePoint("Данные о владельцах жив
     "text-decoration": "underline",
     padding: "1.5rem"
   }
-}), new _points.PointClassNew("intro", "Ввведние в таблицу. Инструкция JS", "Изменение таблицы", {
+}), new _points.IntroPoint("Введние в таблицу. Инструкция JS", "Изменение таблицы", {
   styles: {
     display: "flex",
     "justify-content": "space-around",
@@ -362,7 +362,7 @@ var model = [new _points.TitlePoint("Данные о владельцах жив
     background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
     "margin-top": "15px"
   }
-}), new _points.PointClass("image", _logo.default, {
+}), new _points.ImgPoint(_logo.default, {
   styles: {
     padding: '2rem 0',
     display: "flex",
@@ -379,12 +379,12 @@ var model = [new _points.TitlePoint("Данные о владельцах жив
     "justify-content": "center"
   },
   alt: "Эта картинка"
-}), new _points.PointClass("header", ["Владелец животного", "Кличка животного", "Возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"], {
+}), new _points.HeadPoint(["Владелец животного", "Кличка животного", "Возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"], {
   styles: {
     background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
     "font-style": "italic"
   }
-}), new _points.PointClass("person", ["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PointClass("person", ["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty")];
+}), new _points.PersPoint(["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PersPoint(["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty")];
 exports.model = model;
 console.log(model[4]);
 console.log(model[5]);
