@@ -167,8 +167,10 @@ function imgPet(photo) {
 }
 
 function inputPers() {
-  var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
-  return "<input  type =\"text\" value=\"".concat(content, "\"/>");
+  var content1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "text";
+  var content2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  var content3 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+  return "<input class=\"table__input\" style=\"width:110px;\" type =\"".concat(content1, "\" value=\"").concat(content2, "\" placeholder=\"").concat(content3, "\">");
 }
 
 function css() {
@@ -428,7 +430,18 @@ var InputPers = /*#__PURE__*/function (_PointClass5) {
   _createClass(InputPers, [{
     key: "toHTML",
     value: function toHTML() {
-      return (0, _utils.tr)((0, _utils.td)("<input class =\"inp__pers\" type = \"text\" value=\"".concat(this.value, "\"/>")));
+      this.options = {
+        styles: {
+          "background": "linear-gradient(90deg, #aea4e3, #d3ffe8)",
+          display: "flex",
+          "flex-wrap": "no-wrap"
+        },
+        styles1: {
+          "background": "linear-gradient(85deg, #fb63f9, #c2e534)"
+        }
+      };
+      var content = this.value.map(_utils.td).join("");
+      return (0, _utils.tr)(content, "person", (0, _utils.css)(this.options.styles));
     }
   }]);
 
@@ -503,6 +516,7 @@ var model = [new _points.TitlePoint("Данные о владельцах жив
   }
 }), new _points.PersPoint(["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PersPoint(["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty"), new _points.InputPers([(0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)()])];
 exports.model = model;
+console.log(model[6]);
 },{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 

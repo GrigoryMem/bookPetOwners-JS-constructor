@@ -36,9 +36,9 @@ export function imgPet(photo){
     return `<img class="imgPet" src="${photo}">`
 }
 
-export function inputPers(content=""){
+export function inputPers(content1="text",content2="",content3=""){
 
- return `<input  type ="text" value="${content}"/>`
+ return `<input class="table__input" style="width:110px;" type ="${content1}" value="${content2}" placeholder="${content3}">`
 }
 
 

@@ -109,12 +109,7 @@ export const model = [
 
     ], "empty"),
 
-    new InputPers( [inputPers(),
-    inputPers(),
-    inputPers(),
-    inputPers(),
-    inputPers(),
-    inputPers()])
+    new InputPers( [inputPers(),inputPers(),inputPers(),inputPers(),inputPers(),inputPers()])
    
     
         
@@ -123,3 +118,4 @@ export const model = [
 ]
 
 
+console.log(model[6])

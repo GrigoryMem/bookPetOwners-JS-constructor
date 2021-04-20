@@ -1,5 +1,5 @@
 // создание класса объекта
-import{row,col,td,tr,imgLogo,imgPet,css} from '../utils'
+import{row,col,td,tr,imgLogo,imgPet,css,inputPers} from '../utils'
 
 
 
@@ -112,7 +112,13 @@ export class InputPers extends PointClass{
     }
 
     toHTML(){
-       return tr(td(`<input class ="inp__pers" type = "text" value="${this.value}"/>`))
+        this.options = {
+            styles:{"background": "linear-gradient(90deg, #aea4e3, #d3ffe8)",
+                    display:"flex", "flex-wrap":"no-wrap"},
+            styles1:{"background": "linear-gradient(85deg, #fb63f9, #c2e534)"}
+        }
+        const content = this.value.map(td).join("")
+       return tr(content,"person",css(this.options.styles))
     }
 }
 
