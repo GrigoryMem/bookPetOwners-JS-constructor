@@ -1,5 +1,6 @@
 import {model} from './model'
-import {templates} from './templates'
+
+// import {templates} from './templates'
 // import '../css/main.css'
  import '../scss/main.scss'
  
@@ -13,10 +14,10 @@ const $site  = document.querySelector("#site");
 
 model.forEach(point =>{
     // console.log(point)
-    let addContent = templates[point.type];
-
-    if(addContent){
-        $site.insertAdjacentHTML("beforeend",addContent(point));
+    // let addContent = templates[point.type];
+    console.log(point.toHTML());
+    if(point){
+        $site.insertAdjacentHTML("beforeend",point.toHTML());
     }
 
     // if(point.type === "title"){

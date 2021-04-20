@@ -200,6 +200,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.PersPoint = exports.HeadPoint = exports.ImgPoint = exports.IntroPoint = exports.TitlePoint = exports.PointClassNew = exports.PointClass = void 0;
 
+var _utils = require("../utils");
+
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
@@ -222,7 +224,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// создание класса объекта
 var PointClass = /*#__PURE__*/function () {
   function PointClass(type, value, options) {
     _classCallCheck(this, PointClass);
@@ -244,14 +245,25 @@ var PointClass = /*#__PURE__*/function () {
 
 exports.PointClass = PointClass;
 
-var PointClassNew = function PointClassNew(type, value, value1, options) {
-  _classCallCheck(this, PointClassNew);
+var PointClassNew = /*#__PURE__*/function () {
+  function PointClassNew(type, value, value1, options) {
+    _classCallCheck(this, PointClassNew);
 
-  this.type = type;
-  this.value = value;
-  this.value1 = value1;
-  this.options = options;
-};
+    this.type = type;
+    this.value = value;
+    this.value1 = value1;
+    this.options = options;
+  }
+
+  _createClass(PointClassNew, [{
+    key: "toHTML",
+    value: function toHTML() {
+      throw new Error('Метод toHTML должен быть реазлизован'); // если в наследуемых классах его не будет, то будет выдаваться эта ошибка
+    }
+  }]);
+
+  return PointClassNew;
+}();
 
 exports.PointClassNew = PointClassNew;
 
@@ -265,6 +277,19 @@ var TitlePoint = /*#__PURE__*/function (_PointClass) {
 
     return _super.call(this, "title", value, options);
   }
+
+  _createClass(TitlePoint, [{
+    key: "toHTML",
+    value: function toHTML() {
+      var _this$options = this.options,
+          _this$options$tag = _this$options.tag,
+          tag = _this$options$tag === void 0 ? "h1" : _this$options$tag,
+          styles = _this$options.styles;
+      return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(this.value, "</").concat(tag, ">")), (0, _utils.css)(styles)); // деструктуризация
+      // const tag = point.options.tag ?? 'h1'; значение по умолчанию
+      // const styles = point.options.styles;
+    }
+  }]);
 
   return TitlePoint;
 }(PointClass);
@@ -282,6 +307,13 @@ var IntroPoint = /*#__PURE__*/function (_PointClassNew) {
     return _super2.call(this, "intro", value, value1, options);
   }
 
+  _createClass(IntroPoint, [{
+    key: "toHTML",
+    value: function toHTML() {
+      return (0, _utils.row)((0, _utils.col)("\n        <p>".concat(this.value, "</p>\n        <p>").concat(this.value1, "</p>"), (0, _utils.css)(this.options.styles)), (0, _utils.css)(this.options.styles1), "intro");
+    }
+  }]);
+
   return IntroPoint;
 }(PointClassNew);
 
@@ -297,6 +329,19 @@ var ImgPoint = /*#__PURE__*/function (_PointClass2) {
 
     return _super3.call(this, "image", value, options);
   }
+
+  _createClass(ImgPoint, [{
+    key: "toHTML",
+    value: function toHTML() {
+      var _this$options2 = this.options,
+          is = _this$options2.imageStyles,
+          _this$options2$alt = _this$options2.alt,
+          alt = _this$options2$alt === void 0 ? "" : _this$options2$alt,
+          styles = _this$options2.styles; // console.log(point.options)
+
+      return (0, _utils.imgLogo)("<image class=\"logo\" src=\"".concat(this.value, "\" alt=\"").concat(alt, "\" style=\"").concat((0, _utils.css)(is), "\"/>"), (0, _utils.css)(styles));
+    }
+  }]);
 
   return ImgPoint;
 }(PointClass);
@@ -314,6 +359,14 @@ var HeadPoint = /*#__PURE__*/function (_PointClass3) {
     return _super4.call(this, "header", value, options);
   }
 
+  _createClass(HeadPoint, [{
+    key: "toHTML",
+    value: function toHTML() {
+      var content = this.value.map(_utils.td).join("");
+      return (0, _utils.tr)(content, "header", (0, _utils.css)(this.options.styles));
+    }
+  }]);
+
   return HeadPoint;
 }(PointClass);
 
@@ -330,11 +383,31 @@ var PersPoint = /*#__PURE__*/function (_PointClass4) {
     return _super5.call(this, "person", value, options);
   }
 
+  _createClass(PersPoint, [{
+    key: "toHTML",
+    value: function toHTML() {
+      this.options = {
+        styles: {
+          "background": "linear-gradient(90deg, #aea4e3, #d3ffe8)"
+        },
+        styles1: {
+          "background": "linear-gradient(85deg, #fb63f9, #c2e534)"
+        }
+      };
+      var content = this.value.map(function (item) {
+        return (0, _utils.td)(item);
+      }); // создание массива
+      // my editions to person
+
+      return (0, _utils.tr)(content.join(""), "person", (0, _utils.css)(this.options.styles)); // вставили  массив в таблицу
+    }
+  }]);
+
   return PersPoint;
 }(PointClass);
 
 exports.PersPoint = PersPoint;
-},{}],"assets/script/model.js":[function(require,module,exports) {
+},{"../utils":"assets/script/utils.js"}],"assets/script/model.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -401,77 +474,7 @@ var model = [new _points.TitlePoint("Данные о владельцах жив
   }
 }), new _points.PersPoint(["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PersPoint(["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty")];
 exports.model = model;
-},{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","./classes/points":"assets/script/classes/points.js"}],"assets/script/templates.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.templates = void 0;
-
-var _utils = require("./utils");
-
-// functions titles
-function title(point) {
-  var _point$options = point.options,
-      _point$options$tag = _point$options.tag,
-      tag = _point$options$tag === void 0 ? "h1" : _point$options$tag,
-      styles = _point$options.styles; // деструктуризация
-  // const tag = point.options.tag ?? 'h1'; значение по умолчанию
-  // const styles = point.options.styles;
-
-  return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(point.value, "</").concat(tag, ">")), (0, _utils.css)(styles));
-}
-
-function intro(point) {
-  // const {styles, styles1} = point.options // деструктуризация
-  return (0, _utils.row)((0, _utils.col)("\n     <p>".concat(point.value, "</p>\n     <p>").concat(point.value1, "</p>"), (0, _utils.css)(point.options.styles)), (0, _utils.css)(point.options.styles1), "intro");
-} // header
-
-
-function header(point) {
-  var content = point.value.map(_utils.td).join(""); // item=>td(item) можно записать как просто td референс > point.value.map(td)
-
-  return (0, _utils.tr)(content, "header", (0, _utils.css)(point.options.styles));
-} // persons
-
-
-function person(point) {
-  point.options = {
-    styles: {
-      "background": "linear-gradient(90deg, #aea4e3, #d3ffe8)"
-    },
-    styles1: {
-      "background": "linear-gradient(85deg, #fb63f9, #c2e534)"
-    }
-  };
-  var content = point.value.map(function (item) {
-    return (0, _utils.td)(item);
-  }); // создание массива
-  // my editions to person
-
-  return (0, _utils.tr)(content.join(""), "person", (0, _utils.css)(point.options.styles)); // вставили  массив в таблицу
-}
-
-function image(point) {
-  var _point$options2 = point.options,
-      is = _point$options2.imageStyles,
-      _point$options2$alt = _point$options2.alt,
-      alt = _point$options2$alt === void 0 ? "" : _point$options2$alt,
-      styles = _point$options2.styles; // console.log(point.options)
-
-  return (0, _utils.imgLogo)("<image class=\"logo\" src=\"".concat(point.value, "\" alt=\"").concat(alt, "\" style=\"").concat((0, _utils.css)(is), "\"/>"), (0, _utils.css)(styles));
-}
-
-var templates = {
-  title: title,
-  intro: intro,
-  header: header,
-  person: person,
-  image: image
-};
-exports.templates = templates;
-},{"./utils":"assets/script/utils.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -548,19 +551,19 @@ module.hot.accept(reloadCSS);
 
 var _model = require("./model");
 
-var _templates = require("./templates");
-
 require("../scss/main.scss");
 
+// import {templates} from './templates'
 // import '../css/main.css'
 var $site = document.querySelector("#site"); // console.log(templates)
 
 _model.model.forEach(function (point) {
   // console.log(point)
-  var addContent = _templates.templates[point.type];
+  // let addContent = templates[point.type];
+  console.log(point.toHTML());
 
-  if (addContent) {
-    $site.insertAdjacentHTML("beforeend", addContent(point));
+  if (point) {
+    $site.insertAdjacentHTML("beforeend", point.toHTML());
   } // if(point.type === "title"){
   //     content = title(point);
   // } else if(point.type==="intro"){
@@ -574,7 +577,7 @@ _model.model.forEach(function (point) {
   // }
 
 });
-},{"./model":"assets/script/model.js","./templates":"assets/script/templates.js","../scss/main.scss":"assets/scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
