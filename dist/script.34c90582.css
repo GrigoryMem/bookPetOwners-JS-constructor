@@ -46,6 +46,11 @@ tr.person td:nth-child(even) {
 }
 
 /*  images */
+@media (max-width: 1550px) {
+  .logo {
+    width: 125px !important;
+  }
+}
 .imgPet {
   width: 100%;
   max-width: 100px;
@@ -55,6 +60,11 @@ tr.person td:nth-child(even) {
   margin: 10px auto;
 }
 
+@media (max-width: 1550px) {
+  .logo {
+    width: 125px !important;
+  }
+}
 body {
   background: linear-gradient(to bottom, #3B1D60, blue) fixed;
   color: #fff;

@@ -116,5 +116,3 @@ export const model = [
 ]
 
 
-console.log(model[4]);
-console.log(model[5]);
