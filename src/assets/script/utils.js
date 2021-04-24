@@ -62,3 +62,16 @@ return Object.keys(styles).map(toString).join(";")
 
 
 }
+
+
+
+
+
+export function formAddPers(content,type="",){
+    return `<form class="form__note" name = "${type}">
+    ${content}
+    </hr>
+    <button type="submit" btn btn-primary btn-sm> Добавить запись</button>
+    </form>`
+    
+}

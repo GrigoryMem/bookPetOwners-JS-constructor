@@ -131,6 +131,7 @@ exports.imgLogo = imgLogo;
 exports.imgPet = imgPet;
 exports.inputPers = inputPers;
 exports.css = css;
+exports.formAddPers = formAddPers;
 
 // название и введение
 function row(content) {
@@ -193,6 +194,11 @@ function css() {
 
 
   return Object.keys(styles).map(toString).join(";");
+}
+
+function formAddPers(content) {
+  var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  return "<form class=\"form__note\" name = \"".concat(type, "\">\n    ").concat(content, "\n    </hr>\n    <button type=\"submit\" btn btn-primary btn-sm> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043F\u0438\u0441\u044C</button>\n    </form>");
 }
 },{}],"assets/images/logo.png":[function(require,module,exports) {
 module.exports = "/logo.3f4a1874.png";
@@ -439,12 +445,13 @@ var InputPers = /*#__PURE__*/function (_PointClass5) {
         }
       };
       var content = this.value.map(_utils.td).join("");
-      return (0, _utils.tr)(content, "person", (0, _utils.css)(this.options.styles));
+      return (0, _utils.tr)((0, _utils.formAddPers)(content, "person"), (0, _utils.css)(this.options.styles));
     }
   }]);
 
   return InputPers;
-}(PointClass);
+}(PointClass); // создай утилиту формы для класса InputPers
+
 
 exports.InputPers = InputPers;
 },{"../utils":"assets/script/utils.js"}],"assets/script/model.js":[function(require,module,exports) {
@@ -624,6 +631,73 @@ var Site = /*#__PURE__*/function () {
 }();
 
 exports.Site = Site;
+},{}],"assets/script/classes/sidebar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formSB = formSB;
+exports.Sidebar = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Sidebar = /*#__PURE__*/function () {
+  function Sidebar(selector) {
+    _classCallCheck(this, Sidebar);
+
+    this.$el = document.querySelector(selector);
+    this.paste();
+  }
+
+  _createClass(Sidebar, [{
+    key: "paste",
+    value: function paste() {
+      this.$el.insertAdjacentHTML('afterbegin', this.admin);
+      this.$el.insertAdjacentHTML('afterbegin', this.myanswer = "I am administrator");
+    }
+  }, {
+    key: "admin",
+    get: function get() {
+      return formSB("text");
+    }
+  }, {
+    key: "myanswer",
+    set: function set(value) {
+      return "<p>".concat(value, "</p>");
+    }
+  }]);
+
+  return Sidebar;
+}(); // Функция создания формы
+
+
+exports.Sidebar = Sidebar;
+
+function formSB(type) {
+  return "\n    <form name =\"".concat(type, "\">\n        <h5>").concat(type, "</h5>\n        <div class=\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n        </div>\n        <div class =\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"value\">\n        </div>\n        <button type=\"submit\"  class=\"btn btn-primary btn-sm\"> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n    </form>\n    </hr>\n    ");
+} // // mine
+// export class Test {
+//     constructor(selector){
+//         this.elem = document.querySelector(selector)
+//         this.elem.insertAdjacentHTML("afterbegin",'<p>Привет лунатикам</p>')
+//     }
+//     toStyle(){
+//         this.elem.style.color = "white"
+//     }
+// }
+// export class FontStyle extends Test{
+//     constructor(selector){
+//         super(selector)
+//     }
+//     toFont(){
+//         this.elem.style.fontSize = "20px"
+//     }
+// }
 },{}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -633,15 +707,27 @@ require("../scss/main.scss");
 
 var _site = require("./classes/site");
 
+var _sidebar = require("./classes/sidebar");
+
 // import {templates} from './templates'
 // import '../css/main.css'
 var site = new _site.Site("#site");
-site.render(_model.model); // console.log(templates)
+site.render(_model.model); // рендеринг - перенос html в само dom дерево
+
+var sidebar = new _sidebar.Sidebar("#admin");
+sidebar.admin; // getter
+// sidebar.myanswer  setter
+// // mine
+// const test =new Test(".test")
+// test.toStyle()
+// const test2 = new FontStyle(".test2")
+// test2.toStyle()
+// test2.toFont()
 // model.forEach(point =>{
-//     console.log(point.toHTML());
 //     if(point){
 //         site.insertAdjacentHTML("beforeend",point.toHTML());
 //     }
+// })
 // if(point.type === "title"){
 //     content = title(point);
 // } else if(point.type==="intro"){
@@ -654,7 +740,7 @@ site.render(_model.model); // console.log(templates)
 //     content = image(point)
 // }
 // })
-},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/site":"assets/script/classes/site.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/site":"assets/script/classes/site.js","./classes/sidebar":"assets/script/classes/sidebar.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -682,7 +768,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53788" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53604" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

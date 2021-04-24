@@ -1,5 +1,5 @@
 // создание класса объекта
-import{row,col,td,tr,imgLogo,imgPet,css,inputPers} from '../utils'
+import{row,col,td,tr,imgLogo,imgPet,css,inputPers,formAddPers} from '../utils'
 
 
 
@@ -118,7 +118,7 @@ export class InputPers extends PointClass{
             styles1:{"background": "linear-gradient(85deg, #fb63f9, #c2e534)"}
         }
         const content = this.value.map(td).join("")
-       return tr(content,"person",css(this.options.styles))
+       return tr(formAddPers(content,"person"),css(this.options.styles))
     }
 }
-
+// создай утилиту формы для класса InputPers

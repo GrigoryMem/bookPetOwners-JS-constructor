@@ -4,6 +4,7 @@ import {model} from './model'
 // import '../css/main.css'
  import '../scss/main.scss'
  import {Site}  from './classes/site'
+ import {Sidebar,Test,FontStyle} from './classes/sidebar'
  
 
 
@@ -13,15 +14,36 @@ import {model} from './model'
 const site  = new Site("#site");
 
 
-site.render(model)
-// console.log(templates)
+site.render(model)  // рендеринг - перенос html в само dom дерево
+
+const sidebar = new Sidebar("#admin")
+
+
+sidebar.admin // getter
+// sidebar.myanswer  setter
+// // mine
+
+// const test =new Test(".test")
+
+// test.toStyle()
+
+// const test2 = new FontStyle(".test2")
+
+// test2.toStyle()
+
+// test2.toFont()
+
+
+
 
 // model.forEach(point =>{
    
-//     console.log(point.toHTML());
+    
 //     if(point){
 //         site.insertAdjacentHTML("beforeend",point.toHTML());
 //     }
+
+// })
 
     // if(point.type === "title"){
     //     content = title(point);
