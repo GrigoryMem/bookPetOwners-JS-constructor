@@ -3,22 +3,25 @@ import {model} from './model'
 // import {templates} from './templates'
 // import '../css/main.css'
  import '../scss/main.scss'
+ import {Site}  from './classes/site'
  
 
 
  
 
 
-const $site  = document.querySelector("#site");
+const site  = new Site("#site");
+
+
+site.render(model)
 // console.log(templates)
 
-model.forEach(point =>{
-    // console.log(point)
-    // let addContent = templates[point.type];
-    console.log(point.toHTML());
-    if(point){
-        $site.insertAdjacentHTML("beforeend",point.toHTML());
-    }
+// model.forEach(point =>{
+   
+//     console.log(point.toHTML());
+//     if(point){
+//         site.insertAdjacentHTML("beforeend",point.toHTML());
+//     }
 
     // if(point.type === "title"){
     //     content = title(point);
@@ -46,7 +49,7 @@ model.forEach(point =>{
    
 
 
-})
+// })
 
 
 

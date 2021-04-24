@@ -587,38 +587,74 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"assets/script/index.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"assets/script/classes/site.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Site = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// рендеринг - перенос html в само dom дерево
+var Site = /*#__PURE__*/function () {
+  function Site(selector) {
+    _classCallCheck(this, Site);
+
+    this.$el = document.querySelector(selector);
+  }
+
+  _createClass(Site, [{
+    key: "render",
+    value: function render(model) {
+      var _this = this;
+
+      model.forEach(function (point) {
+        _this.$el.insertAdjacentHTML("beforeend", point.toHTML());
+      });
+    }
+  }]);
+
+  return Site;
+}();
+
+exports.Site = Site;
+},{}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model");
 
 require("../scss/main.scss");
 
+var _site = require("./classes/site");
+
 // import {templates} from './templates'
 // import '../css/main.css'
-var $site = document.querySelector("#site"); // console.log(templates)
-
-_model.model.forEach(function (point) {
-  // console.log(point)
-  // let addContent = templates[point.type];
-  console.log(point.toHTML());
-
-  if (point) {
-    $site.insertAdjacentHTML("beforeend", point.toHTML());
-  } // if(point.type === "title"){
-  //     content = title(point);
-  // } else if(point.type==="intro"){
-  //     content = intro(point);
-  // } else if(point.type === "header" || point.type ==="person") {
-  //     content = header(point)
-  // } else if(point.type ==="person") {
-  //     content = person(point)
-  // } else if(point.type === "image") {
-  //     content = image(point)
-  // }
-
-});
-},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var site = new _site.Site("#site");
+site.render(_model.model); // console.log(templates)
+// model.forEach(point =>{
+//     console.log(point.toHTML());
+//     if(point){
+//         site.insertAdjacentHTML("beforeend",point.toHTML());
+//     }
+// if(point.type === "title"){
+//     content = title(point);
+// } else if(point.type==="intro"){
+//     content = intro(point);
+// } else if(point.type === "header" || point.type ==="person") {
+//     content = header(point)
+// } else if(point.type ==="person") {
+//     content = person(point)
+// } else if(point.type === "image") {
+//     content = image(point)
+// }
+// })
+},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/site":"assets/script/classes/site.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
