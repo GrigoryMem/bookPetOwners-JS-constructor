@@ -4,8 +4,8 @@ import{row,col,td,tr,imgLogo,imgPet,css,inputPers} from '../utils'
 
 
 export class PointClass{
-    constructor(type,value, options){
-        this.type = type
+    constructor(value, options){
+        
         this.value = value
         this.options = options
     }
@@ -23,8 +23,8 @@ export class PointClass{
 
 
 export class PointClassNew{
-    constructor(type,value, value1, options){
-        this.type = type
+    constructor(value, value1, options){
+      
         this.value = value
         this.value1 = value1
         this.options = options
@@ -38,7 +38,7 @@ export class PointClassNew{
 
 export class TitlePoint extends PointClass{
     constructor(value,options){
-        super("title",value,options)
+        super(value,options)
     }
     toHTML(){
         const {tag = "h1",styles} = this.options
@@ -54,7 +54,7 @@ export class TitlePoint extends PointClass{
 
 export class IntroPoint extends PointClassNew{
     constructor(value,value1,options){
-        super("intro",value,value1,options)
+        super(value,value1,options)
     }
     toHTML(){
         return row(col(`
@@ -66,7 +66,7 @@ export class IntroPoint extends PointClassNew{
 
 export class ImgPoint extends PointClass{
     constructor(value,options){
-        super("image",value,options)
+        super(value,options)
     }
     toHTML(){
         const {imageStyles:is,alt="",styles} = this.options
@@ -78,7 +78,7 @@ export class ImgPoint extends PointClass{
 
 export class HeadPoint extends PointClass{
     constructor(value,options){
-        super("header",value,options)
+        super(value,options)
     }
     toHTML(){
         const content = this.value.map(td).join("")
@@ -90,7 +90,7 @@ export class HeadPoint extends PointClass{
 
 export class PersPoint extends PointClass{
     constructor(value,options){
-        super("person",value,options)
+        super(value,options)
     }
     toHTML(){
         this.options = {
@@ -108,7 +108,7 @@ export class PersPoint extends PointClass{
 
 export class InputPers extends PointClass{
     constructor(value,options){
-        super("input",value, options)
+        super(value, options)
     }
 
     toHTML(){

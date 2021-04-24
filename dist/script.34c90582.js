@@ -233,10 +233,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var PointClass = /*#__PURE__*/function () {
-  function PointClass(type, value, options) {
+  function PointClass(value, options) {
     _classCallCheck(this, PointClass);
 
-    this.type = type;
     this.value = value;
     this.options = options;
   }
@@ -254,10 +253,9 @@ var PointClass = /*#__PURE__*/function () {
 exports.PointClass = PointClass;
 
 var PointClassNew = /*#__PURE__*/function () {
-  function PointClassNew(type, value, value1, options) {
+  function PointClassNew(value, value1, options) {
     _classCallCheck(this, PointClassNew);
 
-    this.type = type;
     this.value = value;
     this.value1 = value1;
     this.options = options;
@@ -283,7 +281,7 @@ var TitlePoint = /*#__PURE__*/function (_PointClass) {
   function TitlePoint(value, options) {
     _classCallCheck(this, TitlePoint);
 
-    return _super.call(this, "title", value, options);
+    return _super.call(this, value, options);
   }
 
   _createClass(TitlePoint, [{
@@ -312,7 +310,7 @@ var IntroPoint = /*#__PURE__*/function (_PointClassNew) {
   function IntroPoint(value, value1, options) {
     _classCallCheck(this, IntroPoint);
 
-    return _super2.call(this, "intro", value, value1, options);
+    return _super2.call(this, value, value1, options);
   }
 
   _createClass(IntroPoint, [{
@@ -335,7 +333,7 @@ var ImgPoint = /*#__PURE__*/function (_PointClass2) {
   function ImgPoint(value, options) {
     _classCallCheck(this, ImgPoint);
 
-    return _super3.call(this, "image", value, options);
+    return _super3.call(this, value, options);
   }
 
   _createClass(ImgPoint, [{
@@ -364,7 +362,7 @@ var HeadPoint = /*#__PURE__*/function (_PointClass3) {
   function HeadPoint(value, options) {
     _classCallCheck(this, HeadPoint);
 
-    return _super4.call(this, "header", value, options);
+    return _super4.call(this, value, options);
   }
 
   _createClass(HeadPoint, [{
@@ -388,7 +386,7 @@ var PersPoint = /*#__PURE__*/function (_PointClass4) {
   function PersPoint(value, options) {
     _classCallCheck(this, PersPoint);
 
-    return _super5.call(this, "person", value, options);
+    return _super5.call(this, value, options);
   }
 
   _createClass(PersPoint, [{
@@ -424,7 +422,7 @@ var InputPers = /*#__PURE__*/function (_PointClass5) {
   function InputPers(value, options) {
     _classCallCheck(this, InputPers);
 
-    return _super6.call(this, "input", value, options);
+    return _super6.call(this, value, options);
   }
 
   _createClass(InputPers, [{
@@ -648,7 +646,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58748" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53788" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

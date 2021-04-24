@@ -109,7 +109,12 @@ export const model = [
 
     ], "empty"),
 
-    new InputPers( [inputPers(),inputPers(),inputPers(),inputPers(),inputPers(),inputPers()])
+    new InputPers( [inputPers(),
+                    inputPers(),
+                    inputPers(),
+                    inputPers(),
+                    inputPers(),
+                    inputPers()])
    
     
         
