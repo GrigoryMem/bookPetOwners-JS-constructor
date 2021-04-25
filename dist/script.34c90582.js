@@ -601,44 +601,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"assets/script/classes/site.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Site = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-// рендеринг - перенос html в само dom дерево
-var Site = /*#__PURE__*/function () {
-  function Site(selector) {
-    _classCallCheck(this, Site);
-
-    this.$el = document.querySelector(selector);
-  }
-
-  _createClass(Site, [{
-    key: "render",
-    value: function render(model) {
-      var _this = this;
-
-      model.forEach(function (point) {
-        _this.$el.insertAdjacentHTML("beforeend", point.toHTML());
-      });
-    }
-  }]);
-
-  return Site;
-}();
-
-exports.Site = Site;
-},{}],"assets/script/classes/sidebar.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"assets/script/classes/sidebar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -648,6 +611,8 @@ exports.Sidebar = void 0;
 
 var _utils = require("../utils");
 
+var _points = require("./points");
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -655,11 +620,12 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var Sidebar = /*#__PURE__*/function () {
-  function Sidebar(selector) {
+  function Sidebar(selector, updateCallBack) {
     _classCallCheck(this, Sidebar);
 
     this.$el = document.querySelector(selector);
-    this.paste();
+    this.update = updateCallBack;
+    this.paste(); // вставка в админ функций инпутов
   }
 
   _createClass(Sidebar, [{
@@ -669,7 +635,7 @@ var Sidebar = /*#__PURE__*/function () {
 
       this.$el.insertAdjacentHTML('afterbegin', this.myanswer = "I am administrator"); //setter
 
-      this.$el.addEventListener("submit", this.add);
+      this.$el.addEventListener("submit", this.add.bind(this)); // обработка формы, bind какпривязывание конекста
     }
   }, {
     key: "admin",
@@ -684,7 +650,32 @@ var Sidebar = /*#__PURE__*/function () {
   }, {
     key: "add",
     value: function add(event) {
+      // доступ к event
       event.preventDefault();
+      var type = event.target.name; // получение значений инпутов через атрибут "name"
+
+      var value = event.target.value.value;
+      var styles = event.target.styles.value; // console.log(type,value,style)
+      //сбор значений инпутов   
+      // !! заметка:у класса IntroPoint 2 значения value!!
+      // тернарное выражение:
+
+      var newPoint = type === "title" ? newPoint = new _points.TitlePoint(value, {
+        styles: styles
+      }) : newPoint = new _points.IntroPoint(value, {
+        styles: styles
+      });
+      this.update(newPoint); // updateCallback  для выполение обновления модели данных 
+      // if(type === "title"){
+      //     newPoint = new TitlePoint(value,{styles})
+      // } else {
+      //     newPoint =  new IntroPoint(value,{styles})
+      // }
+      // console.log(newPoint);
+      // очистка форм
+
+      event.target.value.value = "";
+      event.target.styles.value = "";
     }
   }]);
 
@@ -710,7 +701,48 @@ var Sidebar = /*#__PURE__*/function () {
 
 
 exports.Sidebar = Sidebar;
-},{"../utils":"assets/script/utils.js"}],"assets/script/index.js":[function(require,module,exports) {
+},{"../utils":"assets/script/utils.js","./points":"assets/script/classes/points.js"}],"assets/script/classes/site.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Site = void 0;
+
+var _sidebar = require("./sidebar");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// добавление на сайт в дом дерево  
+var Site = /*#__PURE__*/function () {
+  function Site(selector) {
+    _classCallCheck(this, Site);
+
+    this.$el = document.querySelector(selector);
+  }
+
+  _createClass(Site, [{
+    key: "render",
+    value: function render(model) {
+      var _this = this;
+
+      this.$el.innerHTML = ""; // очистка шаблона
+
+      model.forEach(function (point) {
+        _this.$el.insertAdjacentHTML("beforeend", point.toHTML());
+      });
+    }
+  }]);
+
+  return Site;
+}();
+
+exports.Site = Site;
+},{"./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model");
@@ -724,10 +756,17 @@ var _sidebar = require("./classes/sidebar");
 // import {templates} from './templates'
 // import '../css/main.css'
 var site = new _site.Site("#site");
-site.render(_model.model); // рендеринг - перенос html в само dom дерево
+site.render(_model.model); // рендеринг - перенос html в само dom дерево (forech modeljs через класс)
+// после #admin добавление изменений в сайт через call back
 
-var sidebar = new _sidebar.Sidebar("#admin");
-sidebar.admin; // getter
+var updateCallback = function updateCallback(newPoint) {
+  _model.model.push(newPoint); // положить блок из сидебара в конец модели
+
+
+  site.render(_model.model); // обновление данных в дом дереве
+};
+
+new _sidebar.Sidebar("#admin", updateCallback); //      
 // sidebar.myanswer  setter
 // // mine
 // const test =new Test(".test")

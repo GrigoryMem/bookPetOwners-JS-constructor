@@ -4,7 +4,8 @@ import {model} from './model'
 // import '../css/main.css'
  import '../scss/main.scss'
  import {Site}  from './classes/site'
- import {Sidebar,Test,FontStyle} from './classes/sidebar'
+ import {Sidebar} from './classes/sidebar'
+
  
 
 
@@ -14,12 +15,23 @@ import {model} from './model'
 const site  = new Site("#site");
 
 
-site.render(model)  // рендеринг - перенос html в само dom дерево
-
-const sidebar = new Sidebar("#admin")
+site.render(model)  // рендеринг - перенос html в само dom дерево (forech modeljs через класс)
 
 
-sidebar.admin // getter
+// после #admin добавление изменений в сайт через call back
+const updateCallback = newPoint => {
+
+    model.push(newPoint) // положить блок из сидебара в конец модели
+    site.render(model)  // обновление данных в дом дереве
+
+}
+
+
+
+new Sidebar("#admin",  updateCallback)
+
+
+//      
 // sidebar.myanswer  setter
 // // mine
 
