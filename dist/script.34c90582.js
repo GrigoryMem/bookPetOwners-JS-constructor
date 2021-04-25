@@ -132,6 +132,7 @@ exports.imgPet = imgPet;
 exports.inputPers = inputPers;
 exports.css = css;
 exports.formAddPers = formAddPers;
+exports.formSB = formSB;
 
 // название и введение
 function row(content) {
@@ -194,11 +195,17 @@ function css() {
 
 
   return Object.keys(styles).map(toString).join(";");
-}
+} // Функция заполнения  формы для записи нового клиента клиники
+
 
 function formAddPers(content) {
   var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
   return "<form class=\"form__note\" name = \"".concat(type, "\">\n    ").concat(content, "\n    </hr>\n    <button type=\"submit\" btn btn-primary btn-sm> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043F\u0438\u0441\u044C</button>\n    </form>");
+} // Функция создания формы для сидебара SB
+
+
+function formSB(type) {
+  return "\n    <form name =\"".concat(type, "\">\n        <h5>").concat(type, "</h5>\n        <div class=\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n        </div>\n        <div class =\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n        </div>\n        <button type=\"submit\"  class=\"btn btn-primary btn-sm\"> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n    </form>\n    </hr>\n    ");
 }
 },{}],"assets/images/logo.png":[function(require,module,exports) {
 module.exports = "/logo.3f4a1874.png";
@@ -637,8 +644,9 @@ exports.Site = Site;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.formSB = formSB;
 exports.Sidebar = void 0;
+
+var _utils = require("../utils");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -660,28 +668,28 @@ var Sidebar = /*#__PURE__*/function () {
       this.$el.insertAdjacentHTML('afterbegin', this.admin); // getter
 
       this.$el.insertAdjacentHTML('afterbegin', this.myanswer = "I am administrator"); //setter
+
+      this.$el.addEventListener("submit", this.add);
     }
   }, {
     key: "admin",
     get: function get() {
-      return [formSB("title"), formSB("intro"), formSB("img"), formSB("head"), formSB("person"), formSB("InputPerson")].join("");
+      return [(0, _utils.formSB)("title"), (0, _utils.formSB)("intro"), (0, _utils.formSB)("img"), (0, _utils.formSB)("head"), (0, _utils.formSB)("person"), (0, _utils.formSB)("InputPerson")].join("");
     }
   }, {
     key: "myanswer",
     set: function set(value) {
       return "<p>".concat(value, "</p>");
     }
+  }, {
+    key: "add",
+    value: function add(event) {
+      event.preventDefault();
+    }
   }]);
 
   return Sidebar;
-}(); // Функция создания формы
-
-
-exports.Sidebar = Sidebar;
-
-function formSB(type) {
-  return "\n    <form name =\"".concat(type, "\">\n        <h5>").concat(type, "</h5>\n        <div class=\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n        </div>\n        <div class =\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n        </div>\n        <button type=\"submit\"  class=\"btn btn-primary btn-sm\"> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n    </form>\n    </hr>\n    ");
-} // // mine
+}(); // // mine
 // export class Test {
 //     constructor(selector){
 //         this.elem = document.querySelector(selector)
@@ -699,7 +707,10 @@ function formSB(type) {
 //         this.elem.style.fontSize = "20px"
 //     }
 // }
-},{}],"assets/script/index.js":[function(require,module,exports) {
+
+
+exports.Sidebar = Sidebar;
+},{"../utils":"assets/script/utils.js"}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model");

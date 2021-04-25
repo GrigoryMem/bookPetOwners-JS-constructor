@@ -1,3 +1,7 @@
+import {formSB} from '../utils'
+
+
+
 export class Sidebar {
     constructor(selector){
         this.$el = document.querySelector(selector)
@@ -12,6 +16,7 @@ export class Sidebar {
 
         this.$el.insertAdjacentHTML('afterbegin',this.admin) // getter
         this.$el.insertAdjacentHTML('afterbegin',this.myanswer = "I am administrator") //setter
+        this.$el.addEventListener("submit",this.add)
     }
 
     get admin(){
@@ -31,27 +36,17 @@ export class Sidebar {
         return `<p>${value}</p>`
     }
 
+
+    add(event){
+        event.preventDefault()
+    }
+
    
 }
 
 
 
-// Функция создания формы
-export function formSB(type){
-    return `
-    <form name ="${type}">
-        <h5>${type}</h5>
-        <div class="form-group">
-            <input class="form-control form-control-sm" name="value" placeholder="value">
-        </div>
-        <div class ="form-group">
-            <input class="form-control form-control-sm" name="styles" placeholder="styles">
-        </div>
-        <button type="submit"  class="btn btn-primary btn-sm"> Добавить</button>
-    </form>
-    </hr>
-    `
-}
+
 
 
 
