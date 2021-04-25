@@ -10,12 +10,21 @@ export class Sidebar {
 
     paste(){
 
-        this.$el.insertAdjacentHTML('afterbegin',this.admin)
-        this.$el.insertAdjacentHTML('afterbegin',this.myanswer = "I am administrator")
+        this.$el.insertAdjacentHTML('afterbegin',this.admin) // getter
+        this.$el.insertAdjacentHTML('afterbegin',this.myanswer = "I am administrator") //setter
     }
 
     get admin(){
-        return formSB( "text")
+        return [
+            formSB("title"),
+            formSB("intro"),
+            formSB("img"),
+            formSB("head"),
+            formSB("person"),
+            formSB("InputPerson"),
+
+
+    ].join("");
     }
 
     set myanswer(value){
@@ -36,7 +45,7 @@ export function formSB(type){
             <input class="form-control form-control-sm" name="value" placeholder="value">
         </div>
         <div class ="form-group">
-            <input class="form-control form-control-sm" name="styles" placeholder="value">
+            <input class="form-control form-control-sm" name="styles" placeholder="styles">
         </div>
         <button type="submit"  class="btn btn-primary btn-sm"> Добавить</button>
     </form>

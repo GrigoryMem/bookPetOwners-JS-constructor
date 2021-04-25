@@ -69,6 +69,10 @@ body {
   position: relative;
 }
 
+.hide__text {
+  display: none;
+}
+
 .content {
   position: absolute;
   top: 0;

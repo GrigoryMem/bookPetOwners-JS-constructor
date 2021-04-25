@@ -450,7 +450,7 @@ var InputPers = /*#__PURE__*/function (_PointClass5) {
   }]);
 
   return InputPers;
-}(PointClass); // создай утилиту формы для класса InputPers
+}(PointClass); // создай утилиту формы для класса InputPers   formAddPers и переделай метод     toHTML
 
 
 exports.InputPers = InputPers;
@@ -657,13 +657,14 @@ var Sidebar = /*#__PURE__*/function () {
   _createClass(Sidebar, [{
     key: "paste",
     value: function paste() {
-      this.$el.insertAdjacentHTML('afterbegin', this.admin);
-      this.$el.insertAdjacentHTML('afterbegin', this.myanswer = "I am administrator");
+      this.$el.insertAdjacentHTML('afterbegin', this.admin); // getter
+
+      this.$el.insertAdjacentHTML('afterbegin', this.myanswer = "I am administrator"); //setter
     }
   }, {
     key: "admin",
     get: function get() {
-      return formSB("text");
+      return [formSB("title"), formSB("intro"), formSB("img"), formSB("head"), formSB("person"), formSB("InputPerson")].join("");
     }
   }, {
     key: "myanswer",
@@ -679,7 +680,7 @@ var Sidebar = /*#__PURE__*/function () {
 exports.Sidebar = Sidebar;
 
 function formSB(type) {
-  return "\n    <form name =\"".concat(type, "\">\n        <h5>").concat(type, "</h5>\n        <div class=\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n        </div>\n        <div class =\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"value\">\n        </div>\n        <button type=\"submit\"  class=\"btn btn-primary btn-sm\"> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n    </form>\n    </hr>\n    ");
+  return "\n    <form name =\"".concat(type, "\">\n        <h5>").concat(type, "</h5>\n        <div class=\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n        </div>\n        <div class =\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n        </div>\n        <button type=\"submit\"  class=\"btn btn-primary btn-sm\"> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n    </form>\n    </hr>\n    ");
 } // // mine
 // export class Test {
 //     constructor(selector){
@@ -768,7 +769,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53604" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56515" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
