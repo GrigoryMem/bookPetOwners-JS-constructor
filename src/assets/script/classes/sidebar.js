@@ -1,4 +1,4 @@
-import {formSB} from '../utils'
+import {formSB,formIntro} from '../utils'
 import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint,InputPers} from './points'
 
 
@@ -24,11 +24,11 @@ export class Sidebar {
     get admin(){
         return [
             formSB("title"),
-            formSB("intro"),
-            formSB("img"),
-            formSB("head"),
-            formSB("person"),
-            formSB("InputPerson"),
+            formIntro("intro"), // не та функция
+            formSB("img"), // ошибка
+            formSB("head"),// ошибка
+            formSB("person"),// ошибка
+            formSB("InputPerson"),// ошибка
 
 
     ].join("");
@@ -45,25 +45,57 @@ export class Sidebar {
         const type = event.target.name
         // получение значений инпутов через атрибут "name"
         const value =event.target.value.value
+        
         const styles = event.target.styles.value
+
+        // const styles1 = event.target.styles1.value
+
+        // console.log( styles1)
+        // мое дополнение
+        // const value1 =event.target.value1.value
+        // const styles1 =event.target.styles1.value
+
+        // !!!!!!!!!   ОШИБКА 1 - идет из функции formSB файла utils не учтены что в классе IntroPoint  есть доп поля value1 и styles1
         // console.log(type,value,style)
 
         //сбор значений инпутов   
             // !! заметка:у класса IntroPoint 2 значения value!!
-        // тернарное выражение:
+        //Тернарное выражение:
 
-       let newPoint =type === "title"
-        ? newPoint = new TitlePoint(value,{styles})
-        : newPoint =  new IntroPoint(value,{styles})
+    //    let newPoint =type === "title"
+    //     ? newPoint = new TitlePoint(value,{styles})
+    //     : newPoint =  new IntroPoint(value,{styles})
+   
+    let newPoint
+
+          
+        if(type === "title"){
+            newPoint = new TitlePoint(value,{styles})
+
+        } else if(type === "intro"){
+            newPoint =  new IntroPoint(value,{styles})
+        }
+        else if (type === "img"){
+            newPoint =  new ImgPoint(value,{styles})
+        }else if (type === "head"){
+            newPoint =  new HeadPoint(value,{styles})
+            // ошибка привязки контекста
+        }else if (type === "person"){
+            newPoint =  new PersPoint(value,{styles})
+        }// ошибка привязки контекста
+        else if (type === "InputPerson"){
+            newPoint =  new InputPers(value,{styles})
+            // ошибка привязки контекста
+        }
+
+
+
+
+        console.log(newPoint);
+
+
        
-        this.update(newPoint);  // updateCallback  для выполение обновления модели данных 
-        // if(type === "title"){
-        //     newPoint = new TitlePoint(value,{styles})
-
-        // } else {
-        //     newPoint =  new IntroPoint(value,{styles})
-        // }
-        // console.log(newPoint);
+        this.update(newPoint);// updateCallback  для выполение обновления модели данных 
         // очистка форм
         event.target.value.value = "";
         event.target.styles.value = "" ;

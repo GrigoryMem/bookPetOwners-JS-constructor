@@ -42,6 +42,7 @@ export class TitlePoint extends PointClass{
     }
     toHTML(){
         const {tag = "h1",styles} = this.options
+        
         return  row(col(`<${tag}>${this.value}</${tag}>`),css(styles))
         // деструктуризация
         // const tag = point.options.tag ?? 'h1'; значение по умолчанию

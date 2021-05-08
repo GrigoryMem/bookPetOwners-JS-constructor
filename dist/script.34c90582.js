@@ -133,6 +133,7 @@ exports.inputPers = inputPers;
 exports.css = css;
 exports.formAddPers = formAddPers;
 exports.formSB = formSB;
+exports.formIntro = formIntro;
 
 // название и введение
 function row(content) {
@@ -173,17 +174,19 @@ function inputPers() {
   var content2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
   var content3 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
   return "<input class=\"table__input\" style=\"width:110px;\" type =\"".concat(content1, "\" value=\"").concat(content2, "\" placeholder=\"").concat(content3, "\">");
-}
+} // приведение объекта к строке
+
 
 function css() {
   var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
   //     const keys = Object.keys(styles)
   // console.log(keys)
   //    const array =  keys.map(key=>{
   //         return `${key}:${styles[key]}`
   //     })
   //     return array.join(";")
+  if (typeof styles === "string") return styles;
+
   var toString = function toString(key) {
     return "".concat(key, ":").concat(styles[key]);
   };
@@ -201,11 +204,16 @@ function css() {
 function formAddPers(content) {
   var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
   return "<form class=\"form__note\" name = \"".concat(type, "\">\n    ").concat(content, "\n    </hr>\n    <button type=\"submit\" btn btn-primary btn-sm> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043F\u0438\u0441\u044C</button>\n    </form>");
-} // Функция создания формы для сидебара SB
+} // Формы для сидебара
+// Функция создания формы для сидебара SB
 
 
 function formSB(type) {
   return "\n    <form name =\"".concat(type, "\">\n        <h5>").concat(type, "</h5>\n        <div class=\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n        </div>\n        <div class =\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n        </div>\n        <button type=\"submit\"  class=\"btn btn-primary btn-sm\"> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n    </form>\n    </hr>\n    ");
+}
+
+function formIntro(type) {
+  return "<form name =\"".concat(type, "\">\n    <h5>").concat(type, "</h5>\n    <div class=\"form-group\">\n        <input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n    </div>\n    <div class=\"form-group\">\n        <input class=\"form-control form-control-sm\" name=\"value1\" placeholder=\"value1\">\n    </div>\n    <div class =\"form-group\">\n        <input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n    </div>\n    <div class =\"form-group\">\n        <input class=\"form-control form-control-sm\" name=\"styles1\" placeholder=\"styles1\">\n    </div>\n    <button type=\"submit\"  class=\"btn btn-primary btn-sm\"> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n</form>\n</hr>\n    ");
 }
 },{}],"assets/images/logo.png":[function(require,module,exports) {
 module.exports = "/logo.3f4a1874.png";
@@ -640,7 +648,12 @@ var Sidebar = /*#__PURE__*/function () {
   }, {
     key: "admin",
     get: function get() {
-      return [(0, _utils.formSB)("title"), (0, _utils.formSB)("intro"), (0, _utils.formSB)("img"), (0, _utils.formSB)("head"), (0, _utils.formSB)("person"), (0, _utils.formSB)("InputPerson")].join("");
+      return [(0, _utils.formSB)("title"), (0, _utils.formIntro)("intro"), // не та функция
+      (0, _utils.formSB)("img"), // ошибка
+      (0, _utils.formSB)("head"), // ошибка
+      (0, _utils.formSB)("person"), // ошибка
+      (0, _utils.formSB)("InputPerson") // ошибка
+      ].join("");
     }
   }, {
     key: "myanswer",
@@ -655,23 +668,51 @@ var Sidebar = /*#__PURE__*/function () {
       var type = event.target.name; // получение значений инпутов через атрибут "name"
 
       var value = event.target.value.value;
-      var styles = event.target.styles.value; // console.log(type,value,style)
+      var styles = event.target.styles.value; // const styles1 = event.target.styles1.value
+      // console.log( styles1)
+      // мое дополнение
+      // const value1 =event.target.value1.value
+      // const styles1 =event.target.styles1.value
+      // !!!!!!!!!   ОШИБКА 1 - идет из функции formSB файла utils не учтены что в классе IntroPoint  есть доп поля value1 и styles1
+      // console.log(type,value,style)
       //сбор значений инпутов   
       // !! заметка:у класса IntroPoint 2 значения value!!
-      // тернарное выражение:
+      //Тернарное выражение:
+      //    let newPoint =type === "title"
+      //     ? newPoint = new TitlePoint(value,{styles})
+      //     : newPoint =  new IntroPoint(value,{styles})
 
-      var newPoint = type === "title" ? newPoint = new _points.TitlePoint(value, {
-        styles: styles
-      }) : newPoint = new _points.IntroPoint(value, {
-        styles: styles
-      });
+      var newPoint;
+
+      if (type === "title") {
+        newPoint = new _points.TitlePoint(value, {
+          styles: styles
+        });
+      } else if (type === "intro") {
+        newPoint = new _points.IntroPoint(value, {
+          styles: styles
+        });
+      } else if (type === "img") {
+        newPoint = new _points.ImgPoint(value, {
+          styles: styles
+        });
+      } else if (type === "head") {
+        newPoint = new _points.HeadPoint(value, {
+          styles: styles
+        }); // ошибка привязки контекста
+      } else if (type === "person") {
+        newPoint = new _points.PersPoint(value, {
+          styles: styles
+        });
+      } // ошибка привязки контекста
+      else if (type === "InputPerson") {
+          newPoint = new _points.InputPers(value, {
+            styles: styles
+          }); // ошибка привязки контекста
+        }
+
+      console.log(newPoint);
       this.update(newPoint); // updateCallback  для выполение обновления модели данных 
-      // if(type === "title"){
-      //     newPoint = new TitlePoint(value,{styles})
-      // } else {
-      //     newPoint =  new IntroPoint(value,{styles})
-      // }
-      // console.log(newPoint);
       // очистка форм
 
       event.target.value.value = "";
@@ -819,7 +860,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56515" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60852" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -41,7 +41,7 @@ export function inputPers(content1="text",content2="",content3=""){
  return `<input class="table__input" style="width:110px;" type ="${content1}" value="${content2}" placeholder="${content3}">`
 }
 
-
+// приведение объекта к строке
 export function css(styles={}){
 //     const keys = Object.keys(styles)
 // console.log(keys)
@@ -51,6 +51,8 @@ export function css(styles={}){
 //     })
 
 //     return array.join(";")
+
+if(typeof styles ==="string") return styles
 
 const toString = key=> `${key}:${styles[key]}`  
 /*   
@@ -76,7 +78,7 @@ export function formAddPers(content,type="",){
     
 }
 
-
+// Формы для сидебара
 // Функция создания формы для сидебара SB
 export function formSB(type){
     return `
@@ -91,5 +93,27 @@ export function formSB(type){
         <button type="submit"  class="btn btn-primary btn-sm"> Добавить</button>
     </form>
     </hr>
+    `
+}
+
+
+export function formIntro(type){
+    return `<form name ="${type}">
+    <h5>${type}</h5>
+    <div class="form-group">
+        <input class="form-control form-control-sm" name="value" placeholder="value">
+    </div>
+    <div class="form-group">
+        <input class="form-control form-control-sm" name="value1" placeholder="value1">
+    </div>
+    <div class ="form-group">
+        <input class="form-control form-control-sm" name="styles" placeholder="styles">
+    </div>
+    <div class ="form-group">
+        <input class="form-control form-control-sm" name="styles1" placeholder="styles1">
+    </div>
+    <button type="submit"  class="btn btn-primary btn-sm"> Добавить</button>
+</form>
+</hr>
     `
 }
