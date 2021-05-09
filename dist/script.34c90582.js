@@ -134,6 +134,7 @@ exports.css = css;
 exports.formAddPers = formAddPers;
 exports.formSB = formSB;
 exports.formIntro = formIntro;
+exports.formImg = formImg;
 
 // название и введение
 function row(content) {
@@ -214,6 +215,10 @@ function formSB(type) {
 
 function formIntro(type) {
   return "<form name =\"".concat(type, "\">\n    <h5>").concat(type, "</h5>\n    <div class=\"form-group\">\n        <input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n    </div>\n    <div class=\"form-group\">\n        <input class=\"form-control form-control-sm\" name=\"value1\" placeholder=\"value1\">\n    </div>\n    <div class =\"form-group\">\n        <input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n    </div>\n    <div class =\"form-group\">\n        <input class=\"form-control form-control-sm\" name=\"styles1\" placeholder=\"styles1\">\n    </div>\n    <button type=\"submit\"  class=\"btn btn-primary btn-sm\"> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n</form>\n</hr>\n    ");
+}
+
+function formImg(type, file) {
+  return "\n    <form name =\"".concat(type, "\">\n        <h5>").concat(type, "</h5>\n        <div class=\"form-group\">\n            <input type=").concat(file, " class=\"form-control form-control-sm\"  id =\"input-file\" name=\"value\" placeholder=\"value\">\n        </div>\n        <div class =\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n        </div>\n        <button type=\"submit\"  class=\"btn btn-primary btn-sm\"> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n    </form>\n    </hr>\n    ");
 }
 },{}],"assets/images/logo.png":[function(require,module,exports) {
 module.exports = "/logo.3f4a1874.png";
@@ -475,7 +480,7 @@ exports.InputPers = InputPers;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.model = void 0;
+exports.model = exports.picture = void 0;
 
 var _utils = require("./utils");
 
@@ -489,6 +494,8 @@ var _points = require("./classes/points");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var picture = _logo.default;
+exports.picture = picture;
 var model = [new _points.TitlePoint("Данные о владельцах животных", {
   tag: "h1",
   // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
@@ -536,7 +543,6 @@ var model = [new _points.TitlePoint("Данные о владельцах жив
   }
 }), new _points.PersPoint(["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PersPoint(["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty"), new _points.InputPers([(0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)()])];
 exports.model = model;
-console.log(model[6]);
 },{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
@@ -621,11 +627,15 @@ var _utils = require("../utils");
 
 var _points = require("./points");
 
+var _model = require("../model");
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+console.log(_model.picture);
 
 var Sidebar = /*#__PURE__*/function () {
   function Sidebar(selector, updateCallBack) {
@@ -648,8 +658,8 @@ var Sidebar = /*#__PURE__*/function () {
   }, {
     key: "admin",
     get: function get() {
-      return [(0, _utils.formSB)("title"), (0, _utils.formIntro)("intro"), // не та функция
-      (0, _utils.formSB)("img"), // ошибка
+      return [(0, _utils.formSB)("title"), (0, _utils.formIntro)("intro"), // разберись со стилями
+      (0, _utils.formImg)("img", "file"), // ошибка при загрузке файла
       (0, _utils.formSB)("head"), // ошибка
       (0, _utils.formSB)("person"), // ошибка
       (0, _utils.formSB)("InputPerson") // ошибка
@@ -689,11 +699,17 @@ var Sidebar = /*#__PURE__*/function () {
           styles: styles
         });
       } else if (type === "intro") {
-        newPoint = new _points.IntroPoint(value, {
-          styles: styles
+        var value1 = event.target.value1.value;
+        var styles1 = event.target.styles1.value;
+        newPoint = new _points.IntroPoint(value, value1, {
+          styles: styles,
+          styles1: styles1
         });
       } else if (type === "img") {
-        newPoint = new _points.ImgPoint(value, {
+        var file = document.getElementById('input-file').files[0]; // const type = document.getElementById('input-file').files[0].type
+
+        console.log(file);
+        newPoint = new _points.ImgPoint(_model.picture, {
           styles: styles
         });
       } else if (type === "head") {
@@ -709,9 +725,9 @@ var Sidebar = /*#__PURE__*/function () {
           newPoint = new _points.InputPers(value, {
             styles: styles
           }); // ошибка привязки контекста
-        }
+        } // console.log(newPoint);
 
-      console.log(newPoint);
+
       this.update(newPoint); // updateCallback  для выполение обновления модели данных 
       // очистка форм
 
@@ -742,7 +758,7 @@ var Sidebar = /*#__PURE__*/function () {
 
 
 exports.Sidebar = Sidebar;
-},{"../utils":"assets/script/utils.js","./points":"assets/script/classes/points.js"}],"assets/script/classes/site.js":[function(require,module,exports) {
+},{"../utils":"assets/script/utils.js","./points":"assets/script/classes/points.js","../model":"assets/script/model.js"}],"assets/script/classes/site.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -807,7 +823,8 @@ var updateCallback = function updateCallback(newPoint) {
   site.render(_model.model); // обновление данных в дом дереве
 };
 
-new _sidebar.Sidebar("#admin", updateCallback); //      
+var sidebar = new _sidebar.Sidebar("#admin", updateCallback);
+console.log(site); //      
 // sidebar.myanswer  setter
 // // mine
 // const test =new Test(".test")
@@ -860,7 +877,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60852" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57549" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

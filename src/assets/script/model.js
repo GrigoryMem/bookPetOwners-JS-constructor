@@ -6,6 +6,7 @@ import {PointClass} from './classes/points'
 import {PointClassNew} from './classes/points'
 import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint,InputPers} from './classes/points'
 
+export  const picture = image
 
 
 
@@ -123,4 +124,15 @@ export const model = [
 ]
 
 
-console.log(model[6])
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
-import {formSB,formIntro} from '../utils'
+import {formSB,formIntro, formImg} from '../utils'
 import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint,InputPers} from './points'
-
-
+import {picture} from '../model'
+console.log(picture)
 export class Sidebar {
     constructor(selector,updateCallBack){
         this.$el = document.querySelector(selector)
@@ -24,8 +24,8 @@ export class Sidebar {
     get admin(){
         return [
             formSB("title"),
-            formIntro("intro"), // не та функция
-            formSB("img"), // ошибка
+            formIntro("intro"), // разберись со стилями
+            formImg("img","file"), // ошибка при загрузке файла
             formSB("head"),// ошибка
             formSB("person"),// ошибка
             formSB("InputPerson"),// ошибка
@@ -38,16 +38,17 @@ export class Sidebar {
         return `<p>${value}</p>`
     }
 
-
     add(event){ // доступ к event
         event.preventDefault()
-
+        
         const type = event.target.name
         // получение значений инпутов через атрибут "name"
         const value =event.target.value.value
         
         const styles = event.target.styles.value
-
+      
+          
+          
         // const styles1 = event.target.styles1.value
 
         // console.log( styles1)
@@ -73,10 +74,24 @@ export class Sidebar {
             newPoint = new TitlePoint(value,{styles})
 
         } else if(type === "intro"){
-            newPoint =  new IntroPoint(value,{styles})
+
+  
+            const value1 =event.target.value1.value
+            const styles1 = event.target.styles1.value
+            newPoint =  new IntroPoint(value,value1,{styles,styles1})
         }
         else if (type === "img"){
-            newPoint =  new ImgPoint(value,{styles})
+            const file = document.getElementById('input-file').files[0]
+            // const type = document.getElementById('input-file').files[0].type
+            
+         
+            console.log(file)
+            newPoint =  new ImgPoint(picture,{styles})
+           
+
+
+           
+
         }else if (type === "head"){
             newPoint =  new HeadPoint(value,{styles})
             // ошибка привязки контекста
@@ -91,7 +106,7 @@ export class Sidebar {
 
 
 
-        console.log(newPoint);
+        // console.log(newPoint);
 
 
        
@@ -102,6 +117,9 @@ export class Sidebar {
 
 
     }
+
+
+  
 
 
   

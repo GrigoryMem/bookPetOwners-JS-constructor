@@ -74,6 +74,8 @@ export class ImgPoint extends PointClass{
         // console.log(point.options)
       return imgLogo(`<image class="logo" src="${this.value}" alt="${alt}" style="${css(is)}"/>`,css(styles))
     }
+
+   
 }
 
 
@@ -119,6 +121,9 @@ export class InputPers extends PointClass{
             styles1:{"background": "linear-gradient(85deg, #fb63f9, #c2e534)"}
         }
         const content = this.value.map(td).join("")
+        
+        
+        
        return tr(formAddPers(content,"person"),css(this.options.styles))
     }
 }

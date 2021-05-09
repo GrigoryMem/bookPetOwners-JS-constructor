@@ -28,7 +28,12 @@ const updateCallback = newPoint => {
 
 
 
-new Sidebar("#admin",  updateCallback)
+const sidebar = new Sidebar("#admin",  updateCallback)
+
+
+console.log(site)
+
+
 
 
 //      

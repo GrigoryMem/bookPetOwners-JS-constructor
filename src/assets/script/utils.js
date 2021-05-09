@@ -39,6 +39,8 @@ export function imgPet(photo){
 export function inputPers(content1="text",content2="",content3=""){
 
  return `<input class="table__input" style="width:110px;" type ="${content1}" value="${content2}" placeholder="${content3}">`
+
+
 }
 
 // приведение объекта к строке
@@ -115,5 +117,22 @@ export function formIntro(type){
     <button type="submit"  class="btn btn-primary btn-sm"> Добавить</button>
 </form>
 </hr>
+    `
+}
+
+
+export function formImg(type,file){
+    return `
+    <form name ="${type}">
+        <h5>${type}</h5>
+        <div class="form-group">
+            <input type=${file} class="form-control form-control-sm"  id ="input-file" name="value" placeholder="value">
+        </div>
+        <div class ="form-group">
+            <input class="form-control form-control-sm" name="styles" placeholder="styles">
+        </div>
+        <button type="submit"  class="btn btn-primary btn-sm"> Добавить</button>
+    </form>
+    </hr>
     `
 }
