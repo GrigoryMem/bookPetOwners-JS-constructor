@@ -108,9 +108,10 @@ export const model = [
 
 
 
-    ], "empty"),
+    ], "empty")
+    ,
 
-    new InputPers( [inputPers(),
+     new InputPers( [inputPers(),
                     inputPers(),
                     inputPers(),
                     inputPers(),

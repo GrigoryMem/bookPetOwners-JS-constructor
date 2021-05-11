@@ -46,6 +46,8 @@ export class Sidebar {
         event.preventDefault()
         
         const type = event.target.name
+
+        // console.log(event.target) - сама форма
         // получение значений инпутов через атрибут "name"
         const value =event.target.value.value
         

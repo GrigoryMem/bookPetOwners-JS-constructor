@@ -94,6 +94,8 @@ export class HeadPoint extends PointClass{
 export class PersPoint extends PointClass{
     constructor(value,options){
         super(value,options)
+
+        
     }
     toHTML(){
         this.options = {

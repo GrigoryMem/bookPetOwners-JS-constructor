@@ -673,7 +673,8 @@ var Sidebar = /*#__PURE__*/function () {
     value: function add(event) {
       // доступ к event
       event.preventDefault();
-      var type = event.target.name; // получение значений инпутов через атрибут "name"
+      var type = event.target.name; // console.log(event.target) - сама форма
+      // получение значений инпутов через атрибут "name"
 
       var value = event.target.value.value;
       var styles = event.target.styles.value; // const styles1 = event.target.styles1.value
@@ -858,23 +859,54 @@ var App = /*#__PURE__*/function () {
 }();
 
 exports.App = App;
-},{"./site":"assets/script/classes/site.js","./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/index.js":[function(require,module,exports) {
+},{"./site":"assets/script/classes/site.js","./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/classes/info.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GetInfo = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var GetInfo = /*#__PURE__*/function () {
+  function GetInfo(selector) {
+    _classCallCheck(this, GetInfo);
+
+    this.element = document.querySelector(selector);
+  }
+
+  _createClass(GetInfo, [{
+    key: "catchVal",
+    value: function catchVal() {
+      console.log(this.element);
+    }
+  }]);
+
+  return GetInfo;
+}();
+
+exports.GetInfo = GetInfo;
+},{}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model");
 
 require("../scss/main.scss");
 
-var _site = require("./classes/site");
-
-var _sidebar = require("./classes/sidebar");
-
 var _app = require("./classes/app");
 
-// import {templates} from './templates'
-// import '../css/main.css'
+var _info = require("./classes/info");
+
 // new App(model).init()   если конструктор не запущен
-new _app.App(_model.model); //      
+new _app.App(_model.model); // const container = new GetInfo("table__input").catchVal()
+// console.log(container)
+
+var dataNote = new _info.GetInfo(".table__input").catchVal(); //      
 // sidebar.myanswer  setter
 // // mine
 // const test =new Test(".test")
@@ -899,7 +931,7 @@ new _app.App(_model.model); //
 //     content = image(point)
 // }
 // })
-},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/site":"assets/script/classes/site.js","./classes/sidebar":"assets/script/classes/sidebar.js","./classes/app":"assets/script/classes/app.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/app":"assets/script/classes/app.js","./classes/info":"assets/script/classes/info.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -927,7 +959,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54160" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,23 +1,22 @@
 import {model} from './model'
-
-// import {templates} from './templates'
-// import '../css/main.css'
- import '../scss/main.scss'
- import {Site}  from './classes/site'
- import {Sidebar} from './classes/sidebar'
+import '../scss/main.scss'
 import { App } from './classes/app'
-
+import{GetInfo} from './classes/info'
  
  // new App(model).init()   если конструктор не запущен
  new App(model)
 
  
+ 
+ 
+    // const container = new GetInfo("table__input").catchVal()
 
 
-
-
-
-
+    // console.log(container)
+  
+    const dataNote = new GetInfo(".table__input").catchVal()
+ 
+   
 
 
 

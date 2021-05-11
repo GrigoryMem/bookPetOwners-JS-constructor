@@ -16,7 +16,7 @@ export class Site {
     
            
                 this.$el.insertAdjacentHTML("beforeend",point.toHTML());
-            
+           
         })
 
     }
