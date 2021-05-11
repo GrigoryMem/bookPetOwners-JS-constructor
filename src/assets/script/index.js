@@ -1,7 +1,7 @@
 import {model} from './model'
 import '../scss/main.scss'
 import { App } from './classes/app'
-import{GetInfo} from './classes/info'
+
  
  // new App(model).init()   если конструктор не запущен
  new App(model)
@@ -14,7 +14,7 @@ import{GetInfo} from './classes/info'
 
     // console.log(container)
   
-    const dataNote = new GetInfo(".table__input").catchVal()
+    
  
    
 

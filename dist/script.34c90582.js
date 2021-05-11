@@ -204,7 +204,7 @@ function css() {
 
 function formAddPers(content) {
   var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-  return "<form class=\"form__note\" name = \"".concat(type, "\">\n    ").concat(content, "\n    </hr>\n    <button type=\"submit\" btn btn-primary btn-sm> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043F\u0438\u0441\u044C</button>\n    </form>");
+  return "<form class=\"form__note\" name = \"".concat(type, "\">\n    ").concat(content, "\n    </hr>\n    <button type=\"submit\" id=\"data-btn\" btn btn-primary btn-sm> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043F\u0438\u0441\u044C</button>\n    </form>");
 } // Формы для сидебара
 // Функция создания формы для сидебара SB
 
@@ -859,39 +859,7 @@ var App = /*#__PURE__*/function () {
 }();
 
 exports.App = App;
-},{"./site":"assets/script/classes/site.js","./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/classes/info.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.GetInfo = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var GetInfo = /*#__PURE__*/function () {
-  function GetInfo(selector) {
-    _classCallCheck(this, GetInfo);
-
-    this.element = document.querySelector(selector);
-  }
-
-  _createClass(GetInfo, [{
-    key: "catchVal",
-    value: function catchVal() {
-      console.log(this.element);
-    }
-  }]);
-
-  return GetInfo;
-}();
-
-exports.GetInfo = GetInfo;
-},{}],"assets/script/index.js":[function(require,module,exports) {
+},{"./site":"assets/script/classes/site.js","./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model");
@@ -900,13 +868,10 @@ require("../scss/main.scss");
 
 var _app = require("./classes/app");
 
-var _info = require("./classes/info");
-
 // new App(model).init()   если конструктор не запущен
 new _app.App(_model.model); // const container = new GetInfo("table__input").catchVal()
 // console.log(container)
-
-var dataNote = new _info.GetInfo(".table__input").catchVal(); //      
+//      
 // sidebar.myanswer  setter
 // // mine
 // const test =new Test(".test")
@@ -931,7 +896,7 @@ var dataNote = new _info.GetInfo(".table__input").catchVal(); //
 //     content = image(point)
 // }
 // })
-},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/app":"assets/script/classes/app.js","./classes/info":"assets/script/classes/info.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/app":"assets/script/classes/app.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
