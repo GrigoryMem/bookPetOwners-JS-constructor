@@ -1,7 +1,11 @@
 import {formSB,formIntro, formImg} from '../utils'
 import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint,InputPers} from './points'
-import {picture} from '../model'
-console.log(picture)
+import {img1} from '../model'
+
+
+
+
+
 export class Sidebar {
     constructor(selector,updateCallBack){
         this.$el = document.querySelector(selector)
@@ -83,10 +87,30 @@ export class Sidebar {
         else if (type === "img"){
             const file = document.getElementById('input-file').files[0]
             // const type = document.getElementById('input-file').files[0].type
-            
-         
+
+
+           const  objectURL = window.URL.createObjectURL(file);
+
+            /* важно !!!!
+                Использование файлов в веб приложениях
+            https://developer.mozilla.org/ru/docs/Web/API/File/Using_files_from_web_applications
+
+            */
+
+
+
+            console.log(objectURL)
             console.log(file)
-            newPoint =  new ImgPoint(picture,{styles})
+            console.log(window)
+            
+
+           
+            
+            
+            
+            
+            
+            newPoint =  new ImgPoint(objectURL,{styles})
            
 
 

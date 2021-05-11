@@ -480,7 +480,7 @@ exports.InputPers = InputPers;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.model = exports.picture = void 0;
+exports.model = exports.img1 = void 0;
 
 var _utils = require("./utils");
 
@@ -494,8 +494,8 @@ var _points = require("./classes/points");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var picture = _logo.default;
-exports.picture = picture;
+var img1 = "../images/";
+exports.img1 = img1;
 var model = [new _points.TitlePoint("Данные о владельцах животных", {
   tag: "h1",
   // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
@@ -635,8 +635,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-console.log(_model.picture);
-
 var Sidebar = /*#__PURE__*/function () {
   function Sidebar(selector, updateCallBack) {
     _classCallCheck(this, Sidebar);
@@ -708,8 +706,16 @@ var Sidebar = /*#__PURE__*/function () {
       } else if (type === "img") {
         var file = document.getElementById('input-file').files[0]; // const type = document.getElementById('input-file').files[0].type
 
+        var objectURL = window.URL.createObjectURL(file);
+        /* важно !!!!
+            Использование файлов в веб приложениях
+        https://developer.mozilla.org/ru/docs/Web/API/File/Using_files_from_web_applications
+          */
+
+        console.log(objectURL);
         console.log(file);
-        newPoint = new _points.ImgPoint(_model.picture, {
+        console.log(window);
+        newPoint = new _points.ImgPoint(objectURL, {
           styles: styles
         });
       } else if (type === "head") {
@@ -799,7 +805,60 @@ var Site = /*#__PURE__*/function () {
 }();
 
 exports.Site = Site;
-},{"./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/index.js":[function(require,module,exports) {
+},{"./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/classes/app.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.App = void 0;
+
+var _site = require("./site");
+
+var _sidebar = require("./sidebar");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var App = /*#__PURE__*/function () {
+  function App(model) {
+    _classCallCheck(this, App);
+
+    this.model = model;
+    this.init();
+  }
+
+  _createClass(App, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+
+      var site = new _site.Site("#site"); // создаем сайт
+
+      site.render(this.model); // рендеринг - перенос html в само dom дерево (forech modeljs через класс)
+      //добавляем рендер
+      // после #admin добавление изменений в сайт через call back
+
+      var updateCallback = function updateCallback(newPoint) {
+        _this.model.push(newPoint); // положить блок из сидебара в конец модели
+
+
+        site.render(_this.model); // обновление данных в дом дереве
+      }; // определяем  функцию которая следит за обновлением
+
+
+      new _sidebar.Sidebar("#admin", updateCallback);
+    }
+  }]);
+
+  return App;
+}();
+
+exports.App = App;
+},{"./site":"assets/script/classes/site.js","./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model");
@@ -810,21 +869,12 @@ var _site = require("./classes/site");
 
 var _sidebar = require("./classes/sidebar");
 
+var _app = require("./classes/app");
+
 // import {templates} from './templates'
 // import '../css/main.css'
-var site = new _site.Site("#site");
-site.render(_model.model); // рендеринг - перенос html в само dom дерево (forech modeljs через класс)
-// после #admin добавление изменений в сайт через call back
-
-var updateCallback = function updateCallback(newPoint) {
-  _model.model.push(newPoint); // положить блок из сидебара в конец модели
-
-
-  site.render(_model.model); // обновление данных в дом дереве
-};
-
-var sidebar = new _sidebar.Sidebar("#admin", updateCallback);
-console.log(site); //      
+// new App(model).init()   если конструктор не запущен
+new _app.App(_model.model); //      
 // sidebar.myanswer  setter
 // // mine
 // const test =new Test(".test")
@@ -849,7 +899,7 @@ console.log(site); //
 //     content = image(point)
 // }
 // })
-},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/site":"assets/script/classes/site.js","./classes/sidebar":"assets/script/classes/sidebar.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/site":"assets/script/classes/site.js","./classes/sidebar":"assets/script/classes/sidebar.js","./classes/app":"assets/script/classes/app.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -877,7 +927,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57549" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56906" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

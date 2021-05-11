@@ -5,8 +5,8 @@ import image2 from '../images/customers/dog2.jpg'
 import {PointClass} from './classes/points'
 import {PointClassNew} from './classes/points'
 import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint,InputPers} from './classes/points'
+export let img1 = "../images/"
 
-export  const picture = image
 
 
 

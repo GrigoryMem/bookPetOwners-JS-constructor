@@ -5,33 +5,18 @@ import {model} from './model'
  import '../scss/main.scss'
  import {Site}  from './classes/site'
  import {Sidebar} from './classes/sidebar'
+import { App } from './classes/app'
+
+ 
+ // new App(model).init()   если конструктор не запущен
+ new App(model)
 
  
 
 
- 
-
-
-const site  = new Site("#site");
-
-
-site.render(model)  // рендеринг - перенос html в само dom дерево (forech modeljs через класс)
-
-
-// после #admin добавление изменений в сайт через call back
-const updateCallback = newPoint => {
-
-    model.push(newPoint) // положить блок из сидебара в конец модели
-    site.render(model)  // обновление данных в дом дереве
-
-}
 
 
 
-const sidebar = new Sidebar("#admin",  updateCallback)
-
-
-console.log(site)
 
 
 
