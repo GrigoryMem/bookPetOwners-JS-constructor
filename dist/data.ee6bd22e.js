@@ -118,77 +118,20 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"assets/script/classes/info.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
+var location = document.getElementById("site");
+var btnSubmit = document.getElementById("data-btn");
+var inputNotes = document.querySelectorAll(".table__input");
+var parcel = [];
+btnSubmit.addEventListener("click", function () {
+  inputNotes.forEach(function (item) {
+    parcel.push(item.value);
+  });
+  location.insertAdjacentHTML("beforeend", parcel);
 });
-exports.GetNote = exports.GetInfo = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var GetInfo = /*#__PURE__*/function () {
-  function GetInfo(selector) {
-    _classCallCheck(this, GetInfo);
-
-    this.element = document.querySelector(selector);
-  }
-
-  _createClass(GetInfo, [{
-    key: "catchVal",
-    value: function catchVal() {
-      if (this.element.value !== null && this.element.value !== "") console.log(this.element.value);
-    }
-  }]);
-
-  return GetInfo;
-}();
-
-exports.GetInfo = GetInfo;
-
-var GetNote = /*#__PURE__*/function () {
-  function GetNote(selector) {
-    _classCallCheck(this, GetNote);
-
-    this.element = document.querySelectorAll(selector);
-  }
-
-  _createClass(GetNote, [{
-    key: "toSave",
-    value: function toSave() {
-      var _this = this;
-
-      console.log(this.element.value);
-      var box = [];
-      var btnSubmit = document.getElementById("data-btn");
-      btnSubmit.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        _this.element.forEach(function (item) {
-          if (item.value !== null && item.value !== "" && item.value !== undefined || item.value.length !== 0) {
-            box.push(item.value);
-            console.log(box);
-          }
-        });
-      });
-    }
-  }]);
-
-  return GetNote;
-}();
-
-exports.GetNote = GetNote;
 },{}],"assets/script/data.js":[function(require,module,exports) {
 "use strict";
 
 var _info = require("./classes/info");
-
-// const dataNote = new GetInfo(".table__input").catchVal()
-var dataArray = new _info.GetNote(".table__input").toSave();
 },{"./classes/info":"assets/script/classes/info.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -217,7 +160,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54160" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55173" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

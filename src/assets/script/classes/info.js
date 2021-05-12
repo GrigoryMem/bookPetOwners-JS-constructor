@@ -1,73 +1,34 @@
 
 
 
-export class GetInfo{
-        constructor(selector){
+
+const location = document.getElementById("site");
+
+const btnSubmit = document.getElementById("data-btn")
+
+const inputNotes = document.querySelectorAll(".table__input")
+
+
+
+let parcel = [];
+
+btnSubmit.addEventListener("click", ()=>{
+    inputNotes.forEach((item=>{
+
+        parcel.push(item.value)
+
+    }))
+
+    location.insertAdjacentHTML("beforeend",parcel)
+
+})
+
+
+
             
-            this.element = document.querySelector(selector);
-        }
 
 
-        catchVal(){
-
-            
-           if(this.element.value!==null && this.element.value!=="" ) 
-
-           console.log(this.element.value)
-
-
-        }
-    }
-
-
-    export class GetNote{
-        constructor(selector){
-            this.element = document.querySelectorAll(selector)
-
-
-        }
-
-
-        toSave(){
-
-            console.log(this.element.value)
-            let box =[]
-            const btnSubmit = document.getElementById("data-btn");
-            btnSubmit.addEventListener("click",(event)=>{
-
-                event.preventDefault();
-                this.element.forEach((item)=>{
-                    if(item.value!==null && item.value!=="" && item.value!==undefined
-                    || item.value.length!==0){
-
-                        box.push(item.value);
-
-                        console.log(box)
-         
-         
-                 }
-
-
-                 
-
-
-
-                })
-
-               
-
-
-
-
-
-            })
-
-        }
-
-
-
-    }
-
+           
 
     
 
