@@ -7,7 +7,7 @@ import './classes/info'
  new App(model)
 
 
-
+ console.log("efefe")
  
     // const container = new GetInfo("table__input").catchVal()
 
