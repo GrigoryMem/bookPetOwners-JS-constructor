@@ -135,6 +135,7 @@ exports.formAddPers = formAddPers;
 exports.formSB = formSB;
 exports.formIntro = formIntro;
 exports.formImg = formImg;
+exports.addPicture = addPicture;
 
 // название и введение
 function row(content) {
@@ -220,6 +221,10 @@ function formIntro(type) {
 function formImg(type, file) {
   return "\n    <form name =\"".concat(type, "\">\n        <h5>").concat(type, "</h5>\n        <div class=\"form-group\">\n            <input type=").concat(file, " class=\"form-control form-control-sm\"  id =\"input-file\" name=\"value\" placeholder=\"value\">\n        </div>\n        <div class =\"form-group\">\n            <input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n        </div>\n        <button type=\"submit\"  class=\"btn btn-primary btn-sm\"> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n    </form>\n    </hr>\n    ");
 }
+
+function addPicture(type) {
+  return "\n    \n            <input type=".concat(type, " value=\"\" class=\"form-control form-control-sm table__input\" id=\"pet__photo\"  name=\"value\" placeholder=\"value\">\n       \n        \n        ");
+}
 },{}],"assets/images/logo.png":[function(require,module,exports) {
 module.exports = "/logo.3f4a1874.png";
 },{}],"assets/images/customers/dog1.jpg":[function(require,module,exports) {
@@ -232,7 +237,7 @@ module.exports = "/dog2.a76efe0b.jpg";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.InputPers = exports.PersPoint = exports.HeadPoint = exports.ImgPoint = exports.IntroPoint = exports.TitlePoint = exports.PointClassNew = exports.PointClass = void 0;
+exports.InputPers = exports.PersPoint = exports.HeadPoint = exports.PetPicture = exports.ImgPoint = exports.IntroPoint = exports.TitlePoint = exports.PointClassNew = exports.PointClass = void 0;
 
 var _utils = require("../utils");
 
@@ -369,8 +374,7 @@ var ImgPoint = /*#__PURE__*/function (_PointClass2) {
           is = _this$options2.imageStyles,
           _this$options2$alt = _this$options2.alt,
           alt = _this$options2$alt === void 0 ? "" : _this$options2$alt,
-          styles = _this$options2.styles; // console.log(point.options)
-
+          styles = _this$options2.styles;
       return (0, _utils.imgLogo)("<image class=\"logo\" src=\"".concat(this.value, "\" alt=\"").concat(alt, "\" style=\"").concat((0, _utils.css)(is), "\"/>"), (0, _utils.css)(styles));
     }
   }]);
@@ -379,6 +383,25 @@ var ImgPoint = /*#__PURE__*/function (_PointClass2) {
 }(PointClass);
 
 exports.ImgPoint = ImgPoint;
+
+var PetPicture = /*#__PURE__*/function () {
+  function PetPicture(value) {
+    _classCallCheck(this, PetPicture);
+
+    this.value = value;
+  }
+
+  _createClass(PetPicture, [{
+    key: "toHTML",
+    value: function toHTML() {
+      return "<image class=\"pet__picture imgPet\" src=\"".concat(this.value, "\"/>");
+    }
+  }]);
+
+  return PetPicture;
+}();
+
+exports.PetPicture = PetPicture;
 
 var HeadPoint = /*#__PURE__*/function (_PointClass3) {
   _inherits(HeadPoint, _PointClass3);
@@ -541,7 +564,7 @@ var model = [new _points.TitlePoint("Данные о владельцах жив
     background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
     "font-style": "italic"
   }
-}), new _points.PersPoint(["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PersPoint(["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty"), new _points.InputPers([(0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)()])];
+}), new _points.PersPoint(["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PersPoint(["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty"), new _points.InputPers([(0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.addPicture)("file")])];
 exports.model = model;
 },{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
@@ -677,8 +700,8 @@ var Sidebar = /*#__PURE__*/function () {
       // получение значений инпутов через атрибут "name"
 
       var value = event.target.value.value;
-      var styles = event.target.styles.value; // const styles1 = event.target.styles1.value
-      // console.log( styles1)
+      var styles = event.target.styles.value;
+      console.log(styles); // console.log( styles1)
       // мое дополнение
       // const value1 =event.target.value1.value
       // const styles1 =event.target.styles1.value
@@ -859,7 +882,82 @@ var App = /*#__PURE__*/function () {
 }();
 
 exports.App = App;
-},{"./site":"assets/script/classes/site.js","./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/index.js":[function(require,module,exports) {
+},{"./site":"assets/script/classes/site.js","./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/classes/info.js":[function(require,module,exports) {
+"use strict";
+
+var _points = require("./points");
+
+var location = document.getElementById("site");
+var parcel = [];
+var btn = document.getElementById("data-btn"); // Работа с асинхронностью JS
+//   Асинхронность. https://www.youtube.com/watch?v=vIZs5tH-HGQ&list=PLqKQF2ojwm3l4oPjsB9chrJmlhZ-zOzWT&index=4&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD
+// Window https://developer.mozilla.org/ru/docs/Web/API/Window
+//  Promise https://www.youtube.com/watch?v=1idOY3C1gYU&list=PLqKQF2ojwm3l4oPjsB9chrJmlhZ-zOzWT&index=5&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD
+// setTimeout(function(){
+//     const btnSubmit = document.getElementById("data-btn")
+//     const inputNotes = document.querySelectorAll(".table__input")
+//     // console.log(btnSubmit)
+//     const array = [btnSubmit,inputNotes]
+//    console.log(array)
+//    return array
+// },0)
+
+var p = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    console.log("Preparing data");
+    var btnSubmit = document.getElementById("data-btn"); //  console.log(array) 
+    //    return array
+
+    resolve(btnSubmit);
+  }, 0);
+});
+var box;
+p.then(function (data) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      box = data;
+      resolve(box);
+    }, 0);
+  }); // promise2.then(note=>{
+  //     console.log("Got",note)
+  // })
+}).then(function (getBox) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      location.append(getBox);
+      var inputs = document.querySelectorAll(".table__input");
+      getBox.addEventListener("click", function (event) {
+        event.preventDefault();
+        var box = [];
+        inputs.forEach(function (item) {
+          if (item.type) {
+            box.push(item.value);
+
+            if (item.type === "file" && item.files[0]) {
+              var fileImg = item.files[0];
+              var objURLImg = window.URL.createObjectURL(fileImg);
+              var addPhoto = new _points.PetPicture(objURLImg).toHTML();
+              box[box.length - 1] = addPhoto;
+            }
+          }
+        });
+        var person = new _points.PersPoint(box).toHTML(); // location.insertAdjacentElement('afterbegin',person)
+        //    location.innerHTML = person
+
+        if (person) {
+          location.insertAdjacentHTML('beforeend', person);
+        }
+      });
+      resolve(person);
+    }, 0);
+  });
+}).then(function (container) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {// getPhoto.addEventListener
+    }, 0);
+  });
+});
+},{"./points":"assets/script/classes/points.js"}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model");
@@ -867,6 +965,8 @@ var _model = require("./model");
 require("../scss/main.scss");
 
 var _app = require("./classes/app");
+
+require("./classes/info");
 
 // new App(model).init()   если конструктор не запущен
 new _app.App(_model.model); // const container = new GetInfo("table__input").catchVal()
@@ -896,7 +996,7 @@ new _app.App(_model.model); // const container = new GetInfo("table__input").cat
 //     content = image(point)
 // }
 // })
-},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/app":"assets/script/classes/app.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/app":"assets/script/classes/app.js","./classes/info":"assets/script/classes/info.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -924,7 +1024,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55173" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61409" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

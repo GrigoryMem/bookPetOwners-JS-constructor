@@ -1,12 +1,12 @@
 import {model} from './model'
 import '../scss/main.scss'
 import { App } from './classes/app'
-
+import './classes/info'
  
  // new App(model).init()   если конструктор не запущен
  new App(model)
 
- 
+
  
  
     // const container = new GetInfo("table__input").catchVal()

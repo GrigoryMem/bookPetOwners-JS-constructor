@@ -46,16 +46,16 @@ export class Sidebar {
         event.preventDefault()
         
         const type = event.target.name
-
+            
         // console.log(event.target) - сама форма
         // получение значений инпутов через атрибут "name"
         const value =event.target.value.value
         
         const styles = event.target.styles.value
       
+        
           
-          
-        // const styles1 = event.target.styles1.value
+        console.log(styles)
 
         // console.log( styles1)
         // мое дополнение
@@ -118,7 +118,10 @@ export class Sidebar {
 
            
 
-        }else if (type === "head"){
+        }
+        
+        
+        else if (type === "head"){
             newPoint =  new HeadPoint(value,{styles})
             // ошибка привязки контекста
         }else if (type === "person"){

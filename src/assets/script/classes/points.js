@@ -71,11 +71,23 @@ export class ImgPoint extends PointClass{
     }
     toHTML(){
         const {imageStyles:is,alt="",styles} = this.options
-        // console.log(point.options)
+       
+        
+      
       return imgLogo(`<image class="logo" src="${this.value}" alt="${alt}" style="${css(is)}"/>`,css(styles))
     }
 
    
+}
+
+export class PetPicture{
+    constructor(value){
+       this.value = value;
+    }
+
+    toHTML(){
+        return `<image class="pet__picture imgPet" src="${this.value}"/>`
+    }
 }
 
 

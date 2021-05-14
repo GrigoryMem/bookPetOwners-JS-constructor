@@ -56,6 +56,8 @@ export function css(styles={}){
 
 if(typeof styles ==="string") return styles
 
+
+
 const toString = key=> `${key}:${styles[key]}`  
 /*   
 Object.keys(styles) - берем ключи у объекта
@@ -135,4 +137,15 @@ export function formImg(type,file){
     </form>
     </hr>
     `
+}
+
+
+export function addPicture(type){
+    return `
+    
+            <input type=${type} value="" class="form-control form-control-sm table__input" id="pet__photo"  name="value" placeholder="value">
+       
+        
+        `
+
 }
