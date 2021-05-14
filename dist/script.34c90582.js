@@ -969,8 +969,7 @@ var _app = require("./classes/app");
 require("./classes/info");
 
 // new App(model).init()   если конструктор не запущен
-new _app.App(_model.model);
-console.log("efefe"); // const container = new GetInfo("table__input").catchVal()
+new _app.App(_model.model); // const container = new GetInfo("table__input").catchVal()
 // console.log(container)
 //      
 // sidebar.myanswer  setter
