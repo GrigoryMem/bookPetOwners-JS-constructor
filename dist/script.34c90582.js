@@ -969,7 +969,8 @@ var _app = require("./classes/app");
 require("./classes/info");
 
 // new App(model).init()   если конструктор не запущен
-new _app.App(_model.model); // const container = new GetInfo("table__input").catchVal()
+new _app.App(_model.model);
+alert("helloworld"); // const container = new GetInfo("table__input").catchVal()
 // console.log(container)
 //      
 // sidebar.myanswer  setter
@@ -1024,7 +1025,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61409" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61351" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
