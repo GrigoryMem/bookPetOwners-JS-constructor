@@ -20,8 +20,8 @@ export function td(content,styles=""){
     return  `<td class="col-sm" style=${styles}>${content}</td>`
 }
 
-export function tr(content, className,styles=""){
-    return   `<table class="table"><tr class="row ${className}" style="${styles}">${content}</tr></table>`
+export function tr(content, className,styles="",classTable=""){
+    return   `<table class="table ${classTable}"><tr class="row ${className}" style="${styles}">${content}</tr></table>`
 }
 
 
@@ -36,7 +36,7 @@ export function imgPet(photo){
     return `<img class="imgPet" src="${photo}">`
 }
 
-export function inputPers(content1="text",content2="",content3=""){
+export function inputPers(content1="text",content2="example",content3=""){
 
  return `<input class="table__input" style="width:110px;" type ="${content1}" value="${content2}" placeholder="${content3}">`
 
@@ -77,8 +77,10 @@ export function formAddPers(content,type="",){
     return `<form class="form__note" name = "${type}">
     ${content}
     </hr>
-    <button type="submit" id="data-btn" btn btn-primary btn-sm> Добавить запись</button>
-    </form>`
+    <div class="field__entering">
+        <button type="submit" id="data-btn" btn btn-primary btn-sm> Добавить запись</button>
+    </div>
+        </form>`
     
 }
 

@@ -1,13 +1,16 @@
 import {model} from './model'
 import '../scss/main.scss'
 import { App } from './classes/app'
-import './classes/info'
- 
+// import './promises/promises'
+import './localStorage'
+import './lessons/lesson6'
+import './person'
+import './lessons/lesson7'
  // new App(model).init()   если конструктор не запущен
  new App(model)
 
 
- console.log("efefe")
+ 
  
     // const container = new GetInfo("table__input").catchVal()
 
@@ -16,7 +19,7 @@ import './classes/info'
   
     
  
-   
+
 
 
 

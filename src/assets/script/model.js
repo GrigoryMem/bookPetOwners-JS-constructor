@@ -8,6 +8,12 @@ export let img1 = "../images/"
 
 
 
+ 
+
+ 
+// регулярные выражения??? или методы строк для элемента маасива (Сделать перебор)
+
+
 
 
 
@@ -109,8 +115,11 @@ export const model = [
 
 
     ], "empty")
-    ,
 
+    
+    ,
+    
+    
      new InputPers( [inputPers(),
                     inputPers(),
                     inputPers(),
@@ -125,6 +134,8 @@ export const model = [
 ]
 
 
+export const names = model[5].value
+export const example = model[4].value
 
 
 

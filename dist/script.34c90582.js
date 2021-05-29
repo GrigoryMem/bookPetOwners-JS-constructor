@@ -158,7 +158,8 @@ function td(content) {
 
 function tr(content, className) {
   var styles = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
-  return "<table class=\"table\"><tr class=\"row ".concat(className, "\" style=\"").concat(styles, "\">").concat(content, "</tr></table>");
+  var classTable = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "";
+  return "<table class=\"table ".concat(classTable, "\"><tr class=\"row ").concat(className, "\" style=\"").concat(styles, "\">").concat(content, "</tr></table>");
 } // утилиты для картинок
 
 
@@ -173,7 +174,7 @@ function imgPet(photo) {
 
 function inputPers() {
   var content1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "text";
-  var content2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  var content2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "example";
   var content3 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
   return "<input class=\"table__input\" style=\"width:110px;\" type =\"".concat(content1, "\" value=\"").concat(content2, "\" placeholder=\"").concat(content3, "\">");
 } // приведение объекта к строке
@@ -205,7 +206,7 @@ function css() {
 
 function formAddPers(content) {
   var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-  return "<form class=\"form__note\" name = \"".concat(type, "\">\n    ").concat(content, "\n    </hr>\n    <button type=\"submit\" id=\"data-btn\" btn btn-primary btn-sm> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043F\u0438\u0441\u044C</button>\n    </form>");
+  return "<form class=\"form__note\" name = \"".concat(type, "\">\n    ").concat(content, "\n    </hr>\n    <div class=\"field__entering\">\n        <button type=\"submit\" id=\"data-btn\" btn btn-primary btn-sm> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043F\u0438\u0441\u044C</button>\n    </div>\n        </form>");
 } // Формы для сидебара
 // Функция создания формы для сидебара SB
 
@@ -503,7 +504,7 @@ exports.InputPers = InputPers;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.model = exports.img1 = void 0;
+exports.example = exports.names = exports.model = exports.img1 = void 0;
 
 var _utils = require("./utils");
 
@@ -517,7 +518,8 @@ var _points = require("./classes/points");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var img1 = "../images/";
+var img1 = "../images/"; // регулярные выражения??? или методы строк для элемента маасива (Сделать перебор)
+
 exports.img1 = img1;
 var model = [new _points.TitlePoint("Данные о владельцах животных", {
   tag: "h1",
@@ -566,6 +568,10 @@ var model = [new _points.TitlePoint("Данные о владельцах жив
   }
 }), new _points.PersPoint(["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PersPoint(["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty"), new _points.InputPers([(0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.addPicture)("file")])];
 exports.model = model;
+var names = model[5].value;
+exports.names = names;
+var example = model[4].value;
+exports.example = example;
 },{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
@@ -882,82 +888,155 @@ var App = /*#__PURE__*/function () {
 }();
 
 exports.App = App;
-},{"./site":"assets/script/classes/site.js","./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/classes/info.js":[function(require,module,exports) {
-"use strict";
+},{"./site":"assets/script/classes/site.js","./sidebar":"assets/script/classes/sidebar.js"}],"assets/script/localStorage.js":[function(require,module,exports) {
+var myNumber = 42; // localStorage.removeItem("number")  // удаление значение из LS
+// // console.log(localStorage.getItem('number')); // получить из LS
+// localStorage.setItem('number',myNumber.toString()) ;// передать в LS  1 -ключь 2 - значение
+// // console.log(localStorage.getItem('number'))
+// //LS может работать только строками
+// localStorage.clear() // очистить LS
+// const object ={
+//     name:"Andrew",
+//     age:29
+// }
+// localStorage.setItem("person",JSON.stringify(object))
+// //JSON.stringify   позволяет корректно хранить встроке данные объекта
+// //JSON.parse() -обратное действие методу  stringify
+// // console.log(localStorage.getItem("person"));
+// // import {example} from './model'
+// // localStorage.setItem("customer",JSON.stringify(example))
+// const raw =localStorage.getItem('person');
+// const person = JSON.parse(raw)  // получаем спомощью  этого объект из LS
+// person.name = 'vladilen';
+// console.log(person)
+// =================
+// налюбое добавление элемента
+// window.addEventListener("storage",event=>{
+//     console.log(event)
+// })
+// if(localStorage.getItem("client")!== null){
+//     console.log(true);
+// }
+},{}],"assets/script/lessons/lesson6.js":[function(require,module,exports) {
+// // Урок 6. JavaScript. Объекты с Object.create. Что такое getters, setters
+// // https://www.youtube.com/watch?v=cS6nTVNzOPw&list=PLqKQF2ojwm3l4oPjsB9chrJmlhZ-zOzWT&index=6
+// //https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+// //https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+// // Object.create()
+// //Object.defineProperty() дескрипторы
+// const thing ={
+//     birthday:"13.06",
+//     alive:undefined
+// }
+// // итерация по ключам объектапри таком создании объекта:эти ключине не войдут в цикл , нужны дескрипторы
+// // чтобы ключи вошли в цикл используй  enumerable:true
+// /*
+// writable false =данный оъект нельзяизменять
+// enumerable  false = свойтсване видны через итерации цикла
+// configurable  false - нельяз удалить ключ объекта
+// 1 параметр - прототип нового созданного объекта person
+// */
+// const person1 =Object.create({
+//     calculateAge(){
+//         console.log('Age: ', new Date().getFullYear()-this.birthYear);
+//     }
+// },{
+//     name:{
+//         value:'Grigory',
+//        enumerable:true,
+//        writable:true,
+//        configurable:true
+//     },
+//     birthYear:{
+//         value:1993,
+//         enumerable:false,
+//         writable:false,
+//         configurable:false
+//     },
+//     age:{
+//         get(){
+//             return new Date().getFullYear()-this.birthYear
+//         }
+//         ,
+//         set(value){
+//             document.body.style.background ="red"
+//                 console.log("set age", value)
+//         }
+//     }
+// })
+// // person1.name ="Anrew" // НЕДАСТ  результата в таком объекте нужен   writable:true
+// // delete person1.name
+// // delete person1.birthYear
+// // hasOwnProperty(key)  исключает перебор прототипа объекта 
+// //1 параметр - прототип нового созданного объекта person
+// // for(let key in person1){
+// //     if(person1.hasOwnProperty(key)){
+// //         // console.log("Key: ",key,person1[key])
+// //     }
+// // }
+// // person1.age = "sdfdfdf";
+// // console.log(person1)
+// // console.log(thing)
+},{}],"assets/script/person.js":[function(require,module,exports) {
+// для кнопок
+// const button = {
+//     create:document.createElement('button'),
+//     check:true
+// }
+// const removeNote = Object.create(button,{
+//     name:{
+//         value:"Removing note"
+//     },
+//     addClass:{
+//        set(className){
+//            this.create.classList.add(className);
+//        }
+//     },
+//     addPar:{
+//         set(parent){
+//             parent.appendChild(this.create);
+//         }
+//     }
+// })
+// const parent = document.querySelector("#site")
+// // не срабатывает?
+// removeNote.addClass="removeData";
+},{}],"assets/script/lessons/lesson7.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _points = require("./points");
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-var location = document.getElementById("site");
-var parcel = [];
-var btn = document.getElementById("data-btn"); // Работа с асинхронностью JS
-//   Асинхронность. https://www.youtube.com/watch?v=vIZs5tH-HGQ&list=PLqKQF2ojwm3l4oPjsB9chrJmlhZ-zOzWT&index=4&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD
-// Window https://developer.mozilla.org/ru/docs/Web/API/Window
-//  Promise https://www.youtube.com/watch?v=1idOY3C1gYU&list=PLqKQF2ojwm3l4oPjsB9chrJmlhZ-zOzWT&index=5&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD
-// setTimeout(function(){
-//     const btnSubmit = document.getElementById("data-btn")
-//     const inputNotes = document.querySelectorAll(".table__input")
-//     // console.log(btnSubmit)
-//     const array = [btnSubmit,inputNotes]
-//    console.log(array)
-//    return array
-// },0)
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var p = new Promise(function (resolve, reject) {
-  setTimeout(function () {
-    console.log("Preparing data");
-    var btnSubmit = document.getElementById("data-btn"); //  console.log(array) 
-    //    return array
+//Урок 7. JavaScript. Все о ES6 Классах (+ Практическое Применение)
+// https://www.youtube.com/watch?v=uLY9GXGMXaA&list=PLqKQF2ojwm3l4oPjsB9chrJmlhZ-zOzWT&index=7&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD
+var Animal = /*#__PURE__*/function () {
+  function Animal(options) {
+    _classCallCheck(this, Animal);
 
-    resolve(btnSubmit);
-  }, 0);
+    this.name = options.name;
+    this.age = options.age;
+    this.hasTail = options.hasTail;
+  }
+
+  _createClass(Animal, [{
+    key: "voice",
+    value: function voice() {
+      console.log("I am PAnda");
+    }
+  }]);
+
+  return Animal;
+}();
+
+var animal = new Animal({
+  name: "Panda",
+  age: 5,
+  hasTail: true
 });
-var box;
-p.then(function (data) {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      box = data;
-      resolve(box);
-    }, 0);
-  }); // promise2.then(note=>{
-  //     console.log("Got",note)
-  // })
-}).then(function (getBox) {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      location.append(getBox);
-      var inputs = document.querySelectorAll(".table__input");
-      getBox.addEventListener("click", function (event) {
-        event.preventDefault();
-        var box = [];
-        inputs.forEach(function (item) {
-          if (item.type) {
-            box.push(item.value);
-
-            if (item.type === "file" && item.files[0]) {
-              var fileImg = item.files[0];
-              var objURLImg = window.URL.createObjectURL(fileImg);
-              var addPhoto = new _points.PetPicture(objURLImg).toHTML();
-              box[box.length - 1] = addPhoto;
-            }
-          }
-        });
-        var person = new _points.PersPoint(box).toHTML(); // location.insertAdjacentElement('afterbegin',person)
-        //    location.innerHTML = person
-
-        if (person) {
-          location.insertAdjacentHTML('beforeend', person);
-        }
-      });
-      resolve(person);
-    }, 0);
-  });
-}).then(function (container) {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {// getPhoto.addEventListener
-    }, 0);
-  });
-});
-},{"./points":"assets/script/classes/points.js"}],"assets/script/index.js":[function(require,module,exports) {
+console.log(animal.voice());
+console.log(animal);
+},{}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model");
@@ -966,11 +1045,17 @@ require("../scss/main.scss");
 
 var _app = require("./classes/app");
 
-require("./classes/info");
+require("./localStorage");
 
+require("./lessons/lesson6");
+
+require("./person");
+
+require("./lessons/lesson7");
+
+// import './promises/promises'
 // new App(model).init()   если конструктор не запущен
-new _app.App(_model.model);
-console.log("efefe"); // const container = new GetInfo("table__input").catchVal()
+new _app.App(_model.model); // const container = new GetInfo("table__input").catchVal()
 // console.log(container)
 //      
 // sidebar.myanswer  setter
@@ -997,7 +1082,7 @@ console.log("efefe"); // const container = new GetInfo("table__input").catchVal(
 //     content = image(point)
 // }
 // })
-},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/app":"assets/script/classes/app.js","./classes/info":"assets/script/classes/info.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/app":"assets/script/classes/app.js","./localStorage":"assets/script/localStorage.js","./lessons/lesson6":"assets/script/lessons/lesson6.js","./person":"assets/script/person.js","./lessons/lesson7":"assets/script/lessons/lesson7.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1025,7 +1110,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61409" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59328" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,7 +1,26 @@
 
-import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint,InputPers,PetPicture} from './points'
+import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint,InputPers,PetPicture} from '../classes/points'
+import {names} from "../model"
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// const context = getValues.bind(note)()
+
+
+// console.log(note)
+
+// console.log(new Map().keys(note))
 
 
 const location = document.getElementById("site");
@@ -58,7 +77,7 @@ const p =new Promise((resolve,reject)=>{
 
         
 
-        console.log("Preparing data")
+        // console.log("Preparing data")
         const btnSubmit = document.getElementById("data-btn")
          
 
@@ -104,14 +123,14 @@ p.then((data)=>{
 }).then(getBox=>{
 
     return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
+        
             location.append(getBox)
 
             const inputs = document.querySelectorAll(".table__input")
 
             
 
-            
+            let container=[];
 
             
 
@@ -119,16 +138,16 @@ p.then((data)=>{
                 event.preventDefault()
 
                 
-
+                
 
               
-                let box=[];
+               
                 inputs.forEach(item=>{
                     
                     if(item.type){
-                        box.push(item.value)
+                        container.push(item.value+"^")
 
-                        if(item.type === "file" &&  item.files[0]){
+                        if(item.type === "file" && item.files[0]){
 
                             const fileImg = item.files[0];
 
@@ -138,10 +157,10 @@ p.then((data)=>{
 
 
                            
-                                box[box.length-1] = addPhoto
+                            container[container.length-1] = addPhoto;
                            
-                         
-
+                              
+                            
                             
 
                             
@@ -155,60 +174,77 @@ p.then((data)=>{
                     
                 })
 
+              
+                const person = new PersPoint(container).toHTML()
+                console.log(container)
                 
-                const person = new PersPoint(box).toHTML()
                 // location.insertAdjacentElement('afterbegin',person)
             //    location.innerHTML = person
             if(person) {
                 location.insertAdjacentHTML('beforeend',person)
-
+               
                
             }
               
            
             })
 
+           
+
 
             
            
 
             
             
+             
             
-            
-            
-           
-            resolve(person)
+            localStorage.setItem("client",JSON.stringify(container))
+          
+            resolve(names)
 
 
 
-        },0)
+        
     })
     
      
-}).then(container=>{
-    
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
-            
-            
-         
-           
-            
-          
-        
-                
-               
-            
-            // getPhoto.addEventListener
-            
-
-        },0)
-    })
-
-
-
 })
+
+
+.then(data=>{
+
+    const objClient = {}
+
+    Object.assign(objClient,data)
+    
+    // console.log(objClient)
+})
+// .catch(err=> console.error("Error: ", err))
+// .finally(()=>{  console.log("Finally")})
+
+
+
+// const sleep = ms =>{
+//     return new Promise(resolve => setTimeout(()=>resolve(),ms))
+
+
+// }
+
+
+// sleep(2000).then(()=>console.log("After 2 sec"))
+// sleep(3000).then(()=>console.log("After 3 sec"))
+
+// Promise.all([sleep(2000),sleep(5000)],p)
+// .then(()=>{
+//     console.log("All promises")
+// })  // выполнится после выполнения всех промисов
+
+// Promise.race([sleep(2000),sleep(5000)],p)
+// .then(()=>{
+//     // console.log("Race promises") // данная строка появится при первом промисе
+// }) 
+    
 
 
 
