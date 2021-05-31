@@ -2,12 +2,12 @@ import {imgPet, inputPers,addPicture} from './utils'
 import image from '../images/logo.png'
 import image1 from '../images/customers/dog1.jpg'
 import image2 from '../images/customers/dog2.jpg'
-
+import image3 from '../images/basket.png'
 import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint,InputPers} from './classes/points'
 export let img1 = "../images/"
 
 
-
+export let basket = image3;
  
 
  

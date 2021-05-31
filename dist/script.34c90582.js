@@ -232,6 +232,8 @@ module.exports = "/logo.3f4a1874.png";
 module.exports = "/dog1.854dad89.jpg";
 },{}],"assets/images/customers/dog2.jpg":[function(require,module,exports) {
 module.exports = "/dog2.a76efe0b.jpg";
+},{}],"assets/images/basket.png":[function(require,module,exports) {
+module.exports = "/basket.ec14a8d1.png";
 },{}],"assets/script/classes/points.js":[function(require,module,exports) {
 "use strict";
 
@@ -504,7 +506,7 @@ exports.InputPers = InputPers;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.example = exports.names = exports.model = exports.img1 = void 0;
+exports.example = exports.names = exports.model = exports.basket = exports.img1 = void 0;
 
 var _utils = require("./utils");
 
@@ -514,13 +516,17 @@ var _dog = _interopRequireDefault(require("../images/customers/dog1.jpg"));
 
 var _dog2 = _interopRequireDefault(require("../images/customers/dog2.jpg"));
 
+var _basket = _interopRequireDefault(require("../images/basket.png"));
+
 var _points = require("./classes/points");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var img1 = "../images/"; // регулярные выражения??? или методы строк для элемента маасива (Сделать перебор)
-
+var img1 = "../images/";
 exports.img1 = img1;
+var basket = _basket.default; // регулярные выражения??? или методы строк для элемента маасива (Сделать перебор)
+
+exports.basket = basket;
 var model = [new _points.TitlePoint("Данные о владельцах животных", {
   tag: "h1",
   // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
@@ -572,7 +578,7 @@ var names = model[5].value;
 exports.names = names;
 var example = model[4].value;
 exports.example = example;
-},{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","../images/basket.png":"assets/images/basket.png","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -1110,7 +1116,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59328" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51247" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

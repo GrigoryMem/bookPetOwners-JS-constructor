@@ -10,26 +10,20 @@ export function clearField(selectorClass){
 
 // упращено
    window.location.reload(); // обновление страницы
-   localStorage.clear();
+   localStorage.clear();// очитска LS
    
 
-          
-
-                
-
-                
-                
-               
-               
-               
-           
-        //   parent.removeChild(parent.children[i])
-        
-       
-
-
-
-   
-     
-    
 }
+
+
+export function setBasket(src){
+
+   return `<div class="wrapp__basket">
+            <img  class="basket" src="${src}">
+   </div>`
+
+
+}
+
+
+

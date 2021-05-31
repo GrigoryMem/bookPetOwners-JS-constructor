@@ -45,6 +45,10 @@ tr.person td:nth-child(even) {
   background: linear-gradient(85deg, #fb63f9, #c2e534) !important;
 }
 
+.col-sm {
+  position: relative;
+}
+
 /*  images */
 @media (max-width: 1550px) {
   .logo {
@@ -58,6 +62,17 @@ tr.person td:nth-child(even) {
 
 .logo {
   margin: 10px auto;
+}
+
+.wrapp__basket {
+  position: relative;
+  top: 25%;
+  padding-bottom: 30px;
+}
+
+.basket {
+  width: 100%;
+  max-width: 40px;
 }
 
 body {
