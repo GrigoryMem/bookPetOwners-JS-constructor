@@ -16,12 +16,16 @@ export function col(content,styles = '', className =""){
 
 // утилиты для табличных функций 
 
-export function td(content,styles=""){
+export function td(content,styles="",file=""){
+    
     return  `<td class="col-sm" style=${styles}>${content}</td>`
 }
 
 export function tr(content, className,styles="",classTable=""){
-    return   `<table class="table ${classTable}"><tr class="row ${className}" style="${styles}">${content}</tr></table>`
+    return   `<table class="table ${classTable}">
+    <tr class="row ${className}" style="${styles}">${content}</tr>
+    
+    </table>`
 }
 
 

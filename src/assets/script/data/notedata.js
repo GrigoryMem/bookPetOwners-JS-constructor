@@ -3,6 +3,11 @@ import{clearField, setBasket} from './data__utils'
 import{basket} from '../model'
 // рефокторинг
 
+let parserBaket = new DOMParser().parseFromString(setBasket(basket),"text/html") 
+let domBasket = parserBaket.querySelector(".wrapp__basket")
+
+
+
 
 
 class Data {
@@ -14,7 +19,10 @@ class Data {
         
         this.addNote()
         this.clearLS = "timebtn"
+        this.installBasket()
         this.removeNote()
+        this.sortElement()
+        // this.installBasket()
        
         
 
@@ -22,12 +30,16 @@ class Data {
     }
 
     addNote(){
+        
 
         this.button.addEventListener("click",(event)=>{
+            
             event.preventDefault();
             let container = [];
+         
 
-            this.inputs.forEach(item=>{
+            this.inputs.forEach((item,index)=>{
+                
                 if(item.value!==""){
                     container.push(item.value)
                 }
@@ -39,18 +51,38 @@ class Data {
                     const addPhoto = new PetPicture(objURLImg ).toHTML();
     
                     container[container.length-1] = addPhoto;
+                   
+                    
                 }
             })
-
-            container.push(this.installBasket());
-            const person = new PersPoint(container).toHTML()
+            
+            // container.push(this.installBasket());  добавление корзины  как лишний столбец
            
-    
+           
+            const person = new PersPoint(container).toHTML()
+        // преобразование  строки в dom элемент
+           let domObj = new DOMParser().parseFromString(person,"text/html") // превращаем строку в dom объект
+            // добавление корзины
+         domObj.querySelector(".person").firstChild.appendChild(domBasket)
+
+
+        const devPerson = domObj.querySelector(".table")
+           
+       
     if(localStorage.length === 0){
+        // devPerson.outerHTML преобразование html в строку
         
-        this.location.insertAdjacentHTML('beforeend', person )
+        devPerson.setAttribute("data-id",": "+0)
+       console.log( devPerson.dataset)
+        this.location.insertAdjacentHTML('beforeend', devPerson.outerHTML)
+
+  
         
+      
+
             localStorage.setItem("id: "+ 0,JSON.stringify(container))
+
+            
 
             container = []  // освобоэжение контейнера
 
@@ -59,18 +91,23 @@ class Data {
     //  }
       
 } else if (localStorage.length>0){
-        
-        
-        
-        this.location.insertAdjacentHTML('beforeend', person )
-        let keysLS = Object.keys(localStorage);
-
+    let keysLS = Object.keys(localStorage);
+      
+    devPerson.setAttribute("data-id",": "+sortId(keysLS))
+    
+        this.location.insertAdjacentHTML('beforeend', devPerson.outerHTML )
+       
+      
+     
+        // keysLS = sortId(keysLS)
+        // console.log(sortId(keysLS))
         for(let key in  keysLS){
-                if(keysLS.indexOf( "id: "+keysLS.length) === -1){
-            localStorage.setItem("id: "+keysLS.length,JSON.stringify(container))
-                }else{
-                    localStorage.setItem("id: "+keysLS.length++,JSON.stringify(container)) 
-                }
+             
+       
+        localStorage.setItem("id: "+sortId(keysLS),JSON.stringify(container))
+                 
+                    
+              
         }
         container = [] 
     //         for(let val of inputs){
@@ -79,11 +116,14 @@ class Data {
       
 }
             this.addClassTable()
-            window.location.reload(); // обновляем страницу
-        })
+           
+          
+            // window.location.reload(); // обновляем страницу
+        })  // клик добавление записи
 
             //getter
         this.saveNote 
+       
         
         
     }
@@ -91,54 +131,118 @@ class Data {
 
 
     installBasket(){
+        
+        
+            const $elements = document.querySelectorAll(".person");
+        
+            
+            if($elements.length>2){
+                for(let i =2; i<=$elements.length-1;i++){
+                   
+                    $elements[i].firstChild.insertAdjacentHTML("beforeend",setBasket(basket))
+            
+            }
 
-
-        return setBasket(basket)
-
+            }
+           
     }
 
     removeNote(){
-    
-        const  baskets = document.querySelectorAll('.basket')
+        const home = document.querySelector(".field__entering")
+       
+      
+        // деленирование событий для обработки динамисческих корзин
+        document.addEventListener('click',function(event){
+            if(event.target && event.target.classList.contains('basket')){
 
-        baskets.forEach((item,index)=>{
-            item.addEventListener("click",()=>{
-
-                const home = document.querySelector(".field__entering")
-              let child = item.parentNode.parentNode.parentNode.parentNode
-              let parent = item.parentNode.parentNode.parentNode.parentNode.parentNode
-                console.log(parent);
-            
-              //   localStorage.removeItem(`id: ${index}`)  
-            // 
-            
-            home.removeChild(parent);
-
-           
+                // let child = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+                // console.log(child)
+                let child = event.target.parentNode.parentNode.parentNode.parentNode.parentNode;// получаемудаляемый элемент
+                // console.log(event.layerX)
+                // console.log(event.target)
+                // console.log(event.target.className)
                
-               localStorage.removeItem(`id: ${index}`);
+                // home.removeChild(child)
                 
+               
+
+            let key = "id"+child.dataset.id;
+             localStorage.removeItem(key)
+             home.removeChild(child)
+                
+                
+            }
+        });
+
+
+        // let regex =/\d+/;  // регулярное выражение дляпоиска числа number
+        //         let key =  parseInt(localStorage.key(index).match(regex))
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
+       
+        
+        // baskets.forEach((item,index)=>{
+        //     item.addEventListener("click",()=>{
+               
+        //         item.src.onload = function(){
+               
+        //         let regex =/\d+/;
+        //         let key =  parseInt(localStorage.key(index).match(regex))
+        //         console.log(key)
+        //         home.removeChild(child)
+        //         localStorage.removeItem("id: "+key)
+        //         }
+                
+        //         // window.location.reload(); // обновляем страницу
+        //     })
 
             
-            
-            
-            // localStorage.removeItem(`id: ${index}`);
-            
-             
+        // })
 
+        
 
-
-            // обновление страницы
-
-              //теперь удали элемент из LS
-
-            })
-        })
        
     
     }
 
     changeNote(){
+
+    }
+
+    sortElement(){
+        let keys = Object.keys(localStorage);
+        const savedNotes = document.querySelectorAll(".table")
+        console.log(savedNotes)
+        const arrKeys = []
+        const newArr =[]
+        for(let p=2;p<= savedNotes.length-1;p++){
+            if(localStorage.key(savedNotes[p])!==null){
+                arrKeys.push(localStorage.key(p))
+            }
+            
+        }
+
+        for(let item in arrKeys){
+            if(item!==null){
+                newArr.push(item)
+            }
+        }
+        // let regex =/\d+/;
+        // let key =  parseInt(localStorage.key(index).match(regex))
+console.log(arrKeys)
+      return newArr
+
 
     }
 
@@ -171,6 +275,18 @@ class Data {
         for(let k in box){
     
             box[k] = new PersPoint(box[k]).toHTML()
+            box[k]  = new DOMParser().parseFromString(box[k],"text/html") // превращаем строку в dom объект
+            
+
+            box[k] = box[k].querySelector("table")
+            box[k].setAttribute("data-id",": "+k)  //добавляемк data атрибут
+
+           box[k] = box[k].outerHTML // превращаем в строку dom
+
+            
+     
+
+       
     }
           
            return this.location.insertAdjacentHTML('beforeend',box.join(""));
@@ -187,7 +303,7 @@ class Data {
         button.classList.add(className)
         this.location.append(button)
         button.innerText = "Сброс всех данных(+LS)"
-        console.log(button)
+        // console.log(button)
 
         button.addEventListener("click",()=>{
             
@@ -206,142 +322,7 @@ class Data {
 
 
 const data = new Data(".field__entering","#data-btn",".table__input")
-// console.log(data)
 
-
-
-
-
-//  старые записи
-
-
-// const location =document.querySelector("#site");
-
-// const button = document.getElementById("data-btn");
-
-// const inputs = document.querySelectorAll(".table__input");
-// let container = []
-
-
-
-// button.addEventListener("click",(event)=>{
-//     event.preventDefault();
-
-//     inputs.forEach(item=>{
-//             if(item.value !=="" ){
-//                container.push(item.value)
-              
-
-//             if(item.type==="file" && item.files[0]){
-
-//                 const fileImg =item.files[0]; // имя файла картинки
-                
-//                 const objURLImg = window.URL.createObjectURL(fileImg) // путь файла картинки
-                
-
-//                 const addPhoto = new PetPicture(objURLImg ).toHTML();
-
-//                 container[container.length-1] = addPhoto;
-
-                
-              
-//             }
-//             }
-//     })
-
-//     const person = new PersPoint(container).toHTML()
-    
-//     if(localStorage.length === 0){
-        
-//         location.insertAdjacentHTML('beforeend', person )
-        
-//             localStorage.setItem("id: "+ 0,JSON.stringify(container))
-
-//             container = []  // освобоэжение контейнера
-
-//     //   for(let val of inputs){
-//     //     val.value = "";     // очистка инпутов
-//     //  }
-      
-// } else{
-
-//         location.insertAdjacentHTML('beforeend', person )
-//         let keysLS = Object.keys(localStorage);
-
-//         for(let key in  keysLS){
-
-//             localStorage.setItem("id: "+keysLS.length,JSON.stringify(container))
-//         }
-//         container = [] 
-//     //         for(let val of inputs){
-//     //     val.value = "";     // очистка инпутов
-//     //  }
-      
-// }
-
-
-
-
-
-
-      
-// })
-
-
-// очистка LS старые записи
-
-// const clearLS = document.querySelector(".timebtn");
-
-// clearLS.addEventListener("click",()=>{
-//     localStorage.clear();
-
-    
-
-//     // for(let i =6; i<= location.length-1;i++){
-       
-//     // }
-// })
-
-
-
-
-
-
-
-// toNote();
-
-
-
-
-
-
-
-// function toNote(){
-
-//     let box = []
-//     let keys = Object.keys(localStorage);
-//     for(let j=0; j<=localStorage.length-1;j++){
-
-//         box.push(
-//             JSON.parse(localStorage.getItem(keys[j]))
-            
-// )
-// }
-
-//     for(let k in box){
-
-//         box[k] = new PersPoint(box[k]).toHTML()
-// }
-      
-//        return location.insertAdjacentHTML('beforeend',box.join(""));
-
-// }
-
-
-let arr = ["id: 4", "id: 0", "id: 1", "id: 3", "id: 2", "id: 5"];
-
-
-console.log(sortId(arr))
 function sortId(arr){
 
 
@@ -354,26 +335,13 @@ let newArr = arr.map(item=>{
     return parseInt(item.match(regex))
 })
 
-let num = parseInt(arr[0].match(regex))
+let maxNum =  Math.max.apply(null, newArr ); // берем максимальное числоиз массива
 
-newArr.sort((a,b)=>{
-
-    return a-b
-})
-
-arr = newArr
+return ++maxNum
 
 
-for(let i =0; i<=arr.length-1;i++){
-
-    arr[i] = "id: "+arr[i]
 
 }
 
 
-console.log(arr)
- 
-return arr
 
-
-}

@@ -153,13 +153,14 @@ function col(content) {
 
 function td(content) {
   var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  var file = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
   return "<td class=\"col-sm\" style=".concat(styles, ">").concat(content, "</td>");
 }
 
 function tr(content, className) {
   var styles = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
   var classTable = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "";
-  return "<table class=\"table ".concat(classTable, "\"><tr class=\"row ").concat(className, "\" style=\"").concat(styles, "\">").concat(content, "</tr></table>");
+  return "<table class=\"table ".concat(classTable, "\">\n    <tr class=\"row ").concat(className, "\" style=\"").concat(styles, "\">").concat(content, "</tr>\n    \n    </table>");
 } // утилиты для картинок
 
 
@@ -456,6 +457,7 @@ var PersPoint = /*#__PURE__*/function (_PointClass4) {
         return (0, _utils.td)(item);
       }); // создание массива
       // my editions to person
+      //   console.log(content[0])
 
       return (0, _utils.tr)(content.join(""), "person", (0, _utils.css)(this.options.styles)); // вставили  массив в таблицу
     }
@@ -1008,40 +1010,25 @@ var myNumber = 42; // localStorage.removeItem("number")  // удаление з�
 // // не срабатывает?
 // removeNote.addClass="removeData";
 },{}],"assets/script/lessons/lesson7.js":[function(require,module,exports) {
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-//Урок 7. JavaScript. Все о ES6 Классах (+ Практическое Применение)
-// https://www.youtube.com/watch?v=uLY9GXGMXaA&list=PLqKQF2ojwm3l4oPjsB9chrJmlhZ-zOzWT&index=7&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD
-var Animal = /*#__PURE__*/function () {
-  function Animal(options) {
-    _classCallCheck(this, Animal);
-
-    this.name = options.name;
-    this.age = options.age;
-    this.hasTail = options.hasTail;
-  }
-
-  _createClass(Animal, [{
-    key: "voice",
-    value: function voice() {
-      console.log("I am PAnda");
-    }
-  }]);
-
-  return Animal;
-}();
-
-var animal = new Animal({
-  name: "Panda",
-  age: 5,
-  hasTail: true
-});
-console.log(animal.voice());
-console.log(animal);
+// //Урок 7. JavaScript. Все о ES6 Классах (+ Практическое Применение)
+// // https://www.youtube.com/watch?v=uLY9GXGMXaA&list=PLqKQF2ojwm3l4oPjsB9chrJmlhZ-zOzWT&index=7&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD
+// class Animal{
+//     constructor(options){
+//         this.name = options.name
+//         this.age = options.age
+//         this.hasTail = options.hasTail
+//     }
+//     voice(){
+//         console.log("I am PAnda")
+//     }
+// }
+// const animal = new Animal({
+//     name:"Panda",
+//     age:5,
+//     hasTail:true
+// });
+// console.log(animal.voice())
+// console.log(animal)
 },{}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -1116,7 +1103,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51247" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52040" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

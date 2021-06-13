@@ -1,3 +1,6 @@
+
+
+
 export function clearField(selectorClass){
        
 //     let child = document.querySelectorAll("."+selectorClass);
@@ -18,12 +21,16 @@ export function clearField(selectorClass){
 
 export function setBasket(src){
 
-   return `<div class="wrapp__basket">
+   return `<div title="удалить запись" class="wrapp__basket">
             <img  class="basket" src="${src}">
    </div>`
 
 
 }
+
+
+
+
 
 
 

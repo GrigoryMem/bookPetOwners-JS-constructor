@@ -2,7 +2,6 @@
 import{row,col,td,tr,imgLogo,imgPet,css,inputPers,formAddPers} from '../utils'
 
 
-
 export class PointClass{
     constructor(value, options){
         
@@ -117,6 +116,8 @@ export class PersPoint extends PointClass{
     
         const content = this.value.map(item=>td(item))  // создание массива
         // my editions to person
+        
+    //   console.log(content[0])
     
         return   tr(content.join(""),"person",css(this.options.styles))// вставили  массив в таблицу
     }
