@@ -4,7 +4,7 @@
   "description": "javascript pure aplication",
   "main": "index.js",
   "scripts": {
-    "serve": "parcel ./src/index.html -p 4200 --open",
+    "serve": "parcel ./src/index.html -p 3200 --open",
     "build": "parcel build  ./src/index.html --no-source-maps"
   },
   "repository": {

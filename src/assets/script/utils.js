@@ -18,7 +18,7 @@ export function col(content,styles = '', className =""){
 
 export function td(content,styles="",file=""){
     
-    return  `<td class="col-sm" style=${styles}>${content}</td>`
+    return  `<td class="col-sm" style=${styles}><div class="td__content">${content}</div></td>`
 }
 
 export function tr(content, className,styles="",classTable=""){
@@ -41,6 +41,8 @@ export function imgPet(photo){
 }
 
 export function inputPers(content1="text",content2="example",content3=""){
+
+  
 
  return `<input class="table__input" style="width:110px;" type ="${content1}" value="${content2}" placeholder="${content3}">`
 

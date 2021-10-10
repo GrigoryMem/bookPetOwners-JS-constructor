@@ -142,4 +142,3 @@ export class InputPers extends PointClass{
        return tr(formAddPers(content,"person"),css(this.options.styles))
     }
 }
-// создай утилиту формы для класса InputPers   formAddPers и переделай метод     toHTML

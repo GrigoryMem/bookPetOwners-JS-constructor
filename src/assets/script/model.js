@@ -3,10 +3,12 @@ import image from '../images/logo.png'
 import image1 from '../images/customers/dog1.jpg'
 import image2 from '../images/customers/dog2.jpg'
 import image3 from '../images/basket.png'
+import image4 from '../images/pencil.png'
+import image5 from '../images/saver.png'
 import {TitlePoint,IntroPoint,ImgPoint,HeadPoint,PersPoint,InputPers} from './classes/points'
 export let img1 = "../images/"
-
-
+export let pencil = image4;
+export let saver = image5;
 export let basket = image3;
  
 

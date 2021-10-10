@@ -1,10 +1,11 @@
-import{PersPoint,PetPicture} from '../classes/points'
-import{clearField, setBasket} from './data__utils'
-import{basket} from '../model'
+import{InputPers, PersPoint,PetPicture} from '../classes/points'
+import{clearField,maxId,setIcon} from './data__utils'
+import{basket,pencil,saver} from '../model'
+import {inputPers,addPicture,td, tr} from '../utils'
+
 // рефокторинг
 
-let parserBaket = new DOMParser().parseFromString(setBasket(basket),"text/html") 
-let domBasket = parserBaket.querySelector(".wrapp__basket")
+
 
 
 
@@ -19,10 +20,11 @@ class Data {
         
         this.addNote()
         this.clearLS = "timebtn"
-        this.installBasket()
+        this.installIcons()
         this.removeNote()
-        this.sortElement()
-        // this.installBasket()
+        this.changeNote()
+       
+       
        
         
 
@@ -30,7 +32,51 @@ class Data {
     }
 
     addNote(){
-        
+
+        //  превращение строки в DOm объект
+    let parserBaket = new DOMParser().parseFromString(setIcon(basket,pencil,saver),"text/html") 
+    // получение корзины и других иконок
+    let domBasket = parserBaket.querySelector(".wrapp__icon");
+ // по умолчанию отключение кнопкни сохранить
+    let iconSaver = domBasket.querySelector(".icon__saver");
+
+    iconSaver.disabled = true;
+    
+        //событие получение картинки
+        let image;   
+        let parent = document.querySelectorAll(".td__content")
+        document.addEventListener("change",(event)=>{
+            
+            
+            
+            if(event.target.classList.contains('table__input')){
+                let file = event.target.files[0];
+                let reader = new FileReader();
+              
+                  image = document.createElement("img");
+                image.classList.add("imgPet")
+                
+
+               
+                image.title = file.name;
+
+                
+                reader.onload = function(event){
+                    image.src =  event.target.result;
+                   
+                };
+
+                reader.readAsDataURL(file);
+                
+            }
+
+         
+
+          
+        })
+  
+
+
 
         this.button.addEventListener("click",(event)=>{
             
@@ -40,23 +86,40 @@ class Data {
 
             this.inputs.forEach((item,index)=>{
                 
-                if(item.value!==""){
+                if(item.value){
                     container.push(item.value)
                 }
-                if(item.type==="file" && item.files[0]){
-                    const fileImg =item.files[0]; // имя файла картинки
-                
-                    const objURLImg = window.URL.createObjectURL(fileImg) // путь файла картинки
-                    
-                    const addPhoto = new PetPicture(objURLImg ).toHTML();
-    
-                    container[container.length-1] = addPhoto;
+                // вставка картинки
+                if(item.type==="file" && item.files[0]!==undefined){
+                  
+                let newImage = `<image class="imgPet" src="${image.src}">`
+                parent[5].innerHTML = newImage;
+                container[container.length-1] = newImage
                    
                     
+                } 
+                if(item.type ==="file" && item.files[0]===undefined) {
+                    container[container.length] ="Картинка не задана"
+    
                 }
+
+                // возраст
+
+                // if(item.type==="number"){
+                //     container.push(item.value)
+                // }
+                // if(item.type==="number" && item.value ==="" ){
+                //     item.value = ""
+                //     container.push(item.value)
+                // }
+                // if(item.type==="number" && item.value<0 ){
+                //     item.value = 0
+                //     container.push(item.value)
+                // }
+
             })
             
-            // container.push(this.installBasket());  добавление корзины  как лишний столбец
+           
            
            
             const person = new PersPoint(container).toHTML()
@@ -73,7 +136,7 @@ class Data {
         // devPerson.outerHTML преобразование html в строку
         
         devPerson.setAttribute("data-id",": "+0)
-       console.log( devPerson.dataset)
+    //    console.log( devPerson.dataset)
         this.location.insertAdjacentHTML('beforeend', devPerson.outerHTML)
 
   
@@ -86,25 +149,22 @@ class Data {
 
             container = []  // освобоэжение контейнера
 
-    //   for(let val of inputs){
-    //     val.value = "";     // очистка инпутов
-    //  }
+    
       
 } else if (localStorage.length>0){
     let keysLS = Object.keys(localStorage);
       
-    devPerson.setAttribute("data-id",": "+sortId(keysLS))
+    devPerson.setAttribute("data-id",": "+maxId(keysLS))
     
         this.location.insertAdjacentHTML('beforeend', devPerson.outerHTML )
        
       
      
-        // keysLS = sortId(keysLS)
-        // console.log(sortId(keysLS))
+     
         for(let key in  keysLS){
              
        
-        localStorage.setItem("id: "+sortId(keysLS),JSON.stringify(container))
+        localStorage.setItem("id: "+maxId(keysLS),JSON.stringify(container))
                  
                     
               
@@ -122,7 +182,7 @@ class Data {
         })  // клик добавление записи
 
             //getter
-        this.saveNote 
+        this.rePlayNote
        
         
         
@@ -130,20 +190,29 @@ class Data {
 
 
 
-    installBasket(){
+    installIcons(){
         
-        
+        // Basket
             const $elements = document.querySelectorAll(".person");
-        
+            const div = document.createElement("div");
+            
+          
+            div.classList.add("icons")
+              
             
             if($elements.length>2){
                 for(let i =2; i<=$elements.length-1;i++){
-                   
-                    $elements[i].firstChild.insertAdjacentHTML("beforeend",setBasket(basket))
+                    $elements[i].firstChild.appendChild(div)
+                    $elements[i].firstChild.insertAdjacentHTML("beforeend",setIcon(basket,pencil,saver))
+        
             
             }
 
             }
+
+            //Pencil
+
+            
            
     }
 
@@ -153,98 +222,202 @@ class Data {
       
         // деленирование событий для обработки динамисческих корзин
         document.addEventListener('click',function(event){
-            if(event.target && event.target.classList.contains('basket')){
+            if(event.target && event.target.classList.contains('icon__basket')){
 
-                // let child = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
-                // console.log(child)
+            
                 let child = event.target.parentNode.parentNode.parentNode.parentNode.parentNode;// получаемудаляемый элемент
-                // console.log(event.layerX)
-                // console.log(event.target)
-                // console.log(event.target.className)
+              
                
-                // home.removeChild(child)
+               
+
+            let key = child.dataset.id;
                 
                
-
-            let key = "id"+child.dataset.id;
              localStorage.removeItem(key)
              home.removeChild(child)
-                
-                
+             
+             console.log(key)
+                // 
             }
         });
 
 
-        // let regex =/\d+/;  // регулярное выражение дляпоиска числа number
-        //         let key =  parseInt(localStorage.key(index).match(regex))
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       
        
         
-        // baskets.forEach((item,index)=>{
-        //     item.addEventListener("click",()=>{
-               
-        //         item.src.onload = function(){
-               
-        //         let regex =/\d+/;
-        //         let key =  parseInt(localStorage.key(index).match(regex))
-        //         console.log(key)
-        //         home.removeChild(child)
-        //         localStorage.removeItem("id: "+key)
-        //         }
-                
-        //         // window.location.reload(); // обновляем страницу
-        //     })
-
-            
-        // })
-
         
-
-       
-    
+        
     }
+
+
+    
 
     changeNote(){
 
-    }
+     
 
-    sortElement(){
-        let keys = Object.keys(localStorage);
-        const savedNotes = document.querySelectorAll(".table")
-        console.log(savedNotes)
-        const arrKeys = []
-        const newArr =[]
-        for(let p=2;p<= savedNotes.length-1;p++){
-            if(localStorage.key(savedNotes[p])!==null){
-                arrKeys.push(localStorage.key(p))
+        document.addEventListener("click",(event)=>{
+     
+            
+            if(event.target.classList.contains("icon__pencil") &&
+             event.target.hasAttribute("disabled",true)===false){
+
+                // I - input
+
+                // включение кнопкни сохранить
+
+                const button_save = event.target.parentNode.children[2];
+                button_save.disabled = false
+                button_save.style.opacity = 1
+
+                // выключение кнопки изменить
+                const button_change = event.target.parentNode.children[1]
+                
+                button_change.setAttribute("disabled",true)
+                button_change.style.opacity = 0.5
+              
+
+               
+                
+                   let trPerson = event.target.parentNode.parentNode.parentNode
+                 
+                 
+               
+               
+               
+              
+                // opening text input
+                let nodeTD = event.target.closest("table").querySelectorAll(".td__content");
+                
+                const array =Array.from(nodeTD)
+                array.push(td)
+               for(let i=0;i<=array.length-1;i++){
+                  
+                    array[i].innerHTML = inputPers("", array[i].textContent,"")
+                  
+                
+               
+                   
+               }
+
+         // изменение атрибутов инпутов
+        // nodeTD[2].childNodes[0].setAttribute("type","number");   
+          nodeTD[5].childNodes[0].setAttribute("type","file");
+          
+        
+              
+               
+
+
+
+               if( trPerson.querySelectorAll(".table__input")<=6){
+               trPerson.insertAdjacentHTML("beforeend",array[5])
+                
+               }
+
+
+               // тело записи
+                
+               let parent = event.target.closest("table").querySelectorAll(".td__content")
+               
+               let table = event.target.closest("table")   
+
+               let inputPicture = parent[5].childNodes[0]
+
+            //    inputPicture.setAttribute("onchange","onFileSelected(event)")
+
+                let image;
+              
+            
+               // получить путь картинки
+               inputPicture.addEventListener("change",(event)=>{
+
+                let file = event.target.files[0];
+                let reader = new FileReader();
+               
+                 image = document.createElement("img");
+                image.classList.add("imgPet")
+                
+
+                image.title = file.name;
+
+                
+                reader.onload = function(event){
+                    image.src =  event.target.result;
+                   
+                };
+
+                reader.readAsDataURL(file);
+                
+             })
+
+
+               
+         // II - save data
+
+        button_save.addEventListener("click",()=>{
+
+            
+            
+           
+           if(button_save.disabled ===false){
+
+            // editing buttons
+      
+            button_save.disabled = true;
+            button_save.style.opacity = 0.5;
+            button_change.removeAttribute("disabled",true)
+            button_change.style.opacity = 1
+            // savings
+
+            
+            let container = [];
+           
+            let idTable;
+            // idTable = "id"+table.dataset.id
+            
+            parent.forEach(divTD=>{
+                          
+                if(divTD.firstChild.value){
+                          
+                                container.push(divTD.firstChild.value)
+                                divTD.textContent =  divTD.firstChild.value
+                               
+                            
+                }
+            }) 
+
+            
+            
+              if(image!==undefined){
+                  parent[5].innerHTML="";
+                parent[5].appendChild(image);
+               
+                
+                
+               
+
+                container[5] = `<image class="imgPet" src="${parent[5].childNodes[0].src}">`
+                
+            } else{
+                 
+                container[5] = "Картинка не задана"
             }
             
+
+            idTable = "id"+table.dataset.id
+            localStorage.setItem(idTable,JSON.stringify(container))
+
+          }
+           
+            })
+
         }
+          
+    })
 
-        for(let item in arrKeys){
-            if(item!==null){
-                newArr.push(item)
-            }
-        }
-        // let regex =/\d+/;
-        // let key =  parseInt(localStorage.key(index).match(regex))
-console.log(arrKeys)
-      return newArr
+}
 
-
-    }
+   
 
     addClassTable(){
 
@@ -261,25 +434,35 @@ console.log(arrKeys)
 
     }
 
-    get saveNote(){
+    get rePlayNote(){
         let box = []
         let keys = Object.keys(localStorage);
+       keys.sort() // сортировка ключей по возрастанию
         for(let j=0; j<=localStorage.length-1;j++){
     
             box.push(
                 JSON.parse(localStorage.getItem(keys[j]))
                 
     )
+ 
     }
     
-        for(let k in box){
     
+   
+
+
+   
+
+    //
+        for(let k in box){
+          
             box[k] = new PersPoint(box[k]).toHTML()
             box[k]  = new DOMParser().parseFromString(box[k],"text/html") // превращаем строку в dom объект
             
 
             box[k] = box[k].querySelector("table")
-            box[k].setAttribute("data-id",": "+k)  //добавляемк data атрибут
+          
+            box[k].setAttribute("data-id",keys[k])  //добавляем к data атрибут получая его из local Storage
 
            box[k] = box[k].outerHTML // превращаем в строку dom
 
@@ -323,25 +506,6 @@ console.log(arrKeys)
 
 const data = new Data(".field__entering","#data-btn",".table__input")
 
-function sortId(arr){
-
-
-
-let regex =/\d+/;
-
-
-let newArr = arr.map(item=>{
-
-    return parseInt(item.match(regex))
-})
-
-let maxNum =  Math.max.apply(null, newArr ); // берем максимальное числоиз массива
-
-return ++maxNum
-
-
-
-}
 
 
 
