@@ -49,6 +49,31 @@ export function inputPers(content1="text",content2="example",content3=""){
 
 }
 
+// создание поля карты
+
+export function createMap(){
+    return 
+}
+
+
+
+
+
+// Создание функции "выбор из списка"
+
+export function choiceOfList(listOfValue){
+
+    return `<select class="table__input" style="width:110px;" >
+                ${listOfValue}
+            <select>`
+}
+
+
+
+
+
+
+
 // приведение объекта к строке
 export function css(styles={}){
 //     const keys = Object.keys(styles)
@@ -84,7 +109,10 @@ export function formAddPers(content,type="",){
     ${content}
     </hr>
     <div class="field__entering">
-        <button type="submit" id="data-btn" btn btn-primary btn-sm> Добавить запись</button>
+        <div class="buttons__entering">
+            <button type="submit" id="data-btn" btn btn-primary btn-sm> Добавить запись</button>
+        </div>
+        <div class="users"></div>
     </div>
         </form>`
     
@@ -156,4 +184,10 @@ export function addPicture(type){
         
         `
 
+}
+
+
+
+export function createImage(src,className,alt){
+    return `<img src=${src} class=${className} alt=${alt}>`
 }

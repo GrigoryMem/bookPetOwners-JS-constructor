@@ -2,12 +2,13 @@ import{InputPers, PersPoint,PetPicture} from '../classes/points'
 import{clearField,maxId,setIcon} from './data__utils'
 import{basket,pencil,saver} from '../model'
 import {inputPers,addPicture,td, tr} from '../utils'
-
+import{dateNow} from '../data/date'
 // рефокторинг
 
+let date = new Date()
+// console.log(date)
 
-
-
+const users = document.querySelector(".users");
 
 
 
@@ -77,7 +78,7 @@ class Data {
   
 
 
-
+// добавление записи
         this.button.addEventListener("click",(event)=>{
             
             event.preventDefault();
@@ -103,20 +104,7 @@ class Data {
     
                 }
 
-                // возраст
-
-                // if(item.type==="number"){
-                //     container.push(item.value)
-                // }
-                // if(item.type==="number" && item.value ==="" ){
-                //     item.value = ""
-                //     container.push(item.value)
-                // }
-                // if(item.type==="number" && item.value<0 ){
-                //     item.value = 0
-                //     container.push(item.value)
-                // }
-
+               
             })
             
            
@@ -130,15 +118,17 @@ class Data {
 
 
         const devPerson = domObj.querySelector(".table")
-           
+           console.log(devPerson)
+
+           const users = document.querySelector(".users");
        
     if(localStorage.length === 0){
         // devPerson.outerHTML преобразование html в строку
         
         devPerson.setAttribute("data-id",": "+0)
     //    console.log( devPerson.dataset)
-        this.location.insertAdjacentHTML('beforeend', devPerson.outerHTML)
-
+        // this.location.insertAdjacentHTML('beforeend', devPerson.outerHTML)
+       users.insertAdjacentHTML('beforeend', devPerson.outerHTML)
   
         
       
@@ -155,8 +145,9 @@ class Data {
     let keysLS = Object.keys(localStorage);
       
     devPerson.setAttribute("data-id",": "+maxId(keysLS))
-    
-        this.location.insertAdjacentHTML('beforeend', devPerson.outerHTML )
+ users.insertAdjacentHTML('beforeend', devPerson.outerHTML)
+        
+        // this.location.insertAdjacentHTML('beforeend', devPerson.outerHTML )
        
       
      
@@ -177,14 +168,14 @@ class Data {
 }
             this.addClassTable()
            
-          
-            // window.location.reload(); // обновляем страницу
+            
+        window.location.reload(); // обновляем страницу
+            
         })  // клик добавление записи
 
             //getter
         this.rePlayNote
-       
-        
+     
         
     }
 
@@ -200,8 +191,8 @@ class Data {
             div.classList.add("icons")
               
             
-            if($elements.length>2){
-                for(let i =2; i<=$elements.length-1;i++){
+            if($elements.length>0){
+                for(let i =0; i<=$elements.length-1;i++){
                     $elements[i].firstChild.appendChild(div)
                     $elements[i].firstChild.insertAdjacentHTML("beforeend",setIcon(basket,pencil,saver))
         
@@ -217,7 +208,7 @@ class Data {
     }
 
     removeNote(){
-        const home = document.querySelector(".field__entering")
+        const home = document.querySelector(".users")
        
       
         // деленирование событий для обработки динамисческих корзин
@@ -227,7 +218,7 @@ class Data {
             
                 let child = event.target.parentNode.parentNode.parentNode.parentNode.parentNode;// получаемудаляемый элемент
               
-               
+               console.log(child)
                
 
             let key = child.dataset.id;
@@ -253,6 +244,17 @@ class Data {
 
     changeNote(){
 
+
+        // document.addEventListener("mousedown",(event)=>{
+        //     if(event.target.classList.contains("icon__pencil") &&
+        //     event.target.hasAttribute("disabled",true)===false){
+
+        //         let sourceReadyImg = event.target.parentNode.parentNode.parentNode.children[5].children[0].children[0].src
+        //         console.log(sourceReadyImg)
+        //     }
+        // })
+        
+
      
 
         document.addEventListener("click",(event)=>{
@@ -260,9 +262,16 @@ class Data {
             
             if(event.target.classList.contains("icon__pencil") &&
              event.target.hasAttribute("disabled",true)===false){
-
+                let sourceReadyImg; // если есть старая картинка, создается контейнер
+                let ReadyImg =  event.target.parentNode.parentNode.parentNode.children[5].children[0].children[0]; // картинка или то,что ей должно быть
+               if(ReadyImg && ReadyImg !==undefined && ReadyImg.hasAttribute("src")){
+                 sourceReadyImg = ReadyImg.src
+              
+                console.log(sourceReadyImg)
+               } 
+  
                 // I - input
-
+           
                 // включение кнопкни сохранить
 
                 const button_save = event.target.parentNode.children[2];
@@ -280,7 +289,7 @@ class Data {
                 
                    let trPerson = event.target.parentNode.parentNode.parentNode
                  
-                 
+               
                
                
                
@@ -300,10 +309,10 @@ class Data {
                }
 
          // изменение атрибутов инпутов
-        // nodeTD[2].childNodes[0].setAttribute("type","number");   
+        nodeTD[2].childNodes[0].setAttribute("type","date");   
           nodeTD[5].childNodes[0].setAttribute("type","file");
           
-        
+        // console.log( nodeTD[5].childNodes[0].files[0])
               
                
 
@@ -323,33 +332,51 @@ class Data {
 
                let inputPicture = parent[5].childNodes[0]
 
+               console.log(inputPicture)
+
             //    inputPicture.setAttribute("onchange","onFileSelected(event)")
 
                 let image;
-              
-            
+                image = document.createElement("img");
+                
+                image.classList.add("imgPet")
+               
+ // сохранение картинки поумолчанию 
+
+                if( sourceReadyImg!==undefined && image!==undefined){
+                    image.setAttribute("src",sourceReadyImg)
+                }  
+                    
+                
                // получить путь картинки
                inputPicture.addEventListener("change",(event)=>{
 
                 let file = event.target.files[0];
+
+                console.log(file)
                 let reader = new FileReader();
                
-                 image = document.createElement("img");
-                image.classList.add("imgPet")
-                
+                 
+               
 
                 image.title = file.name;
-
+              
+                
                 
                 reader.onload = function(event){
-                    image.src =  event.target.result;
                    
-                };
+                        image.src =  event.target.result;
+                        // console.log(image.src)
+                   
+                    
+                   
+                };// /reader
 
                 reader.readAsDataURL(file);
                 
              })
 
+            
 
                
          // II - save data
@@ -403,9 +430,12 @@ class Data {
                 container[5] = "Картинка не задана"
             }
             
+            // добавить изменение в память LS
 
-            idTable = "id"+table.dataset.id
-            localStorage.setItem(idTable,JSON.stringify(container))
+            idTable =table.dataset.id
+            
+            localStorage[idTable] = JSON.stringify(container)
+            // localStorage.setItem(idTable,JSON.stringify(container))
 
           }
            
@@ -472,7 +502,7 @@ class Data {
        
     }
           
-           return this.location.insertAdjacentHTML('beforeend',box.join(""));
+           return users.insertAdjacentHTML('beforeend',box.join(""));
 
 
     }
@@ -484,7 +514,9 @@ class Data {
 
         const button = document.createElement("button")
         button.classList.add(className)
-        this.location.append(button)
+        const buttons__entering = document.querySelector(".buttons__entering");
+        buttons__entering.append(button)
+        // this.location.prepend(button)
         button.innerText = "Сброс всех данных(+LS)"
         // console.log(button)
 

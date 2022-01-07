@@ -6,8 +6,13 @@ import './localStorage'
 import './lessons/lesson6'
 import './person'
 import './lessons/lesson7'
+import './data/search'
+import { users } from './users'
+
  // new App(model).init()   если конструктор не запущен
  new App(model)
+
+
 
 
  

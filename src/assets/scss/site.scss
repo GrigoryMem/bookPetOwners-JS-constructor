@@ -1,0 +1,13 @@
+#site{
+    display: flex;
+    flex-direction: column-reverse;
+
+    position: relative;
+    @include breakpoint($tablet-bp){
+       
+        left:0;
+        right: 0;
+    //    max-width: 600px;
+       margin:0 auto;
+    }
+}

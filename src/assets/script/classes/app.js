@@ -26,7 +26,7 @@ const updateCallback = newPoint => {
 
 
 
-new Sidebar("#admin",  updateCallback)
+// new Sidebar("#admin",  updateCallback)  // отключили сидебар
 
     }    
 }

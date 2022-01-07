@@ -96,7 +96,7 @@ export class HeadPoint extends PointClass{
     }
     toHTML(){
         const content = this.value.map(td).join("")
-         return  tr(content,"header",css(this.options.styles))
+         return  tr(content,"header",css(this.options.styles),"table__allInput")
         
     }
 }
@@ -119,7 +119,7 @@ export class PersPoint extends PointClass{
         
     //   console.log(content[0])
     
-        return   tr(content.join(""),"person",css(this.options.styles))// вставили  массив в таблицу
+        return   tr(content.join(""),"person","","person__example")// вставили  массив в таблицу
     }
 }
 
@@ -139,6 +139,6 @@ export class InputPers extends PointClass{
         
         
         
-       return tr(formAddPers(content,"person"),css(this.options.styles))
+       return tr(formAddPers(content,"person"),"row__input","","table__for-inputs")
     }
 }

@@ -1,0 +1,43 @@
+.users{
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction: column-reverse;
+    // position: absolute;
+    top:440px;
+    margin-bottom:50px;
+    background-image:none;
+
+    @include breakpoint($tablet-ver){
+        margin-top:20px;
+        border-radius:10px;
+        min-height: 100%;
+        width: 100%;
+        height: auto;
+        padding:10px 15px;
+        padding-bottom:40px;
+        display:grid;
+        flex-wrap: nowrap;
+        grid-template-columns:1fr 1fr 1fr 1fr;
+        overflow: auto;
+        grid-auto-flow: column dense;
+        background-color: #222;
+        background-image: url('../images/users/bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 6px 6px 7px $black;
+        
+    }
+
+
+    @include breakpoint($mobile-bp){
+        margin:20px auto;
+        width:90%;
+
+    }
+
+    
+}
+
+
+
+

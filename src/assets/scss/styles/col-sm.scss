@@ -1,0 +1,96 @@
+
+.col-sm{
+    border:1px solid $black;
+    position: relative;
+    text-shadow: 2px 2px #558ABB;
+    // max-width: 142px;
+
+    h1{
+        text-align: center;
+        padding-bottom:60px;
+
+        @include breakpoint($mobile-bp){
+            padding-bottom:0;
+        }
+      
+    }
+   
+    &:last-child{
+        .td__content{
+            text-align: center;
+            }
+    }
+    
+
+
+    @include breakpoint($tablet-ver){
+        position: relative;
+        text-align: left;
+        width:100%;
+        margin-top:5px;
+        border-radius: 5px;
+      
+
+       
+        &:before{
+            
+            position: relative;
+            // left:300px;
+            color:#cc00ff;
+            font-family: 'Montserrat', sans-serif;
+            font-size:15px;
+            font-weight: 800;
+           
+        }
+
+        
+
+        &:first-child:before {
+            .person &,.td__content &{
+                content:"Владелец:"
+            }
+           
+        }
+        &:nth-child(2):before{
+
+            .person &,.td__content &{
+                content:"Кличка животного:";
+            }
+            
+            
+
+        }
+        &:nth-child(3):before{
+
+            .person &,.td__content &{
+                content:"Возраст животного:"
+            }
+            
+        }
+        &:nth-child(4):before{
+            .person &,.td__content &{
+                content:"Адрес владельца:"
+            }
+            
+        }
+        &:nth-child(5):before{
+            .person &,.td__content &{
+                content:"Порода животного:"
+            }
+        }
+        &:nth-child(6):before{
+            .person &,.td__content &{
+                content:"Фото животного:"
+            }
+        }
+        
+    }
+
+
+   
+    
+      
+}
+
+
+

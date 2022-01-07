@@ -1,6 +1,113 @@
-/* Изменение инпута картинки*/
+.table__for-inputs{
+    @include breakpoint($mobile-bp){
+        width:86%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+.row.row__input{
+ 
+    top:350px;
+    
+    
+    @include breakpoint($tablet-ver){
+        margin-top:15px;
+        margin-bottom:15px;
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        font-family: "Monserrat";
+        font-style:"italic";
+
+
+        .table__input{
+            width: 100% !important;
+            // height: 30px;
+        }
+
+        select[class="table__input"] option{
+            width:60% !important;
+        }
+
+        
+    }
+
+    .col-sm{
+        background:linear-gradient(90deg, #f598a8, #f6edb2);
+        color:linear-gradient(85deg, #fb63f9, #c2e534);
+        padding:20px;
+        transition: opacity .3s linear;
+
+       
+        @include breakpoint($tablet-bp){
+
+            padding:7px;
+            
+
+        }
+        @include breakpoint($tablet-ver){
+            opacity: 0.6;
+
+
+        }
+
+        
+        
+    }
+}
+
+
+
+
+
+
+
 
 .change__picture{
     width: 100%;
     font-size: 13px;
 }
+
+
+
+#pet__photo{
+    font-size:10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-weight: 600;;
+    color:white;
+    text-decoration: none;
+    padding: .5em 2em;
+    outline: none;
+    background: linear-gradient(#F3AE0F, #E38916) #E38916;
+    transition: background 0.2s linear;
+
+    @include breakpoint($tablet-ver){
+        width:50% !important;
+        margin: 0 auto;
+        height: auto !important;
+    }
+}
+
+
+
+
+.hover{
+    &:hover{
+        opacity:0.8;
+    }
+
+    &:active{
+        opacity:1;
+    }
+}
+
+

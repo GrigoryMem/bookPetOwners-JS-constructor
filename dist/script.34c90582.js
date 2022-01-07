@@ -130,12 +130,15 @@ exports.tr = tr;
 exports.imgLogo = imgLogo;
 exports.imgPet = imgPet;
 exports.inputPers = inputPers;
+exports.createMap = createMap;
+exports.choiceOfList = choiceOfList;
 exports.css = css;
 exports.formAddPers = formAddPers;
 exports.formSB = formSB;
 exports.formIntro = formIntro;
 exports.formImg = formImg;
 exports.addPicture = addPicture;
+exports.createImage = createImage;
 
 // название и введение
 function row(content) {
@@ -178,6 +181,16 @@ function inputPers() {
   var content2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "example";
   var content3 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
   return "<input class=\"table__input\" style=\"width:110px;\" type =\"".concat(content1, "\" value=\"").concat(content2, "\" placeholder=\"").concat(content3, "\">");
+} // создание поля карты
+
+
+function createMap() {
+  return;
+} // Создание функции "выбор из списка"
+
+
+function choiceOfList(listOfValue) {
+  return "<select class=\"table__input\" style=\"width:110px;\" >\n                ".concat(listOfValue, "\n            <select>");
 } // приведение объекта к строке
 
 
@@ -207,7 +220,7 @@ function css() {
 
 function formAddPers(content) {
   var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-  return "<form class=\"form__note\" name = \"".concat(type, "\">\n    ").concat(content, "\n    </hr>\n    <div class=\"field__entering\">\n        <button type=\"submit\" id=\"data-btn\" btn btn-primary btn-sm> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043F\u0438\u0441\u044C</button>\n    </div>\n        </form>");
+  return "<form class=\"form__note\" name = \"".concat(type, "\">\n    ").concat(content, "\n    </hr>\n    <div class=\"field__entering\">\n        <div class=\"buttons__entering\">\n            <button type=\"submit\" id=\"data-btn\" btn btn-primary btn-sm> \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043F\u0438\u0441\u044C</button>\n        </div>\n        <div class=\"users\"></div>\n    </div>\n        </form>");
 } // Формы для сидебара
 // Функция создания формы для сидебара SB
 
@@ -226,6 +239,10 @@ function formImg(type, file) {
 
 function addPicture(type) {
   return "\n    \n            <input type=".concat(type, " value=\"\" class=\"form-control form-control-sm table__input\" id=\"pet__photo\"  name=\"value\" placeholder=\"value\">\n       \n        \n        ");
+}
+
+function createImage(src, className, alt) {
+  return "<img src=".concat(src, " class=").concat(className, " alt=").concat(alt, ">");
 }
 },{}],"assets/images/logo.png":[function(require,module,exports) {
 module.exports = "/logo.3f4a1874.png";
@@ -426,7 +443,7 @@ var HeadPoint = /*#__PURE__*/function (_PointClass3) {
     key: "toHTML",
     value: function toHTML() {
       var content = this.value.map(_utils.td).join("");
-      return (0, _utils.tr)(content, "header", (0, _utils.css)(this.options.styles));
+      return (0, _utils.tr)(content, "header", (0, _utils.css)(this.options.styles), "table__allInput");
     }
   }]);
 
@@ -463,7 +480,7 @@ var PersPoint = /*#__PURE__*/function (_PointClass4) {
       // my editions to person
       //   console.log(content[0])
 
-      return (0, _utils.tr)(content.join(""), "person", (0, _utils.css)(this.options.styles)); // вставили  массив в таблицу
+      return (0, _utils.tr)(content.join(""), "person", "", "person__example"); // вставили  массив в таблицу
     }
   }]);
 
@@ -497,7 +514,7 @@ var InputPers = /*#__PURE__*/function (_PointClass5) {
         }
       };
       var content = this.value.map(_utils.td).join("");
-      return (0, _utils.tr)((0, _utils.formAddPers)(content, "person"), (0, _utils.css)(this.options.styles));
+      return (0, _utils.tr)((0, _utils.formAddPers)(content, "person"), "row__input", "", "table__for-inputs");
     }
   }]);
 
@@ -505,13 +522,73 @@ var InputPers = /*#__PURE__*/function (_PointClass5) {
 }(PointClass);
 
 exports.InputPers = InputPers;
-},{"../utils":"assets/script/utils.js"}],"assets/script/model.js":[function(require,module,exports) {
+},{"../utils":"assets/script/utils.js"}],"assets/script/data/search.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.example = exports.names = exports.model = exports.basket = exports.saver = exports.pencil = exports.img1 = void 0;
+exports.runList = runList;
+exports.breeds = void 0;
+
+var _utils = require("../utils");
+
+// варианты пород собак
+var breeds = ["Лайка", "Такса", "Пекинес", "Спаниэль", "Беспородная", "Овчарка", "Колли"]; // console.log(choiceOfList(breeds[1]))
+
+exports.breeds = breeds;
+var box = ""; // реализуем список вариантов пород собак
+
+function runList(breeds) {
+  for (var i in breeds) {
+    box += "<option>".concat(breeds[i], "</option>");
+  } // console.log(box)
+
+
+  return box;
+} // метод append???
+},{"../utils":"assets/script/utils.js"}],"assets/script/data/map.js":[function(require,module,exports) {
+var maps;
+},{}],"assets/script/inputs.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.inputPerson = void 0;
+
+var _utils = require("./utils");
+
+var _points = require("./classes/points");
+
+var _search = require("./data/search");
+
+var inputPerson = new _points.InputPers([(0, _utils.inputPers)("text", "Иванов И.И.", "Введите ФИО"), (0, _utils.inputPers)("text", "Шарик", "Введите Кличку животного"), (0, _utils.inputPers)("date", "1999-08-07", "Дата рождения и возраст"), (0, _utils.inputPers)("text", "СПб, Дворцовая площадь,дом 1", "Введите адрес владельца"), // inputPers("text","Такса","Введите породу животного"),
+(0, _utils.choiceOfList)((0, _search.runList)(_search.breeds)), (0, _utils.addPicture)("file")]);
+exports.inputPerson = inputPerson;
+var table = document.querySelectorAll(".table__input");
+var tr = document.querySelectorAll(".row__input"); // работа над hover input
+
+table.forEach(function (elem) {
+  var parent = elem.parentNode.parentNode;
+  parent.addEventListener("mouseover", function (event) {
+    parent.style.opacity = "0.7";
+    elem.addEventListener("mouseover", function (event) {
+      event.stopPropagation();
+      elem.style.opacity = 1;
+    });
+  });
+  parent.addEventListener("mouseout", function (event) {
+    parent.style.opacity = "1";
+  });
+});
+},{"./utils":"assets/script/utils.js","./classes/points":"assets/script/classes/points.js","./data/search":"assets/script/data/search.js"}],"assets/script/model.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.model = exports.basket = exports.saver = exports.pencil = exports.img1 = void 0;
 
 var _utils = require("./utils");
 
@@ -529,6 +606,12 @@ var _saver = _interopRequireDefault(require("../images/saver.png"));
 
 var _points = require("./classes/points");
 
+var _search = require("./data/search");
+
+var _map = require("./data/map");
+
+var _inputs = require("./inputs");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var img1 = "../images/";
@@ -538,32 +621,24 @@ exports.pencil = pencil;
 var saver = _saver.default;
 exports.saver = saver;
 var basket = _basket.default; // регулярные выражения??? или методы строк для элемента маасива (Сделать перебор)
+// console.log(inputPerson.value[1])
 
 exports.basket = basket;
-var model = [new _points.TitlePoint("Данные о владельцах животных", {
-  tag: "h1",
-  // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
-  // text-transform:uppercase; text-decoration:underline; padding:1.5rem` 
-  styles: {
-    background: "linear-gradient(90deg, #f598a8, #f6edb2)",
-    color: "linear-gradient(85deg, #fb63f9, #c2e534)",
-    "text-transform": "uppercase",
-    "text-decoration": "underline",
-    padding: "1.5rem"
-  }
-}), new _points.IntroPoint("Введние в таблицу. Инструкция JS", "Изменение таблицы", {
-  styles: {
-    display: "flex",
-    "justify-content": "space-around",
-    "font-style": "italic",
-    padding: "1.5rem",
-    color: "linear-gradient(85deg, #fb63f9, #c2e534)"
-  },
-  styles1: {
-    background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
-    "margin-top": "15px"
-  }
-}), new _points.ImgPoint(_logo.default, {
+var model = [_inputs.inputPerson, // то что отвечает за добавление записи, смотри файл input.js
+// new IntroPoint("Введние в таблицу. Инструкция JS","Изменение таблицы",{
+//     styles:{
+//         display:"flex",
+//         "justify-content":"space-around",
+//         "font-style":"italic",
+//         padding:"1.5rem",
+//         color:"linear-gradient(85deg, #fb63f9, #c2e534)"
+//     },
+//     styles1:{
+//         background:"linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
+//         "margin-top":"15px",
+//     }
+// }),
+new _points.ImgPoint(_logo.default, {
   styles: {
     padding: '2rem 0',
     display: "flex",
@@ -580,18 +655,45 @@ var model = [new _points.TitlePoint("Данные о владельцах жив
     "justify-content": "center"
   },
   alt: "Эта картинка"
-}), new _points.HeadPoint(["Владелец животного", "Кличка животного", "Возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"], {
+}), new _points.HeadPoint(["Владелец животного", "Кличка животного", "Дата рождения, возраст животного,лет", "Адрес владельца", "Порода/Окрас", "Фотография"], {
   styles: {
     background: "linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)",
     "font-style": "italic"
   }
-}), new _points.PersPoint(["Иванов И.И.", "Лайка", "6", "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17", "Метис/Черный", (0, _utils.imgPet)(_dog.default)], "empty"), new _points.PersPoint(["Морозов Р.И.", "Панда", "9", "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8", "Пекинес/Светлый", (0, _utils.imgPet)(_dog2.default)], "empty"), new _points.InputPers([(0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.inputPers)(), (0, _utils.addPicture)("file")])];
+}), new _points.TitlePoint("Данные о владельцах животных", {
+  tag: "h1",
+  // styles:`background:linear-gradient(90deg, #f598a8, #f6edb2); color:linear-gradient(85deg, #fb63f9, #c2e534);
+  // text-transform:uppercase; text-decoration:underline; padding:1.5rem` 
+  styles: {
+    background: "linear-gradient(90deg, #f598a8, #f6edb2)",
+    color: "linear-gradient(85deg, #fb63f9, #c2e534)",
+    "text-transform": "uppercase",
+    "text-decoration": "underline",
+    padding: "1.5rem"
+  }
+}) // new PersPoint([
+//     "Иванов И.И.",
+//     "Лайка",
+//     "6",
+//     "г. Санкт-Петербург, улица Красных Курсантов, дом 4, квартира 17",
+//     "Метис/Черный",
+//     imgPet(image1)
+// ], "empty"),
+// new PersPoint([
+//     "Морозов Р.И.",
+//     "Панда",
+//     "9",
+//     "г. Санкт-Петербург, улица Подольских Людей, дом 9, квартира 8",
+//     "Пекинес/Светлый",
+//     imgPet(image2)
+// ], "empty").toHTML()
+// ,
+]; // model
+// export const names = model[5].value
+// export const example = model[4].value
+
 exports.model = model;
-var names = model[5].value;
-exports.names = names;
-var example = model[4].value;
-exports.example = example;
-},{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","../images/basket.png":"assets/images/basket.png","../images/pencil.png":"assets/images/pencil.png","../images/saver.png":"assets/images/saver.png","./classes/points":"assets/script/classes/points.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./utils":"assets/script/utils.js","../images/logo.png":"assets/images/logo.png","../images/customers/dog1.jpg":"assets/images/customers/dog1.jpg","../images/customers/dog2.jpg":"assets/images/customers/dog2.jpg","../images/basket.png":"assets/images/basket.png","../images/pencil.png":"assets/images/pencil.png","../images/saver.png":"assets/images/saver.png","./classes/points":"assets/script/classes/points.js","./data/search":"assets/script/data/search.js","./data/map":"assets/script/data/map.js","./inputs":"assets/script/inputs.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -663,7 +765,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"assets/script/classes/sidebar.js":[function(require,module,exports) {
+},{"./..\\images\\users\\bg.jpg":[["bg.3fddb949.jpg","assets/images/users/bg.jpg"],"assets/images/users/bg.jpg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"assets/script/classes/sidebar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -897,9 +999,8 @@ var App = /*#__PURE__*/function () {
 
         site.render(_this.model); // обновление данных в дом дереве
       }; // определяем  функцию которая следит за обновлением
+      // new Sidebar("#admin",  updateCallback)  // отключили сидебар
 
-
-      new _sidebar.Sidebar("#admin", updateCallback);
     }
   }]);
 
@@ -997,29 +1098,7 @@ var myNumber = 42; // localStorage.removeItem("number")  // удаление з�
 // // console.log(person1)
 // // console.log(thing)
 },{}],"assets/script/person.js":[function(require,module,exports) {
-// для кнопок
-// const button = {
-//     create:document.createElement('button'),
-//     check:true
-// }
-// const removeNote = Object.create(button,{
-//     name:{
-//         value:"Removing note"
-//     },
-//     addClass:{
-//        set(className){
-//            this.create.classList.add(className);
-//        }
-//     },
-//     addPar:{
-//         set(parent){
-//             parent.appendChild(this.create);
-//         }
-//     }
-// })
-// const parent = document.querySelector("#site")
-// // не срабатывает?
-// removeNote.addClass="removeData";
+
 },{}],"assets/script/lessons/lesson7.js":[function(require,module,exports) {
 // //Урок 7. JavaScript. Все о ES6 Классах (+ Практическое Применение)
 // // https://www.youtube.com/watch?v=uLY9GXGMXaA&list=PLqKQF2ojwm3l4oPjsB9chrJmlhZ-zOzWT&index=7&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BB%D0%B5%D0%BD%D0%9C%D0%B8%D0%BD%D0%B8%D0%BD
@@ -1040,6 +1119,8 @@ var myNumber = 42; // localStorage.removeItem("number")  // удаление з�
 // });
 // console.log(animal.voice())
 // console.log(animal)
+},{}],"assets/script/users.js":[function(require,module,exports) {
+
 },{}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -1056,6 +1137,10 @@ require("./lessons/lesson6");
 require("./person");
 
 require("./lessons/lesson7");
+
+require("./data/search");
+
+var _users = require("./users");
 
 // import './promises/promises'
 // new App(model).init()   если конструктор не запущен
@@ -1086,7 +1171,7 @@ new _app.App(_model.model); // const container = new GetInfo("table__input").cat
 //     content = image(point)
 // }
 // })
-},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/app":"assets/script/classes/app.js","./localStorage":"assets/script/localStorage.js","./lessons/lesson6":"assets/script/lessons/lesson6.js","./person":"assets/script/person.js","./lessons/lesson7":"assets/script/lessons/lesson7.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./model":"assets/script/model.js","../scss/main.scss":"assets/scss/main.scss","./classes/app":"assets/script/classes/app.js","./localStorage":"assets/script/localStorage.js","./lessons/lesson6":"assets/script/lessons/lesson6.js","./person":"assets/script/person.js","./lessons/lesson7":"assets/script/lessons/lesson7.js","./data/search":"assets/script/data/search.js","./users":"assets/script/users.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1114,7 +1199,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54494" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52319" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

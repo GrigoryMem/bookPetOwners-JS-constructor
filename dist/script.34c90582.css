@@ -16,8 +16,51 @@
 /*  table */
 .table {
   text-align: center;
+  border-radius: 6px;
   margin: 5px auto;
   color: #fff;
+}
+@media (max-width: 768px) {
+  .table {
+    margin: 0 auto;
+  }
+  .table .table__input {
+    height: 50px;
+  }
+}
+
+.table.person__example {
+  transition: display 1s linear;
+}
+@media (max-width: 768px) {
+  .table.person__example {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .intro {
+    display: none;
+  }
+}
+
+.row.header {
+  border-radius: 6px;
+  font-weight: 700;
+}
+@media (max-width: 991px) {
+  .row.header {
+    max-width: 720px;
+  }
+}
+@media (max-width: 768px) {
+  .row.header {
+    display: none;
+  }
+}
+
+tr {
+  border-radius: 6px;
 }
 
 tr.person:hover {
@@ -29,40 +72,89 @@ tr.person:hover {
   flex-wrap: nowrap;
 }
 
-.row.header {
-  font-weight: 700;
-  margin-top: 30px;
-}
-
 .row.person {
   text-align: left;
 }
-
-tr.person td:nth-child(odd) {
-  background: linear-gradient(90deg, #aea4e3, #d3ffe8) !important;
-}
-
-tr.person td:nth-child(even) {
-  background: linear-gradient(85deg, #fb63f9, #c2e534) !important;
-}
-
-.col-sm {
-  position: relative;
-}
-
-/*  images */
-@media (max-width: 1550px) {
-  .logo {
-    width: 125px !important;
+@media (max-width: 768px) {
+  .row.person {
+    flex-direction: column;
+    widht: 50%;
+    margin-top: 20px;
+    background: transparent !important;
+    margin-right: 40px;
   }
 }
-.imgPet {
-  width: 100%;
-  max-width: 100px;
+.row.person td {
+  width: 220px;
+}
+.row.person td:nth-child(odd) {
+  background: linear-gradient(90deg, #aea4e3, #d3ffe8);
+}
+.row.person td:nth-child(odd):hover {
+  background: #fff;
+  color: #558abb;
+  text-shadow: 4px 4px silver;
+  font-weight: bolder;
+  font-style: italic;
+  transform: rotate(360deg);
+  transition: transform 0.7s ease-in-out;
+  border-radius: 10px;
+}
+.row.person td:nth-child(odd):hover .td__content {
+  padding-top: 15px;
+  transition: padding 0.5s ease;
+  transform: rotate(-360deg);
+  transition: transform 0.7s ease-in-out;
+}
+.row.person td:nth-child(even) {
+  background: linear-gradient(85deg, #fb63f9, #c2e534);
+}
+.row.person td:nth-child(even):hover {
+  background: #fff;
+  color: #558abb;
+  text-shadow: 4px 4px silver;
+  font-weight: bolder;
+  font-style: italic;
+  transform: rotate(360deg);
+  transition: transform 0.7s ease-in-out;
+  border-radius: 10px;
+}
+.row.person td:nth-child(even):hover .td__content {
+  padding-top: 15px;
+  transition: padding 0.5s ease;
+}
+.row.person td:first-child {
+  transition: all 0.6s ease;
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.row.person td:first-child:hover {
+  transform: scale(1.2);
 }
 
 .logo {
-  margin: 10px auto;
+  top: 50px !important;
+  left: 60% !important;
+  width: 100px !important;
+}
+@media (max-width: 575px) {
+  .logo {
+    top: 20px !important;
+    left: 70% !important;
+    width: 80px !important;
+  }
+}
+
+.imgPet {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .imgPet {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+  }
 }
 
 .wrap__icon {
@@ -76,15 +168,251 @@ tr.person td:nth-child(even) {
   width: 100%;
   max-width: 17px;
 }
-
-.icon__saver {
-  opacity: 0.5;
+.icon:hover {
+  background-color: #558abb;
+  border-radius: 3px;
+  transform: scale(1.3);
+  transition: transform 0.4s ease;
 }
 
-/* Изменение инпута картинки*/
+.icon__saver {
+  opacity: 0.7;
+}
+
+@media (max-width: 575px) {
+  .table__for-inputs {
+    width: 86%;
+  }
+}
+
+.row.row__input {
+  top: 350px;
+}
+@media (max-width: 768px) {
+  .row.row__input {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-family: "Monserrat";
+    font-style: "italic";
+  }
+  .row.row__input .table__input {
+    width: 100% !important;
+  }
+  .row.row__input select[class=table__input] option {
+    width: 60% !important;
+  }
+}
+.row.row__input .col-sm {
+  background: linear-gradient(90deg, #f598a8, #f6edb2);
+  color: linear-gradient(85deg, #fb63f9, #c2e534);
+  padding: 20px;
+  transition: opacity 0.3s linear;
+}
+@media (max-width: 991px) {
+  .row.row__input .col-sm {
+    padding: 7px;
+  }
+}
+@media (max-width: 768px) {
+  .row.row__input .col-sm {
+    opacity: 0.6;
+  }
+}
+
 .change__picture {
   width: 100%;
   font-size: 13px;
+}
+
+#pet__photo {
+  font-size: 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 2em;
+  outline: none;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: background 0.2s linear;
+}
+@media (max-width: 768px) {
+  #pet__photo {
+    width: 50% !important;
+    margin: 0 auto;
+    height: auto !important;
+  }
+}
+
+.hover:hover {
+  opacity: 0.8;
+}
+.hover:active {
+  opacity: 1;
+}
+
+#site {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+}
+@media (max-width: 991px) {
+  #site {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+}
+
+.col-sm {
+  border: 1px solid #000000;
+  position: relative;
+  text-shadow: 2px 2px #558ABB;
+}
+.col-sm h1 {
+  text-align: center;
+  padding-bottom: 60px;
+}
+@media (max-width: 575px) {
+  .col-sm h1 {
+    padding-bottom: 0;
+  }
+}
+.col-sm:last-child .td__content {
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .col-sm {
+    position: relative;
+    text-align: left;
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+  .col-sm:before {
+    position: relative;
+    color: #cc00ff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .person .col-sm:first-child:before, .td__content .col-sm:first-child:before {
+    content: "Владелец:";
+  }
+  .person .col-sm:nth-child(2):before, .td__content .col-sm:nth-child(2):before {
+    content: "Кличка животного:";
+  }
+  .person .col-sm:nth-child(3):before, .td__content .col-sm:nth-child(3):before {
+    content: "Возраст животного:";
+  }
+  .person .col-sm:nth-child(4):before, .td__content .col-sm:nth-child(4):before {
+    content: "Адрес владельца:";
+  }
+  .person .col-sm:nth-child(5):before, .td__content .col-sm:nth-child(5):before {
+    content: "Порода животного:";
+  }
+  .person .col-sm:nth-child(6):before, .td__content .col-sm:nth-child(6):before {
+    content: "Фото животного:";
+  }
+}
+
+.buttons__entering {
+  display: flex;
+  justify-content: space-around;
+}
+@media (max-width: 575px) {
+  .buttons__entering {
+    margin: 0 auto;
+    width: 86%;
+    flex-direction: column;
+  }
+  .buttons__entering button {
+    font-size: 12px;
+    padding: 0.3rem 0.7rem;
+  }
+  .buttons__entering button:first-child {
+    margin-bottom: 15px;
+  }
+  .buttons__entering button:last-child {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+#data-btn, .timebtn {
+  font-size: 15px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 2em;
+  outline: none;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: background 0.2s linear;
+}
+#data-btn:hover, .timebtn:hover {
+  background: linear-gradient(#f5ae00, #f59500) #f5ae00;
+}
+#data-btn:active, .timebtn:active {
+  background: linear-gradient(#f59500, #f5ae00) #f59500;
+}
+
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+  top: 440px;
+  margin-bottom: 50px;
+  background-image: none;
+}
+@media (max-width: 768px) {
+  .users {
+    margin-top: 20px;
+    border-radius: 10px;
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+    padding: 10px 15px;
+    padding-bottom: 40px;
+    display: grid;
+    flex-wrap: nowrap;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    overflow: auto;
+    grid-auto-flow: column dense;
+    background-color: #222;
+    background-image: url("/bg.3fddb949.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 6px 6px 7px #000000;
+  }
+}
+@media (max-width: 575px) {
+  .users {
+    margin: 20px auto;
+    width: 90%;
+  }
+}
+
+@media (max-width: 575px) {
+  .title {
+    margin: 0 auto;
+    width: 90%;
+  }
+  .title h1 {
+    line-height: 1.2;
+    width: 100%;
+    font-size: 23px;
+  }
+}
+@media (max-width: 417px) {
+  .title h1 {
+    font-size: 20px;
+    line-height: 1;
+  }
 }
 
 body {
@@ -102,13 +430,6 @@ body {
 
 .content {
   position: absolute;
-  top: 0;
-  right: 0;
-  left: 200px;
-}
-
-.col-sm {
-  border: 1px solid #000000;
 }
 
 .row:first-child {

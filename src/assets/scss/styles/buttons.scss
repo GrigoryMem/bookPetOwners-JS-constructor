@@ -1,0 +1,52 @@
+.buttons__entering{
+    display: flex;
+    justify-content: space-around;
+    
+    @include breakpoint($mobile-bp){
+        margin: 0 auto;
+
+        width:86%;
+        flex-direction: column;
+        // justify-content: center;
+
+        button{
+            font-size:12px;
+            padding: 0.3rem 0.7rem;
+
+            &:first-child{
+                margin-bottom:15px;
+            }
+
+            &:last-child{
+                
+                padding-top:10px;
+                padding-bottom:10px;
+            }
+            
+        }
+    }
+    
+}
+
+
+#data-btn,.timebtn{
+    font-size:15px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-weight: 600;;
+    color:white;
+    text-decoration: none;
+    padding: .5em 2em;
+    outline: none;
+    background: linear-gradient(#F3AE0F, #E38916) #E38916;
+    transition: background 0.2s linear;
+
+    &:hover{
+        background: linear-gradient(#f5ae00, #f59500) #f5ae00;
+    }
+
+    &:active{
+        background: linear-gradient(#f59500, #f5ae00) #f59500;
+    }
+}
+

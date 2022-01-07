@@ -3,12 +3,71 @@
 
 .table{
     text-align:center;
-
+    border-radius: 6px;
     margin:5px auto;
     color:#fff;
 
 
+    
+    
+    
+    @include breakpoint($tablet-ver){
+        // width: 60%;
+       
 
+        margin:0 auto;
+
+        .table__input{
+            height: 50px;
+        }
+        
+    }
+
+
+    
+
+}
+
+
+
+.table.person__example{
+    transition: display 1s linear;
+    @include breakpoint($tablet-ver){
+        margin-left:20px;
+    }
+    
+}
+
+
+
+
+
+
+
+.intro{
+    @include breakpoint($tablet-ver){
+       display:none;
+    }
+
+}
+
+
+.row.header{
+    border-radius: 6px;
+    font-weight: 700;
+    @include breakpoint($tablet-bp){
+        max-width: 720px;
+    }
+    @include breakpoint($tablet-ver){
+        display: none;
+
+    
+}
+
+}
+
+tr{
+    border-radius: 6px;
 }
 
 tr.person:hover{
@@ -21,28 +80,128 @@ tr.person:hover{
 
 }
 
-
-.row.header{
-    font-weight: 700;
-    margin-top:30px;
-}
+// ховеры переделать
 
 .row.person{
     text-align:left;
+  
+   
+    @include breakpoint($tablet-ver){
+        flex-direction: column;
+        widht:50%;
+        margin-top:20px;
+        background:transparent !important; 
+        margin-right:40px;
+
+
+}
+
+    td{
+
+       width: 220px;
+
+        &:nth-child(odd){
+            background: $td-odd;
+           &:hover{
+               background: $white;
+               color:$wrapper;
+               text-shadow: 4px 4px silver;
+               font-weight: bolder;
+               font-style:italic;
+               transform:rotate(360deg);
+               
+               transition:transform .7s ease-in-out;
+               border-radius:10px;
+           
+           
+                   .td__content{
+                       padding-top:15px;
+                       transition: padding .5s ease;
+                       transform:rotate(-360deg);
+                       transition:transform .7s ease-in-out;
+                   }
+   
+   
+   
+           
+                   }
+                   }
+   
+           &:nth-child(even){
+               background:$td-even;
+   
+   
+               &:hover{
+                       background: $white;
+                       color:$wrapper;
+                       text-shadow: 4px 4px silver;
+                       font-weight: bolder;
+                       font-style:italic;
+                       transform:rotate(360deg);
+                      
+                       transition:transform .7s ease-in-out;
+                       border-radius:10px;
+                       .td__content{
+                           padding-top:15px;
+                           transition: padding .5s ease;
+                                   }
+   
+                       }
+                           }
+                           &:first-child{
+                            transition: all .6s ease;
+                            display: block;
+                            position: relative;
+                            z-index: 100;
+                           }
+                           &:first-child:hover{
+                             transform: scale(1.2);
+                            }
+
+
+    }
+
+   
+
+    
 }
 
 
 
 
-tr.person td:nth-child(odd){
-    background: linear-gradient(90deg, #aea4e3, #d3ffe8) !important;
-}
-
-tr.person td:nth-child(even){
-    background: linear-gradient(85deg, #fb63f9, #c2e534) !important;
-} 
 
 
-.col-sm{
-    position: relative;
-}
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
