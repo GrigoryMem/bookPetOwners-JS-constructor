@@ -1120,7 +1120,13 @@ var myNumber = 42; // localStorage.removeItem("number")  // удаление з�
 // console.log(animal.voice())
 // console.log(animal)
 },{}],"assets/script/users.js":[function(require,module,exports) {
+setTimeout(function () {
+  var users = document.querySelector(".users");
 
+  if (!users.hasChildNodes()) {
+    users.style.padding = "0";
+  }
+}, 0);
 },{}],"assets/script/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -1199,7 +1205,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52319" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61955" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -21,7 +21,9 @@ body{
 
 }
 // убираем сидибар
-
+*{
+    box-shadow: border-box;
+}
 
 
 

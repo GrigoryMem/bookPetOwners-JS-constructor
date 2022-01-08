@@ -10,11 +10,12 @@
     @include breakpoint($tablet-ver){
         margin-top:20px;
         border-radius:10px;
-        min-height: 100%;
+        
         width: 100%;
         height: auto;
         padding:10px 15px;
         padding-bottom:40px;
+
         display:grid;
         flex-wrap: nowrap;
         grid-template-columns:1fr 1fr 1fr 1fr;

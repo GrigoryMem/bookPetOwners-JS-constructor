@@ -373,7 +373,6 @@ tr.person:hover {
   .users {
     margin-top: 20px;
     border-radius: 10px;
-    min-height: 100%;
     width: 100%;
     height: auto;
     padding: 10px 15px;
@@ -422,6 +421,10 @@ body {
 
 #app {
   position: relative;
+}
+
+* {
+  box-shadow: border-box;
 }
 
 .hide__text {
