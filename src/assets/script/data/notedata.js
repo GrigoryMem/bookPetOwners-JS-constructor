@@ -2,7 +2,8 @@ import{InputPers, PersPoint,PetPicture} from '../classes/points'
 import{clearField,maxId,setIcon} from './data__utils'
 import{basket,pencil,saver} from '../model'
 import {inputPers,addPicture,td, tr} from '../utils'
-import{dateNow} from '../data/date'
+import{dateNow} from './date'
+import { closeAnimModal, openAnimModal } from './animation'
 // рефокторинг
 
 let date = new Date()
@@ -93,14 +94,14 @@ class Data {
                 // вставка картинки
                 if(item.type==="file" && item.files[0]!==undefined){
                   
-                let newImage = `<image class="imgPet" src="${image.src}">`
+                let newImage = `<image class="imgPet" src="${image.src}">`;
                 parent[5].innerHTML = newImage;
-                container[container.length-1] = newImage
+                container[container.length-1] = newImage;
                    
                     
                 } 
                 if(item.type ==="file" && item.files[0]===undefined) {
-                    container[container.length] ="Картинка не задана"
+                    container[container.length] ="Картинка не задана";
     
                 }
 
@@ -110,15 +111,15 @@ class Data {
            
            
            
-            const person = new PersPoint(container).toHTML()
+            const person = new PersPoint(container).toHTML();
         // преобразование  строки в dom элемент
            let domObj = new DOMParser().parseFromString(person,"text/html") // превращаем строку в dom объект
             // добавление корзины
-         domObj.querySelector(".person").firstChild.appendChild(domBasket)
+         domObj.querySelector(".person").firstChild.appendChild(domBasket);
 
 
-        const devPerson = domObj.querySelector(".table")
-           console.log(devPerson)
+        const devPerson = domObj.querySelector(".table");
+          
 
            const users = document.querySelector(".users");
        
@@ -126,14 +127,15 @@ class Data {
         // devPerson.outerHTML преобразование html в строку
         
         devPerson.setAttribute("data-id",": "+0)
-    //    console.log( devPerson.dataset)
-        // this.location.insertAdjacentHTML('beforeend', devPerson.outerHTML)
-       users.insertAdjacentHTML('beforeend', devPerson.outerHTML)
-  
-        
-      
+        // анимация + вставка
 
-            localStorage.setItem("id: "+ 0,JSON.stringify(container))
+        openAnimModal(devPerson,users,-117,0);
+      
+       
+       
+       
+        // users.insertAdjacentHTML('beforeend', devPerson.outerHTML)
+        localStorage.setItem("id: "+ 0,JSON.stringify(container))
 
             
 
@@ -144,8 +146,9 @@ class Data {
 } else if (localStorage.length>0){
     let keysLS = Object.keys(localStorage);
       
-    devPerson.setAttribute("data-id",": "+maxId(keysLS))
- users.insertAdjacentHTML('beforeend', devPerson.outerHTML)
+    devPerson.setAttribute("data-id",": "+maxId(keysLS));
+    openAnimModal(devPerson,users,-117,0);
+//  users.insertAdjacentHTML('beforeend', devPerson.outerHTML)
         
         // this.location.insertAdjacentHTML('beforeend', devPerson.outerHTML )
        
@@ -169,7 +172,7 @@ class Data {
             this.addClassTable()
            
             
-        window.location.reload(); // обновляем страницу
+       
             
         })  // клик добавление записи
 
@@ -218,16 +221,16 @@ class Data {
             
                 let child = event.target.parentNode.parentNode.parentNode.parentNode.parentNode;// получаемудаляемый элемент
               
-               console.log(child)
+          
                
 
             let key = child.dataset.id;
                 
                
              localStorage.removeItem(key)
-             home.removeChild(child)
-             
-             console.log(key)
+
+            // анимация удалния
+            closeAnimModal(child,home)
                 // 
             }
         });

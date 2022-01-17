@@ -24,14 +24,17 @@
     }
 
 
-    
-
 }
 
 
 
 .table.person__example{
-    transition: display 1s linear;
+    
+   
+    
+    transition: transform 300ms ease-in-out,
+    opacity 500ms ease-in-out;
+  
     @include breakpoint($tablet-ver){
         margin-left:20px;
     }

@@ -16,6 +16,11 @@
     }
    
     &:last-child{
+        @include breakpoint($tablet-ver){
+            margin-bottom:20px;
+            
+        }
+        
         .td__content{
             text-align: center;
             }

@@ -30,7 +30,7 @@
 }
 
 .table.person__example {
-  transition: display 1s linear;
+  transition: transform 300ms ease-in-out, opacity 500ms ease-in-out;
 }
 @media (max-width: 768px) {
   .table.person__example {
@@ -279,6 +279,11 @@ tr.person:hover {
 @media (max-width: 575px) {
   .col-sm h1 {
     padding-bottom: 0;
+  }
+}
+@media (max-width: 768px) {
+  .col-sm:last-child {
+    margin-bottom: 20px;
   }
 }
 .col-sm:last-child .td__content {
